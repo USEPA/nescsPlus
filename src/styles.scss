@@ -1,0 +1,87 @@
+/* You can add global styles to this file, and also import other style files */
+@import "https://www.epa.gov/sites/all/libraries/template2/s.css";
+
+#search-button {
+  margin-top: 3px;
+}
+
+@media screen and (max-width: 61em) {
+  #search-button {
+    margin-top: 2px;
+  }
+}
+
+div#homeContent {
+  margin-bottom: 10px;
+
+
+  h1 {
+    margin-bottom: -5px;
+  }
+
+  div {
+    line-height: 1.5;
+    font-size: 14px;
+  }
+
+  div:first-child {
+    line-height: 1.5;
+    font-size: 14px;
+    margin-bottom: 10px
+  }
+
+  a {
+    color: blue
+  }
+}
+
+
+.accordion-toggle {
+  button {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+  }
+}
+
+#reportViewer {
+  overflow: auto;
+}
+
+.i-ui-icon {
+  background-image: url(./assets/images/small_info_i.png);
+  background-position: 0 center;
+  background-repeat: no-repeat;
+  color: transparent;
+  height: 12px;
+  margin: 0 3px;
+  width: 13px;
+  filter: none;
+  display: inline-block;
+}
+
+.modal-content {
+  padding: 3px;
+
+  .modal-header {
+    border: 1px solid #ddd;
+    background: #ddd;
+    background-image: url(./assets/images/ui-bg_highlight-soft_50_dddddd_1x100.png);
+    background-position: 50% 50%;
+    background-repeat: repeat-x;
+    color: #444;
+    font-weight: bold;
+  }
+
+  .h4 {
+    font-weight: bold;
+  }
+
+  .h3 {
+    font-weight: bold;
+    color: black;
+  }
+}
+
+
+

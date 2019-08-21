@@ -1,20 +1,42 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<nav>
+  <div class="nav nav-tabs" id="mainTabs" role="tablist">
+    <a [ngClass]="{'nav-item':true,'nav-link':true,'active':currentNavigation=='advancedQuery'}"
+       routerLink="advancedQuery">Multiple Query</a>
+    <a [ngClass]="{'nav-item':true,'nav-link':true,'active':currentNavigation=='customQuery'}" routerLink="customQuery">Single
+      Query</a>
+    <span class="bestSearchInfo" (click)="openModal(searchInfoTemplate)">Which search is best for me?</span>
+  </div>
+</nav>
+<router-outlet></router-outlet>
+
+
+<ng-template #searchInfoTemplate>
+  <div class="modal-header">
+    <div class="modal-title pull-left h4">Which search is best for me?</div>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="h3">Searching Multiple Query</div>
+
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vel congue erat, eget pharetra ante. Suspendisse
+      id augue et tortor mollis volutpat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
+      inceptos himenaeos. Proin consectetur ultrices nunc, sed tristique orci rhoncus nec. Duis libero urna, iaculis et
+      purus in, mattis mollis dui. Quisque ut turpis eget nunc sollicitudin aliquet in non tortor. Aliquam non accumsan
+      libero, ut congue lectus. Curabitur sodales mauris neque. Ut eget facilisis leo. Mauris nec diam non libero cursus
+      venenatis.</p>
+
+    <div class="h3">Searching Single Query</div>
+
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vel congue erat, eget pharetra ante. Suspendisse
+      id augue et tortor mollis volutpat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
+      inceptos himenaeos. Proin consectetur ultrices nunc, sed tristique orci rhoncus nec. Duis libero urna, iaculis et
+      purus in, mattis mollis dui. Quisque ut turpis eget nunc sollicitudin aliquet in non tortor. Aliquam non accumsan
+      libero, ut congue lectus. Curabitur sodales mauris neque. Ut eget facilisis leo. Mauris nec diam non libero cursus
+      venenatis.
+    </p>
+
+  </div>
+</ng-template>
 

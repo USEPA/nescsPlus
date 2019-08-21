@@ -1,0 +1,95 @@
+<br>
+<p>Select checkboxes for the classes and subclasses to be included in your query. Click on
+  "Environmental [Sub-]Classes" and "Ecological End-product Classes" to see checkboxes for
+  each of these two components. Farther down, you can choose to select from either the
+  "Direct Use/Non-use AND Direct User" classes or from "Beneficiary" classes.
+  After finalizing your selections through the checkboxes, click on the "Query Data"
+  button
+  to view the results of your query. If you would like to download the results to a
+  spreadsheet file, click on the "Export CSV" button. </p>
+
+<div class="panel-container" (click)="toggleClass($event,'active')">
+  Where? <i class="informationIcon"></i>
+  <div class="inner-class">
+    <b><i>Environmental classes</i></b> <i class="i-ui-icon"></i> and <b><i>subclasses</i></b> <i class="i-ui-icon"></i>
+    are the spatial environments where each ecological end-product is located when used.
+  </div>
+</div>
+<div class="adjoining-container">
+  <app-toggle-items [data]="navItems[0].children"></app-toggle-items>
+  <app-list [data]="navItems[0].children" [serviceName]="'advancedQuery'" [level]="level" [disableChildren]="disableChildren" class="filterContainer"></app-list>
+</div>
+
+<div class="panel-container" (click)="toggleClass($event,'active')">
+  What? <i class="informationIcon"></i>
+  <div class="inner-class">
+    <b><i>Ecological End-Product Classes</i></b> <i class="i-ui-icon"></i> are the relevant biophysical components of
+    nature that are directly used or appreciated by humans.
+  </div>
+</div>
+<div class="adjoining-container">
+  <app-toggle-items [data]="navItems[1].children"></app-toggle-items>
+  <app-list [data]="navItems[1].children" [serviceName]="'advancedQuery'" [level]="level" [disableChildren]="disableChildren" class="filterContainer"></app-list>
+</div>
+
+<div class="form-radios">
+  <br>
+  <div>Please choose one:</div>
+  <input class="form-radio" id="one-id" name="radios" type="radio" value="one" (click)="activeFilter ='directFilter'">
+  <label class="option" for="one-id"> Direct Use/Non-use AND Direct User </label>
+  &nbsp;&nbsp;
+  <input class="form-radio" id="two-id" name="radios" type="radio" value="two" (click)="activeFilter='beneFilter'">
+  <label class="option" for="two-id"> Beneficiary </label>
+</div>
+
+<div *ngIf="activeFilter=='directFilter'">
+  <div class="panel-container" (click)="toggleClass($event,'active')">
+    How? <i class="informationIcon"></i>
+    <div class="inner-class">
+      <b><i>Direct Use Classes</i></b> <i class="i-ui-icon"></i> and <b><i>Subclasses</i></b> <i class="i-ui-icon"></i>
+      are the ways each ecological end-product are directly used or appreciated by humans
+    </div>
+  </div>
+  <div class="adjoining-container">
+    <app-toggle-items [data]="navItems[2].children"></app-toggle-items>
+    <app-list [data]="navItems[2].children" [serviceName]="'advancedQuery'" [level]="level" [disableChildren]="disableChildren" class="filterContainer"></app-list>
+  </div>
+
+  <div class="panel-container" (click)="toggleClass($event,'active')">
+    Who? <i class="informationIcon"></i>
+    <div class="inner-class">
+      <b><i>Direct User Classes</i></b> <i class="i-ui-icon"></i> and <b><i>Subclasses</i></b>
+      <i class="i-ui-icon"></i> are the sector(s) of the economy that make direct use of each ecological end-product.
+    </div>
+  </div>
+  <div class="adjoining-container">
+    <app-toggle-items [data]="navItems[3].children"></app-toggle-items>
+    <app-list [data]="navItems[3].children" [serviceName]="'advancedQuery'" [level]="level" [disableChildren]="disableChildren" class="filterContainer"></app-list>
+  </div>
+</div>
+
+
+<div *ngIf="activeFilter=='beneFilter'">
+
+  <div class="panel-container" (click)="toggleClass($event,'active')">
+    Who? <i class="informationIcon"></i>
+    <div class="inner-class">
+      <b><i>Beneficiary class</i></b> <i class="i-ui-icon"></i> needs text
+    </div>
+  </div>
+  <div class="adjoining-container">
+    <app-list [data]="navItems[4].children" [serviceName]="'advancedQuery'" [level]="level" [disableChildren]="disableChildren" class="filterContainer"></app-list>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-1 offset-md-11 mt-2">
+    <div *ngIf="!showReport">
+      <button class="btn btn-primary" [disabled]="activeFilter==''" (click)="generateReport(false)">Query Data</button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="showReport" class="tab-content" id="reportContent">
+  <app-datatable [navigationItems]="navItems" [activeFilter]="activeFilter"></app-datatable>
+</div>
