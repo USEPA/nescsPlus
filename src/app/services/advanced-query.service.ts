@@ -6,9 +6,6 @@ import {HelperService} from './helper.service';
 
 @Injectable()
 export class AdvancedQueryService {
-  constructor(private helper: HelperService) {
-  }
-
   private pushNavigationChange = new Subject<Array<ListItem>>();
   pushNavigationChange$ = this.pushNavigationChange.asObservable();
   private listChange = new Subject<boolean>();
@@ -16,6 +13,8 @@ export class AdvancedQueryService {
   private activeFilterChange = new Subject<string>();
   activeFilterChange$ = this.activeFilterChange.asObservable();
 
+  constructor(private helper: HelperService) {
+  }
 
   listClick(value: boolean) {
     this.listChange.next(value);

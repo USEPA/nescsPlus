@@ -1,15 +1,16 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
-import { CustomQueryRoutingModule } from './custom-query-routing.module';
-import { CustomQueryComponent } from './custom-query.component';
+import {CustomQueryRoutingModule} from './custom-query-routing.module';
+import {CustomQueryComponent} from './custom-query.component';
 
 @NgModule({
   imports: [
     CommonModule,
     CustomQueryRoutingModule
   ],
-  exports:      [ CustomQueryComponent ],
+  exports: [CustomQueryComponent],
   declarations: [CustomQueryComponent]
 })
-export class CustomQueryModule { }
+export class CustomQueryModule {
+}

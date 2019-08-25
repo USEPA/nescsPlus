@@ -12,7 +12,6 @@ import {Subscription} from 'rxjs';
   providers: [AdvancedQueryService]
 })
 export class AdvancedQueryComponent implements OnInit, OnDestroy {
-  deployPath: string = environment.deployPath;
   activeFilter = '';
   showReport = false;
   navItems: Array<ListItem>;

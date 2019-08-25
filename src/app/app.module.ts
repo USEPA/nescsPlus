@@ -1,7 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {APP_INITIALIZER, NgModule} from '@angular/core';
 import {NgSelect2Module} from 'ng-select2';
-import {AccordionModule} from 'ngx-bootstrap/accordion';
 import {ModalModule} from 'ngx-bootstrap/modal';
 import {FormsModule} from '@angular/forms';
 
@@ -40,9 +39,8 @@ export function get_settings(appLoadService: AppLoadService) {
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    AccordionModule.forRoot(),
-    ModalModule.forRoot(),
     FormsModule,
+    ModalModule.forRoot(),
     NgSelect2Module,
     BrowserAnimationsModule
   ],

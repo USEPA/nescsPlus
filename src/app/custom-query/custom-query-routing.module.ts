@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {CustomQueryComponent} from "../custom-query/custom-query.component";
+import {CustomQueryComponent} from './custom-query.component';
 
 const routes: Routes = [
   { path: 'customQuery', component: CustomQueryComponent }
