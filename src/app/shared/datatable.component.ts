@@ -193,15 +193,6 @@ export class DataTableComponent implements AfterViewInit, OnDestroy, OnInit {
     return filterOptions;
   }
 
-  // buttons: [
-  //   'pageLength',
-  //   {
-  //     extend: 'excelHtml5',
-  //     text: 'Excel',
-  //     customize: self.extraSheet
-  //   }
-  //   ]
-
   extraSheet(xlsx): void {// Add sheet2 to [Content_Types].xml => <Types>
     // ============================================
     let source = xlsx['[Content_Types].xml'].getElementsByTagName('Override')[1];

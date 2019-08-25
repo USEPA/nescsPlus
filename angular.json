@@ -28,11 +28,12 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss",
               "node_modules/datatables.net-dt/css/jquery.dataTables.css",
               "./node_modules/bootstrap/dist/css/bootstrap.min.css",
               "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
-              "node_modules/select2/dist/css/select2.min.css"
+              "node_modules/select2/dist/css/select2.min.css",
+              "src/assets/epa-template/s.css",
+              "src/styles.scss"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.js",
@@ -106,7 +107,8 @@
             "styles": [
               "./node_modules/bootstrap/dist/css/bootstrap.min.css",
               "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/assets/epa-template/s.css"
             ],
             "scripts": []
           }
