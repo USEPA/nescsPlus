@@ -3,6 +3,7 @@ import {AppService} from './services/app.service';
 import {Subscription} from 'rxjs';
 import {Router} from '@angular/router';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap';
+import {environment} from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,11 @@ export class AppComponent implements OnInit {
   currentNavigation: string;
   appServiceCurrent: Subscription;
   modalRef: BsModalRef;
+  // Create a "Last Updated" date for the One EPA Template footer
+  lastModifiedDate = new Date(document.lastModified);
+
+  // This checks to see if we're in production and if so will show/hide certain parts of the template (like Google Analytics)
+  isProduction = environment.production;
 
   constructor(private appService: AppService,
               private router: Router,

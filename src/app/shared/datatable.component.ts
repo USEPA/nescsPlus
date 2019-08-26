@@ -13,7 +13,6 @@ declare var $;
   selector: 'app-datatable',
   templateUrl: './datatable.component.html',
   styleUrls: ['./datatable.component.scss']
-
 })
 
 export class DataTableComponent implements AfterViewInit, OnDestroy, OnInit {
@@ -115,16 +114,14 @@ export class DataTableComponent implements AfterViewInit, OnDestroy, OnInit {
     const dataTableAPI = this.dataTable.DataTable();
     this.selectedRemovedColumns = this.helper.union(this.selectedRemovedColumns,
       new Set(['Importance', 'Status', 'Source', 'Notes', 'MeasurementType', 'FEGSMeasurementincludingUnits']));
-    console.log('this.selectedRemovedColumns', this.selectedRemovedColumns);
-    const hideItems = [...this.selectedRemovedColumns].map((item) => {
-      console.log('item', item, this.displayOptions.columns);
+    let hideItems = [...this.selectedRemovedColumns].map((item) => {
       const foundItem = this.displayOptions.columns.findIndex(x => x.title === item);
-      if (foundItem !== -1) {
+      if (typeof foundItem !== 'undefined' && foundItem !== -1) {
         this.toggleHideColumns = this.toggleHideColumns.filter(x => x !== foundItem);
         return foundItem;
       }
     });
-    console.log('hideItems', hideItems);
+    hideItems = hideItems.filter(item => typeof item !== 'undefined');
     if (hideItems) {
       hideItems.forEach((item) => {
         dataTableAPI.column(item).visible(false);

@@ -17,7 +17,8 @@
 </div>
 <div class="adjoining-container">
   <app-toggle-items [data]="navItems[0].children"></app-toggle-items>
-  <app-list [data]="navItems[0].children" [serviceName]="'advancedQuery'" [level]="level" [disableChildren]="disableChildren" class="filterContainer"></app-list>
+  <app-list [data]="navItems[0].children" [serviceName]="'advancedQuery'" [level]="level"
+            [disableChildren]="disableChildren" class="filterContainer"></app-list>
 </div>
 
 <div class="panel-container" (click)="toggleClass($event,'active')">
@@ -29,7 +30,8 @@
 </div>
 <div class="adjoining-container">
   <app-toggle-items [data]="navItems[1].children"></app-toggle-items>
-  <app-list [data]="navItems[1].children" [serviceName]="'advancedQuery'" [level]="level" [disableChildren]="disableChildren" class="filterContainer"></app-list>
+  <app-list [data]="navItems[1].children" [serviceName]="'advancedQuery'" [level]="level"
+            [disableChildren]="disableChildren" class="filterContainer"></app-list>
 </div>
 
 <div class="form-radios">
@@ -52,19 +54,23 @@
   </div>
   <div class="adjoining-container">
     <app-toggle-items [data]="navItems[2].children"></app-toggle-items>
-    <app-list [data]="navItems[2].children" [serviceName]="'advancedQuery'" [level]="level" [disableChildren]="disableChildren" class="filterContainer"></app-list>
+    <app-list [data]="navItems[2].children" [serviceName]="'advancedQuery'" [level]="level"
+              [disableChildren]="disableChildren" class="filterContainer"></app-list>
   </div>
 
   <div class="panel-container" (click)="toggleClass($event,'active')">
     Who? <i class="informationIcon"></i>
     <div class="inner-class">
+      North American Industrial Classification System (<a href="https://classcodes.com/naics-code-lookup">NAICS) <span
+      class="btn btn-outline-dark btn-sm">EXIT</span></a><br>
       <b><i>Direct User Classes</i></b> <i class="i-ui-icon"></i> and <b><i>Subclasses</i></b>
       <i class="i-ui-icon"></i> are the sector(s) of the economy that make direct use of each ecological end-product.
     </div>
   </div>
   <div class="adjoining-container">
     <app-toggle-items [data]="navItems[3].children"></app-toggle-items>
-    <app-list [data]="navItems[3].children" [serviceName]="'advancedQuery'" [level]="level" [disableChildren]="disableChildren" class="filterContainer"></app-list>
+    <app-list [data]="navItems[3].children" [serviceName]="'advancedQuery'" [level]="level"
+              [disableChildren]="disableChildren" class="filterContainer"></app-list>
   </div>
 </div>
 
@@ -78,12 +84,13 @@
     </div>
   </div>
   <div class="adjoining-container">
-    <app-list [data]="navItems[4].children" [serviceName]="'advancedQuery'" [level]="level" [disableChildren]="disableChildren" class="filterContainer"></app-list>
+    <app-list [data]="navItems[4].children" [serviceName]="'advancedQuery'" [level]="level"
+              [disableChildren]="disableChildren" class="filterContainer"></app-list>
   </div>
 </div>
 
 <div class="row">
-  <div class="col-md-1 offset-md-11 mt-2">
+  <div class="col-md-2 offset-md-10 mt-2">
     <div *ngIf="!showReport">
       <button class="btn btn-primary" [disabled]="activeFilter==''" (click)="generateReport(false)">Query Data</button>
     </div>

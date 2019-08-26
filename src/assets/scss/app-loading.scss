@@ -1,0 +1,9 @@
+.app-loading {
+  .logo {
+    width: 100px;
+    height: 100px;
+
+    // this way asset gets processed by webpack
+    background: url(../images/epa-logo.svg) center center no-repeat;
+  }
+}

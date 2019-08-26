@@ -1,13 +1,55 @@
-<nav>
-  <div class="nav nav-tabs" id="mainTabs" role="tablist">
-    <a [ngClass]="{'nav-item':true,'nav-link':true,'active':currentNavigation=='advancedQuery'}"
-       routerLink="advancedQuery">Multiple Query</a>
-    <a [ngClass]="{'nav-item':true,'nav-link':true,'active':currentNavigation=='customQuery'}" routerLink="customQuery">Single
-      Query</a>
-    <span class="bestSearchInfo" (click)="openModal(searchInfoTemplate)">Which search is best for me?</span>
+
+
+<section id="main-content" class="main-content clearfix" role="main">
+  <div class="region-preface clearfix">
+  <div id="block-pane-epa-web-area-connect" class="block block-pane contextual-links-region">
+    <ul class="menu utility-menu">
+      <li class="menu-item"><a href="mailto:newcomer-johnson.tammy@epa.gov?subject=Provide Feedback"
+                               class="menu-link contact-us">Provide Feedback</a></li>
+    </ul>
   </div>
-</nav>
-<router-outlet></router-outlet>
+</div>
+<div class="main-column clearfix container-fluid">
+  <div id="homeContent">
+    <h1>NESCS Plus Webtool</h1>
+    <div class="row">
+      <div class="col-md-10 ml-4">
+        <div> NESCS Plus is a classification system for final ecosystem services. Additional pithy text. NESCS Plus is
+          a classification system for final ecosystems services.
+        </div>
+        <div>Learn about NESCS Plus</div>
+        <div><a href="">Why is it important to have a classification system for ecosystem services?</a></div>
+        <div><a href="">How is NESCS plus different from other systems?</a></div>
+        <div><a href="">How can NESCS plus help me?</a></div>
+      </div>
+    </div>
+  </div>
+  <div class="panel-pane pane-node-content">
+    <div class="pane-content">
+      <div class="node node-page clearfix view-mode-full">
+        <nav>
+          <div class="nav nav-tabs" id="mainTabs" role="tablist">
+            <a [ngClass]="{'nav-item':true,'nav-link':true,'active':currentNavigation=='advancedQuery'}"
+               routerLink="advancedQuery">Multiple Query</a>
+            <a [ngClass]="{'nav-item':true,'nav-link':true,'active':currentNavigation=='customQuery'}"
+               routerLink="customQuery">Single
+              Query</a>
+            <span class="bestSearchInfo" (click)="openModal(searchInfoTemplate)">Which search is best for me?</span>
+          </div>
+        </nav>
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+  <div id="block-epa-og-footer" class="block block-epa-og">
+    <div class="version">Version: FOOTER CONTENT</div>
+    <div class="feedBack">
+      <a href="mailto:newcomer-johnson.tammy@epa.gov?subject=Provide Feedback" class="menu-link contact-us">Provide
+        Feedback</a>
+    </div>
+  </div>
+</div>
+</section>
 
 
 <ng-template #searchInfoTemplate>

@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {APP_INITIALIZER, NgModule} from '@angular/core';
+import {APP_INITIALIZER, NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
 import {ModalModule} from 'ngx-bootstrap/modal';
 import {FormsModule} from '@angular/forms';
 
@@ -14,6 +14,7 @@ import {AppLoadService} from './services/app-load.service';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AdvancedQueryModule} from './advanced-query/advanced-query.module';
 import {CustomQueryModule} from './custom-query/custom-query.module';
+import { SplashScreenComponent } from './splash-screen/splash-screen.component';
 
 export function get_settings(appLoadService: AppLoadService) {
   return () => appLoadService.getSettings();
@@ -21,7 +22,8 @@ export function get_settings(appLoadService: AppLoadService) {
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SplashScreenComponent
   ],
   exports: [],
   imports: [
@@ -38,7 +40,8 @@ export function get_settings(appLoadService: AppLoadService) {
     AppLoadService,
     {provide: APP_INITIALIZER, useFactory: get_settings, deps: [AppLoadService], multi: true},
     AppService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas:[NO_ERRORS_SCHEMA]
 })
 export class AppModule {
 }
