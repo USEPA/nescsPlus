@@ -12,9 +12,9 @@ import {HttpClientModule} from '@angular/common/http';
 import {AppService} from './services/app.service';
 import {AppLoadService} from './services/app-load.service';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {AdvancedQueryModule} from './advanced-query/advanced-query.module';
-import {CustomQueryModule} from './custom-query/custom-query.module';
 import { SplashScreenComponent } from './splash-screen/splash-screen.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { ApplicationModule } from './application/application.module';
 
 export function get_settings(appLoadService: AppLoadService) {
   return () => appLoadService.getSettings();
@@ -23,18 +23,19 @@ export function get_settings(appLoadService: AppLoadService) {
 @NgModule({
   declarations: [
     AppComponent,
-    SplashScreenComponent
+    SplashScreenComponent,
+    PageNotFoundComponent
   ],
   exports: [],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    AdvancedQueryModule,
-    CustomQueryModule,
+    ApplicationModule,
     FormsModule,
     ModalModule.forRoot(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ApplicationModule
   ],
   providers: [
     AppLoadService,
