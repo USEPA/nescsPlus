@@ -11,6 +11,7 @@ import {Subscription} from 'rxjs';
   styleUrls: ['./advanced-query.component.scss'],
   providers: [AdvancedQueryService]
 })
+
 export class AdvancedQueryComponent implements OnInit, OnDestroy {
   activeFilter = '';
   showReport = false;

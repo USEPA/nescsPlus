@@ -5,6 +5,7 @@ import {BsModalRef, BsModalService} from 'ngx-bootstrap';
 import {ListItem} from '../models/listItem';
 import {ToggleColumnsService} from '../services/toggle-columns.service';
 import {HelperService} from '../services/helper.service';
+import {Constants} from '../models/constants';
 
 
 declare var $;
@@ -20,7 +21,8 @@ export class DataTableComponent implements AfterViewInit, OnDestroy, OnInit {
   @ViewChild('template', {static: false}) template;
   @Input() navigationItems: Array<ListItem>;
   @Input() activeFilter: string;
-  selectedRemovedColumns: Set<string> = new Set<string>();
+  anciliaryColumns = new Set(['Importance', 'Status', 'Source', 'Notes', 'MeasurementType', 'FEGSMeasurementincludingUnits']);
+  selectedRemovedColumns: Set<ListItem>;
   toggleHideColumns: Array<string> = new Array<string>();
   modalRef: BsModalRef;
   dtOptions: any;
@@ -30,6 +32,8 @@ export class DataTableComponent implements AfterViewInit, OnDestroy, OnInit {
   navigationChanges: Subscription;
   activeFilterChange: Subscription;
   toggleColumnChange: Subscription;
+  row = 1;
+  childrenExcelRow: Map<number, Array<string>>;
 
   constructor(private advancedQueryService: AdvancedQueryService,
               private modalService: BsModalService,
@@ -38,6 +42,7 @@ export class DataTableComponent implements AfterViewInit, OnDestroy, OnInit {
     this.navigationChanges = this.advancedQueryService.pushNavigationChange$.subscribe(resultActive => {
       // Setting value through async call to avoid error "ExpressionChangedAfterItHasBeenCheckedError"
       setTimeout(() => {
+        console.log('resultActuve', resultActive);
         this.navigationItems = resultActive;
         // call rerender --
         this.rerender();
@@ -50,25 +55,26 @@ export class DataTableComponent implements AfterViewInit, OnDestroy, OnInit {
       });
     });
     this.toggleColumnChange = this.toggleColumnsService.toggleColumnChange$.subscribe(columns => {
-      this.selectedRemovedColumns = new Set<string>(columns);
-      this.hideColumns();
+      this.selectedRemovedColumns = new Set<ListItem>(columns);
+      this.rerender();
     });
   }
 
   ngOnInit(): void {
     const removedFields = null;
+    this.selectedRemovedColumns = this.toggleColumnsService.getColumnToggleHideList();
     this.displayOptions = this.advancedQueryService.prepDisplay(removedFields, 'data');
   }
 
   renderDataTable(): void {
+    const self = this;
     this.dtOptions = {
       dom: 'Bfrtip',
       buttons: [
-        'excel',
         {
           extend: 'excelHtml5',
-          text: 'Excel Extended',
-          customize: this.extraSheet
+          text: 'Export',
+          customize: this.extraSheet.bind(self)
         }, {
           text: 'Hide/Show Columns',
           action: (e, dt, node, config) => {
@@ -86,7 +92,7 @@ export class DataTableComponent implements AfterViewInit, OnDestroy, OnInit {
     };
     this.dataTable = $(this.table.nativeElement);
     this.dataTable.DataTable(this.dtOptions);
-    this.hideColumns();
+    this.rerender();
   }
 
   openModal(template: TemplateRef<any>) {
@@ -104,17 +110,17 @@ export class DataTableComponent implements AfterViewInit, OnDestroy, OnInit {
   }
 
   rerender(): void {
-    this.hideColumns();
     this.filterTable(this.displayOptions.columns);
+    this.hideColumns();
     const dataTableAPI = this.dataTable.DataTable();
     dataTableAPI.draw();
   }
 
   hideColumns(): void {
+    let results = this.extractProp(this.selectedRemovedColumns, 'title');
+    results = this.helper.union(results, this.anciliaryColumns);
     const dataTableAPI = this.dataTable.DataTable();
-    this.selectedRemovedColumns = this.helper.union(this.selectedRemovedColumns,
-      new Set(['Importance', 'Status', 'Source', 'Notes', 'MeasurementType', 'FEGSMeasurementincludingUnits']));
-    let hideItems = [...this.selectedRemovedColumns].map((item) => {
+    let hideItems = [...results].map((item) => {
       const foundItem = this.displayOptions.columns.findIndex(x => x.title === item);
       if (typeof foundItem !== 'undefined' && foundItem !== -1) {
         this.toggleHideColumns = this.toggleHideColumns.filter(x => x !== foundItem);
@@ -170,11 +176,12 @@ export class DataTableComponent implements AfterViewInit, OnDestroy, OnInit {
   }
 
   getFilterOptions(): Array<any> {
-    const filterOptions = [
+    let filterOptions = new Array(
       {column: 'EnvironmentalClass', arrayIndex: 0, level: 0},
       {column: 'EnvironmentalSubclass', arrayIndex: 0, level: 1},
       {column: 'Ecological End-Product Class', arrayIndex: 1, level: 0},
-    ];
+    );
+
 
     if (this.activeFilter === 'directFilter') {
       filterOptions.push({column: 'Direct Use/Non-Use Class', arrayIndex: 2, level: 0});
@@ -187,10 +194,34 @@ export class DataTableComponent implements AfterViewInit, OnDestroy, OnInit {
       filterOptions.push({column: 'BeneficiaryCategory', arrayIndex: 4, level: 0});
       filterOptions.push({column: 'BeneficiarySubcategory', arrayIndex: 4, level: 0});
     }
+
+    // Remove Columns that are hidden
+    const selectedRemovedColumns = this.extractProp(this.selectedRemovedColumns, 'column');
+    filterOptions = filterOptions.filter((element) => {
+      return !selectedRemovedColumns.has(element.column);
+    });
     return filterOptions;
   }
 
-  extraSheet(xlsx): void {// Add sheet2 to [Content_Types].xml => <Types>
+  extractProp(values: Set<ListItem>, propName: string): Set<string> {
+    const results = new Set<string>();
+    values.forEach((item) => {
+      if (!item.checked) {
+        results.add(item[propName]);
+      }
+
+      if (item.children && item.children.length) {
+        const tempList = this.extractProp(new Set(item.children), propName);
+        if (tempList) {
+          tempList.forEach(results.add, results);
+        }
+      }
+    });
+    return results;
+  }
+
+  extraSheet(xlsx): void {
+    // Add sheet2 to [Content_Types].xml => <Types>
     // ============================================
     let source = xlsx['[Content_Types].xml'].getElementsByTagName('Override')[1];
     let clone = source.cloneNode(true);
@@ -216,15 +247,12 @@ export class DataTableComponent implements AfterViewInit, OnDestroy, OnInit {
 
     // Add sheet2.xml to xl/worksheets
     // ===============================
-    let removedColumns = 'All columns showing';
-    if (this.selectedRemovedColumns) {
-      removedColumns = Array.from(this.selectedRemovedColumns).join(', ');
-    }
+    this.row = 1;
     const today = new Date();
     const cMonth = today.getMonth() + 1;
     const cDay = today.getDate();
     const dateNow = ((cMonth < 10) ? '0' + cMonth : cMonth) + '-' + ((cDay < 10) ? '0' + cDay : cDay) + '-' + today.getFullYear();
-    const newSheet = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
+    let newSheet = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
       '<worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" ' +
       'xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" ' +
       'xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" ' +
@@ -234,42 +262,159 @@ export class DataTableComponent implements AfterViewInit, OnDestroy, OnInit {
       '<col min="2" max="2" width="37.7" customWidth="1"/>' +
       '</cols>' +
       '<sheetData>' +
-      '<row  r="1">' +
-      '<c t="inlineStr" r="A1" s="7">' +
+      '<row  r="' + (++this.row) + '">' +
+      '<c t="inlineStr" r="A' + this.row + '" s="7">' +
       '<is>' +
       '<t>Information sheet</t>' +
       '</is>' +
       '</c>' +
       '</row>' +
-      '<row  r="2">' +
-      '<c t="inlineStr" r="A2" s="2">' +
-      '<is>' +
-      '<t>Hidden Columns</t>' +
-      '</is>' +
-      '</c>' +
-      '<c t="inlineStr" r="B2" s="3">' +
-      '<is>' +
-      '<t>' + removedColumns + '</t>' +
-      '</is>' +
-      '</c>' +
-      '</row>' +
-      '<row  r="3">' +
-      '<c t="inlineStr" r="A3" s="2">' +
+      '<row  r="' + (++this.row) + '">' +
+      '<c t="inlineStr" r="A' + this.row + '" s="2">' +
       '<is>' +
       '<t>Date</t>' +
       '</is>' +
       '</c>' +
-      '<c t="inlineStr" r="B3" s="3">' +
+      '<c t="inlineStr" r="B' + this.row + '" s="3">' +
       '<is>' +
       '<t>' + dateNow + '</t>' +
       '</is>' +
       '</c>' +
       '</row>' +
-      '</sheetData>' +
+      '<row  r="' + (++this.row) + '">' +
+      '<c t="inlineStr" r="A' + this.row + '" s="2">' +
+      '<is>' +
+      '<t>Selected Values:</t>' +
+      '</is>' +
+      '</c>' +
+      '</row>';
+
+    newSheet += '<row  r="' + (++this.row) + '">' +
+      '<c t="inlineStr" r="B' + this.row + '" s="3">' +
+      '<is>' +
+      '<t>Environmental Classes and subclasses</t>' +
+      '</is>' +
+      '</c>' +
+      '</row>';
+    this.childrenExcelRow = new Map<number, Array<string>>();
+    newSheet += this.getXmlFirstRow(this.navigationItems[0].children, 2);
+    newSheet += '<row  r="' + (++this.row) + '">' +
+      '<c t="inlineStr" r="B' + this.row + '" s="3">' +
+      '<is>' +
+      '<t>Ecological End-Product Classes</t>' +
+      '</is>' +
+      '</c>' +
+      '</row>';
+    this.childrenExcelRow = new Map<number, Array<string>>();
+    newSheet += this.getXmlOneRow(this.navigationItems[1].children, 2);
+    newSheet += '<row  r="' + (++this.row) + '">' +
+      '<c t="inlineStr" r="B' + this.row + '" s="3">' +
+      '<is>' +
+      '<t>Direct Use Classes and Subclasses</t>' +
+      '</is>' +
+      '</c>' +
+      '</row>';
+    // this.childrenExcelRow = new Map<number, Array<string>>();
+    // newSheet += this.getXmlFirstRow(this.navigationItems[2].children, 2);
+    newSheet += '<row  r="' + (++this.row) + '">' +
+      '<c t="inlineStr" r="B' + this.row + '" s="3">' +
+      '<is>' +
+      '<t>Direct User Classes and Subclasses</t>' +
+      '</is>' +
+      '</c>' +
+      '</row>';
+    // this.childrenExcelRow = new Map<number, Array<string>>();
+    // newSheet += this.getXmlFirstRow(this.navigationItems[3].children, 2);
+    newSheet += '<row  r="' + (++this.row) + '">' +
+      '<c t="inlineStr" r="B' + this.row + '" s="3">' +
+      '<is>' +
+      '<t>Beneficiary class</t>' +
+      '</is>' +
+      '</c>' +
+      '</row>';
+    this.childrenExcelRow = new Map<number, Array<string>>();
+    newSheet += this.getXmlFirstRow(this.navigationItems[4].children, 2);
+    newSheet += '</sheetData>' +
       '<mergeCells count="1">' +
       '<mergeCell  ref="A1:B1"/>' +
       '</mergeCells>' +
       '</worksheet>';
+    console.log('newSheet', newSheet, this.row);
     xlsx.xl.worksheets['sheet2.xml'] = $.parseXML(newSheet);
+  }
+
+  getXmlFirstRow(items: Array<ListItem>, columnIndex: number): string {
+    let result = '';
+    let initialRow = this.row + 1;
+    result += '<row  r="' + initialRow + '">';
+    items.forEach((item) => {
+      if (item.checked) {
+        const column = Constants.EXCEL_COLUMNS[columnIndex];
+        columnIndex++;
+        result += '<c t="inlineStr" r="' + column + (this.row + 1) + '" s="3">' +
+          '<is>' +
+          '<t>' + item.title + '</t>' +
+          '</is>' +
+          '</c>';
+        if (item.children) {
+          this.getXmlRows(item.children, columnIndex, initialRow);
+          columnIndex++;
+        }
+      }
+    });
+    result += '</row>';
+    this.childrenExcelRow.forEach((item) => {
+      console.log('item', item);
+      const rowNumber = ++initialRow;
+      let cell = item.join('');
+      cell = cell.replace(/r\=\"\D(\d+)\"/g, (match) => {
+        console.log('match', match, match.replace(/\d+/, rowNumber.toString()));
+        return match.replace(/\d+/, rowNumber.toString());
+      });
+      result += '<row  r="' + rowNumber + '">' + cell + '</row>';
+    });
+
+    this.row = initialRow;
+    console.log('childrenRow', this.childrenExcelRow);
+    return result;
+  }
+
+  getXmlOneRow(items: Array<ListItem>, columnIndex: number): string {
+    let result = '';
+    const column = Constants.EXCEL_COLUMNS[columnIndex];
+    items.forEach((item) => {
+      this.row++;
+      result += '<row  r="' + this.row + '">' +
+        '<c t="inlineStr" r="' + column + this.row + '" s="3">' +
+        '<is>' +
+        '<t>' + item.title + '</t>' +
+        '</is>' +
+        '</c>' +
+        '</row>';
+    });
+
+    return result;
+  }
+
+  getXmlRows(items: Array<ListItem>, columnIndex: number, row: number): void {
+
+    items.forEach((item) => {
+      if (item.checked) {
+        const column = Constants.EXCEL_COLUMNS[columnIndex];
+        const excelRow = ++row;
+        console.log('row', column, excelRow);
+        const rowArray = this.childrenExcelRow.get(row) || new Array<string>();
+        rowArray.push('<c t="inlineStr" r="' + column + excelRow + '" s="3">' +
+          '<is>' +
+          '<t>' + item.title + '</t>' +
+          '</is>' +
+          '</c>');
+        this.childrenExcelRow.set(excelRow, rowArray);
+        if (item.children) {
+          const nextColumnIndex = columnIndex + 1;
+          this.getXmlRows(item.children, nextColumnIndex, row);
+        }
+      }
+    });
   }
 }

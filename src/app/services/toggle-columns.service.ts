@@ -7,7 +7,7 @@ import {ListItem} from '../models/listItem';
   providedIn: 'root'
 })
 export class ToggleColumnsService {
-  private toggleColumnChange = new Subject<Array<string>>();
+  private toggleColumnChange = new Subject<Set<ListItem>>();
   toggleColumnChange$ = this.toggleColumnChange.asObservable();
   private signalColumnChange = new Subject<boolean>();
   signalColumnChange$ = this.signalColumnChange.asObservable();
@@ -15,7 +15,7 @@ export class ToggleColumnsService {
   constructor() {
   }
 
-  getColumnToggleHideList(): Array<ListItem> {
+  getColumnToggleHideList(): Set<ListItem> {
     let columnToggleHideList = JSON.parse(localStorage.getItem('ColumnToggleHideList'));
     if (!columnToggleHideList) {
       columnToggleHideList = Constants.TOGGLE_COLUMN_MAP;
@@ -23,7 +23,7 @@ export class ToggleColumnsService {
     return columnToggleHideList;
   }
 
-  saveColumnFilterOptions(data: Array<ListItem>): void {
+  saveColumnFilterOptions(data: Set<ListItem>): void {
     localStorage.setItem('ColumnToggleHideList', JSON.stringify(data));
   }
 
@@ -31,28 +31,7 @@ export class ToggleColumnsService {
     this.signalColumnChange.next(value);
   }
 
-  processClick(values: Array<ListItem>): void {
-    console.log(values);
-    const results = this.extractColumns(values);
-    this.toggleColumnChange.next(results);
-  }
-
-  extractColumns(values: Array<ListItem>): Array<string> {
-    let results = new Array<string>();
-    values.forEach((item) => {
-      if (!item.checked) {
-        results.push(item.title);
-      }
-
-      if (item.children && item.children.length) {
-        const tempList = this.extractColumns(item.children);
-        if (tempList) {
-          console.log('results,tempList', results, tempList);
-          results = results.concat(tempList);
-          console.log('results', results);
-        }
-      }
-    });
-    return results;
+  processClick(values: Set<ListItem>): void {
+    this.toggleColumnChange.next(values);
   }
 }

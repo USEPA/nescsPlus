@@ -10,7 +10,7 @@ import {Subscription} from 'rxjs';
   styleUrls: ['./toggle-columns.component.scss']
 })
 export class ToggleColumnsComponent implements OnInit, OnDestroy {
-  data: Array<ListItem>;
+  data: Set<ListItem>;
   serviceName = 'ToggleColumnsService';
   level = 0;
   disableChildren = true;
