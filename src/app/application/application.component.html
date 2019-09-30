@@ -32,7 +32,7 @@
               <a [ngClass]="{'nav-item':true,'nav-link':true,'active':currentNavigation=='customQuery'}"
                  routerLink="singleQuery">Single
                 Query</a>
-              <span class="bestSearchInfo" (click)="openModal(searchInfoTemplate)">Which search is best for me?</span>
+              <span class="bestSearchInfo" (click)="openModal()">Which search is best for me?</span>
             </div>
           </nav>
           <router-outlet></router-outlet>
@@ -50,34 +50,4 @@
   </div>
 </section>
 
-
-<ng-template #searchInfoTemplate>
-  <div class="modal-header">
-    <div class="modal-title pull-left h4">Which search is best for me?</div>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <div class="h3">Searching Multiple Query</div>
-
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vel congue erat, eget pharetra ante. Suspendisse
-      id augue et tortor mollis volutpat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
-      inceptos himenaeos. Proin consectetur ultrices nunc, sed tristique orci rhoncus nec. Duis libero urna, iaculis et
-      purus in, mattis mollis dui. Quisque ut turpis eget nunc sollicitudin aliquet in non tortor. Aliquam non accumsan
-      libero, ut congue lectus. Curabitur sodales mauris neque. Ut eget facilisis leo. Mauris nec diam non libero cursus
-      venenatis.</p>
-
-    <div class="h3">Searching Single Query</div>
-
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vel congue erat, eget pharetra ante. Suspendisse
-      id augue et tortor mollis volutpat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
-      inceptos himenaeos. Proin consectetur ultrices nunc, sed tristique orci rhoncus nec. Duis libero urna, iaculis et
-      purus in, mattis mollis dui. Quisque ut turpis eget nunc sollicitudin aliquet in non tortor. Aliquam non accumsan
-      libero, ut congue lectus. Curabitur sodales mauris neque. Ut eget facilisis leo. Mauris nec diam non libero cursus
-      venenatis.
-    </p>
-
-  </div>
-</ng-template>
 

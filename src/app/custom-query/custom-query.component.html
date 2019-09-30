@@ -22,11 +22,12 @@
       <span validation="ecological" class="help-block"></span>
     </div>
     <div class="col-md-12">
-      <ng-select2 [data]="ecologicalList" placeholder="Select" id="ecological"
+      <ng-select [items]="ecologicalList" placeholder="Select" id="ecological"
                  bindLabel="text" labelForId="ecological"
                  bindValue="id"
+                 (change)="enableAdd()"
                  [(ngModel)]="selectedEcological">
-      </ng-select2>
+      </ng-select>
     </div>
   </div>
   <div class="row">
@@ -35,11 +36,12 @@
       <span validation="environmental" class="help-block"></span>
     </div>
     <div class="col-md-12">
-      <ng-select2 [data]="environmentalList" placeholder="Select" id="environmental"
+      <ng-select [items]="environmentalList" placeholder="Select" id="environmental"
                  bindLabel="text" labelForId="environmental"
                  bindValue="id"
+                 (change)="enableAdd()"
                  [(ngModel)]="selectedEnvironmental">
-      </ng-select2>
+      </ng-select>
     </div>
   </div>
   <div class="row">
@@ -48,11 +50,12 @@
       <span validation="directUse" class="help-block"></span>
     </div>
     <div class="col-md-12">
-      <ng-select2 [data]="directUseList" placeholder="Select" id="directUse"
+      <ng-select [items]="directUseList" placeholder="Select" id="directUse"
                  bindLabel="text" labelForId="directUse"
                  bindValue="id"
+                 (change)="enableAdd()"
                  [(ngModel)]="selectedDirectUse">
-      </ng-select2>
+      </ng-select>
     </div>
   </div>
   <div class="row">
@@ -61,17 +64,22 @@
       <span validation="directUser" class="help-block"></span>
     </div>
     <div class="col-md-12">
-      <ng-select2 [data]="directUserList" placeholder="Select" id="directUser"
+      <ng-select [items]="directUserList" placeholder="Select" id="directUser"
                  bindLabel="text" labelForId="directUser"
                  bindValue="id"
+                 (change)="enableAdd()"
                  [(ngModel)]="selectedDirectUser">
-      </ng-select2>
+      </ng-select>
     </div>
   </div>
   <div class="row mt-3">
     <div class="col-md-12">
-      <button [ngClass]="{'btn':true, 'btn-primary':true,'float-right':true,'invisible':buttonAction&&buttonAction.indexOf('edit')==-1}" [disabled]="buttonAction=='editDisable'" id="editEvent">Edit</button>
-      <button [ngClass]="{'btn':true, 'btn-primary':true,'float-right':true,'invisible':buttonAction&&buttonAction.indexOf('add')==-1}" [disabled]="buttonAction=='addDisable'" id="addEvent">Add</button>
+      <div *ngIf="buttonAction.indexOf('edit')!==-1">
+        <button class="btn btn-primary float-right" [disabled]="buttonAction=='editDisable'" (click)="editAction()">Edit</button>
+      </div>
+      <div *ngIf="buttonAction.indexOf('add')!==-1">
+        <button class="btn btn-primary float-right" [disabled]="buttonAction=='addDisable'" (click)="openNameModal()">Add</button>
+      </div>
     </div>
   </div>
 </div>
@@ -79,72 +87,3 @@
   <table id="report" class="display thin-table stripe" width="100%"></table>
 </div>
 
-<!-- Custom Modals -->
-<!-- Name Modal -->
-<div class="modal fade" id="nameModal" tabindex="-1" role="dialog"
-     aria-labelledby="nameModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Name of Filtered
-          List</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span></button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="nameFilteredItem"
-                   class="control-label">Name:</label>
-            <span class="help-block"
-                  validation="nameFilteredItem"></span>
-            <input type="text" class="form-control"
-                   id="nameFilteredItem">
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">
-          Close
-        </button>
-        <button type="button" class="btn btn-primary confirm">Confirm
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Confirm Delete Modal -->
-
-<div class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog"
-     aria-labelledby="nameModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="deleteConfirmationModalLabel">
-          Confirmation of
-          Deletion</h5>
-        <button type="button" class="close" data-dismiss="modal"
-                aria-label="Close"><span
-          aria-hidden="true">&times;</span></button>
-
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label>Do you wish to continue deleting &quot;<span
-              class="deletionItem"></span>&quot;</label>
-            <input type="hidden" class="form-control" id="deletionItem">
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">
-          Cancel
-        </button>
-        <button type="button" class="btn btn-primary confirmDelete">
-          Confirm
-        </button>
-      </div>
-    </div>
-  </div>
-</div>

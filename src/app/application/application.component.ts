@@ -4,6 +4,7 @@ import {BsModalRef, BsModalService} from 'ngx-bootstrap';
 import {environment} from '../../environments/environment';
 import {AppService} from '../services/app.service';
 import {Router} from '@angular/router';
+import {SearchInstructionsModalComponent} from '../modals/search-instructions-modal/search-instructions-modal.component';
 
 @Component({
   selector: 'app-application',
@@ -11,7 +12,6 @@ import {Router} from '@angular/router';
   styleUrls: ['./application.component.scss']
 })
 export class ApplicationComponent implements OnInit {
-  @ViewChild('searchInfoTemplate', {static: false}) searchInfoTemplate;
   currentNavigation: string;
   appServiceCurrent: Subscription;
   modalRef: BsModalRef;
@@ -36,8 +36,8 @@ export class ApplicationComponent implements OnInit {
     this.router.navigate(['application/multipleQuery']);
   }
 
-  openModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template);
+  openModal() {
+    this.modalRef = this.modalService.show(SearchInstructionsModalComponent, {});
   }
 
 }

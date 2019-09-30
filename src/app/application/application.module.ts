@@ -10,11 +10,17 @@ import {DataTableComponent} from '../shared/datatable.component';
 import {ListComponent} from '../shared/list.component';
 import {ToggleItemsComponent} from '../shared/toggle-items/toggle-items.component';
 import {ToggleColumnsComponent} from '../shared/toggle-columns/toggle-columns.component';
-import {NgSelect2Module} from 'ng-select2';
+import {NgSelectModule} from '@ng-select/ng-select';
+import {NameModalComponent} from '../modals/name-modal/name-modal.component';
+import {DeleteModalComponent} from '../modals/delete-modal/delete-modal.component';
+import {SearchInstructionsModalComponent} from '../modals/search-instructions-modal/search-instructions-modal.component';
 
 
 @NgModule({
   declarations: [
+    NameModalComponent,
+    DeleteModalComponent,
+    SearchInstructionsModalComponent,
     ApplicationComponent,
     AdvancedQueryComponent,
     CustomQueryComponent,
@@ -22,6 +28,11 @@ import {NgSelect2Module} from 'ng-select2';
     ListComponent,
     ToggleItemsComponent,
     ToggleColumnsComponent
+  ],
+  entryComponents: [
+    DeleteModalComponent,
+    NameModalComponent,
+    SearchInstructionsModalComponent
   ],
   exports: [
     DataTableComponent,
@@ -31,7 +42,7 @@ import {NgSelect2Module} from 'ng-select2';
     CommonModule,
     FormsModule,
     ApplicationRoutingModule,
-    NgSelect2Module
+    NgSelectModule
   ]
 })
 export class ApplicationModule {
