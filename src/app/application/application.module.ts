@@ -14,6 +14,8 @@ import {NgSelectModule} from '@ng-select/ng-select';
 import {NameModalComponent} from '../modals/name-modal/name-modal.component';
 import {DeleteModalComponent} from '../modals/delete-modal/delete-modal.component';
 import {SearchInstructionsModalComponent} from '../modals/search-instructions-modal/search-instructions-modal.component';
+import {ExcelService} from '../services/excel.service';
+import {AdvancedQueryService} from '../services/advanced-query.service';
 
 
 @NgModule({
@@ -43,6 +45,10 @@ import {SearchInstructionsModalComponent} from '../modals/search-instructions-mo
     FormsModule,
     ApplicationRoutingModule,
     NgSelectModule
+  ],
+  providers: [
+    ExcelService,
+    AdvancedQueryService
   ]
 })
 export class ApplicationModule {
