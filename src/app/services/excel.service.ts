@@ -116,7 +116,7 @@ export class ExcelService {
     newSheet += '<row  r="' + (++this.row) + '">' +
       '<c t="inlineStr" r="B' + this.row + '" s="3">' +
       '<is>' +
-      '<t>Direct Use Classes and Subclasses</t>' +
+      '<t>Direct User Classes and Subclasses</t>' +
       '</is>' +
       '</c>' +
       '</row>';
@@ -125,7 +125,7 @@ export class ExcelService {
     newSheet += '<row  r="' + (++this.row) + '">' +
       '<c t="inlineStr" r="B' + this.row + '" s="3">' +
       '<is>' +
-      '<t>Environmental Classes and subclasses</t>' +
+      '<t>Beneficiary class</t>' +
       '</is>' +
       '</c>' +
       '</row>';
