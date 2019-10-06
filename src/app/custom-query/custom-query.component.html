@@ -25,7 +25,7 @@
       <ng-select [items]="ecologicalList" placeholder="Select" id="ecological"
                  bindLabel="text" labelForId="ecological"
                  bindValue="id"
-                 (change)="enableAdd()"
+                 (change)="enableButton()"
                  [(ngModel)]="selectedEcological">
       </ng-select>
     </div>
@@ -39,7 +39,7 @@
       <ng-select [items]="environmentalList" placeholder="Select" id="environmental"
                  bindLabel="text" labelForId="environmental"
                  bindValue="id"
-                 (change)="enableAdd()"
+                 (change)="enableButton()"
                  [(ngModel)]="selectedEnvironmental">
       </ng-select>
     </div>
@@ -53,7 +53,7 @@
       <ng-select [items]="directUseList" placeholder="Select" id="directUse"
                  bindLabel="text" labelForId="directUse"
                  bindValue="id"
-                 (change)="enableAdd()"
+                 (change)="enableButton()"
                  [(ngModel)]="selectedDirectUse">
       </ng-select>
     </div>
@@ -67,7 +67,7 @@
       <ng-select [items]="directUserList" placeholder="Select" id="directUser"
                  bindLabel="text" labelForId="directUser"
                  bindValue="id"
-                 (change)="enableAdd()"
+                 (change)="enableButton()"
                  [(ngModel)]="selectedDirectUser">
       </ng-select>
     </div>
@@ -83,7 +83,8 @@
     </div>
   </div>
 </div>
-<div class="selectList">
+<div *ngIf="showDataTable">
+  <app-single-query-table (editItem)="initializeEdit($event)" (setAction)="setAction($event)"></app-single-query-table>
   <table id="report" class="display thin-table stripe" width="100%"></table>
 </div>
 

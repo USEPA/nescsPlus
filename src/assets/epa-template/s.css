@@ -3987,3 +3987,26 @@ th.headerSortDown {
     display: block;
   }
 }
+
+
+/* Because this section is dynamically generated the styles dont seem to apply using component styles and scss */
+/* Adding here to fix issue */
+/* Single Query Data Table*/
+div#singleDataTable_wrapper div.dt-buttons {
+  margin-bottom: -50px;
+}
+
+table#singleDataTable tbody tr.selected {
+  background-color: #acbad4 !important;
+}
+
+table#singleDataTable tbody tr.selected td {
+  background: inherit;
+}
+
+div#singleDataTable_wrapper button.disabled {
+  color: #999;
+  border: 1px solid #d0d0d0;
+  cursor: default;
+  background-color: #f9f9f9;
+}

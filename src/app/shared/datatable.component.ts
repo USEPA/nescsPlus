@@ -41,7 +41,6 @@ export class DataTableComponent implements AfterViewInit, OnDestroy, OnInit {
     this.navigationChanges = this.advancedQueryService.pushNavigationChange$.subscribe(resultActive => {
       // Setting value through async call to avoid error "ExpressionChangedAfterItHasBeenCheckedError"
       setTimeout(() => {
-        console.log('resultActuve', resultActive);
         this.navigationItems = resultActive;
         // call rerender --
         this.rerender();
@@ -175,11 +174,9 @@ export class DataTableComponent implements AfterViewInit, OnDestroy, OnInit {
   }
 
   getFilterOptions(): Array<any> {
-    let filterOptions = new Array(
-      {column: 'EnvironmentalClass', arrayIndex: 0, level: 0},
+    let filterOptions = [{column: 'EnvironmentalClass', arrayIndex: 0, level: 0},
       {column: 'EnvironmentalSubclass', arrayIndex: 0, level: 1},
-      {column: 'Ecological End-Product Class', arrayIndex: 1, level: 0},
-    );
+      {column: 'Ecological End-Product Class', arrayIndex: 1, level: 0}];
 
 
     if (this.activeFilter === 'directFilter') {

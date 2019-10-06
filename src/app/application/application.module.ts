@@ -16,6 +16,7 @@ import {DeleteModalComponent} from '../modals/delete-modal/delete-modal.componen
 import {SearchInstructionsModalComponent} from '../modals/search-instructions-modal/search-instructions-modal.component';
 import {ExcelService} from '../services/excel.service';
 import {AdvancedQueryService} from '../services/advanced-query.service';
+import {SingleQueryTableComponent} from '../custom-query/single-query-table/single-query-table.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import {AdvancedQueryService} from '../services/advanced-query.service';
     DataTableComponent,
     ListComponent,
     ToggleItemsComponent,
-    ToggleColumnsComponent
+    ToggleColumnsComponent,
+    SingleQueryTableComponent
   ],
   entryComponents: [
     DeleteModalComponent,
@@ -38,6 +40,7 @@ import {AdvancedQueryService} from '../services/advanced-query.service';
   ],
   exports: [
     DataTableComponent,
+    SingleQueryTableComponent,
     ListComponent
   ],
   imports: [

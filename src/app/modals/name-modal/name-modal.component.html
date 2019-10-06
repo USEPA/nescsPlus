@@ -1,5 +1,3 @@
-
-
 <!-- Name Modal -->
 <div class="modal-header">
   <div class="modal-title pull-left h4">Name of Filtered List</div>
@@ -10,9 +8,14 @@
 <div class="modal-body">
   <form>
     <div class="form-group">
-      <label for="nameFilteredItem" class="control-label">Name:</label>
+      <label for="filterName" class="control-label">Name:</label>
       <span class="help-block" validation="nameFilteredItem"></span>
-      <input type="text" class="form-control" id="nameFilteredItem">
+      <input type="text" class="form-control" id="filterName" name="filterName" [(ngModel)]="filterName">
     </div>
   </form>
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" (click)="bsModalRef.hide()">Cancel</button>
+  <button type="button" class="btn btn-primary" [disabled]="filterName.length===0" (click)="actionItem()">Confirm</button>
 </div>
