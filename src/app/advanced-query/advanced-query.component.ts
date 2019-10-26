@@ -54,8 +54,4 @@ export class AdvancedQueryComponent implements OnInit, OnDestroy {
     }
   }
 
-  toggleActiveFilter(activeFilter: string) {
-    this.activeFilter = activeFilter;
-    this.advancedQueryService.pushActiveFilterChange(activeFilter);
-  }
 }

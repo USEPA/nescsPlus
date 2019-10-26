@@ -3,6 +3,7 @@ import {ListItem} from '../models/listItem';
 import {Constants} from '../models/constants';
 import {Subject} from 'rxjs';
 import {HelperService} from './helper.service';
+import {DataService} from './data.service';
 
 @Injectable()
 export class AdvancedQueryService {
@@ -28,49 +29,8 @@ export class AdvancedQueryService {
     this.activeFilterChange.next(activeFilter);
   }
 
-  prepDisplay(fields: Array<string>, dataGroup: string): any {
-    const rawData = JSON.parse(localStorage.getItem(dataGroup));
-    const options = {
-      columns: [],
-      data: null
-    };
-    options.data = rawData;
-    // Remove fields
-    if (fields) {
-      // Modify Custom display
-      fields.forEach((column) => {
-        const columnIndex = options.data[0].indexOf(column);
-        const tempArray = options.data.map((item) => {
-          item.splice(columnIndex, 1);
-          return item;
-        });
-        options.data = tempArray;
-      });
-    }
-
-    options.data[0].forEach((column) => {
-      let visible = true;
-      const columnTitle = this.findColumnItem(column);
-      try {
-        if ((fields && fields.indexOf(column) === -1) || columnTitle[2] === 'FESCS Code') {
-          visible = false;
-        }
-        options.columns.push({
-          title: columnTitle[2],
-          originalTitle: column,
-          visible: visible
-        });
-      } catch (e) {
-        alert('column:' + column + ' missing? error:' + e.toString());
-      }
-    });
-    return options;
-  }
-
-  findColumnItem(column) {
-    return Constants.COLUMN_MAP.find((element, index, array) => {
-      return element[1] === column;
-    });
+  prepDisplayTable(): any {
+    return DataService.getData();
   }
 
   getAdvancedQueryNav(): Array<ListItem> {
@@ -90,15 +50,15 @@ export class AdvancedQueryService {
   private filterArray(data: Array<any>, keys: Array<string>): Array<any> {
     switch (keys.length) {
       case 1:
-        return this.filterArray0(data, keys);
+        return this.filterFirst(data, keys);
       case 2:
-        const first2 = this.filterArray0(data, keys);
+        const first2 = this.filterFirst(data, keys);
         first2.forEach((item) => {
           item.children = this.filterSecond(data, keys, item.title);
         });
         return first2;
       case 3:
-        const first3 = this.filterArray0(data, keys);
+        const first3 = this.filterFirst(data, keys);
         first3.forEach((item) => {
           item.children = this.filterSecond(data, keys, item.title);
         });
@@ -111,7 +71,7 @@ export class AdvancedQueryService {
     }
   }
 
-  private filterArray0(data: Array<any>, keys: Array<string>): any {
+  private filterFirst(data: Array<any>, keys: Array<string>): any {
     const first = [...new Set(data.map(item => item[keys[0]]))];
 
     return first.map((item) => {

@@ -1,41 +1,36 @@
+import {map} from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {environment} from '../../environments/environment';
-import * as d3 from 'd3';
 import {Constants} from '../models/constants';
+import {Data} from '../models/data.model';
 
 
 @Injectable()
 export class AppLoadService {
-  private dataUrl: string = environment.deployPath + 'assets/data.csv';  // URL to web api
+  private dataUrl: string = environment.deployPath + 'assets/data.json';  // URL to web api
 
   constructor(private httpClient: HttpClient) {
   }
 
 
-  getSettings(): Promise<any> {
+  getSettings() {
     console.log(`getSettings:: before http.get call`);
 
-    const promise = this.httpClient.get(this.dataUrl, {responseType: 'text'})
-      .toPromise()
-      .then(file => {
-        const rows = d3.csvParseRows(file);
-        this.setFullDisplay(rows);
-        this.setDeDupedDisplay(rows);
-        this.setEnvironmentalArray(rows);
-        this.setEcologicalArray(rows);
-        this.setDirectUseArray(rows);
-        this.setDirectUserArray(rows);
-        this.setBeneficiaryArray(rows);
-      });
+    this.httpClient.get(this.dataUrl).subscribe((rows: Array<Data>) => {
+      this.setFullDisplay(rows);
+      this.setEnvironmentalArray(rows);
+      this.setEcologicalArray(rows);
+      this.setDirectUseArray(rows);
+      this.setDirectUserArray(rows);
+      this.setBeneficiaryArray(rows);
+    });
 
-    return promise;
   }
 
-  private getDefinedColumns(data: any, displayColumns: Array<string>): Array<any> {
-    const columns = displayColumns.map((item) => {
-      return data[0].indexOf(item);
-    });
+  private getDefinedColumns(data: Array<Data>, displayColumns: Array<string>): Array<any> {
+    console.log('data', data);
+    const columns = Constants.FULL_COLUMN_DISPLAY;
     const results = data.map((item) => {
       return columns.map((index) => {
         return item[index];
@@ -46,18 +41,7 @@ export class AppLoadService {
   }
 
   private setFullDisplay(data: any): void {
-    let displayColumns = [];
-    displayColumns = displayColumns.concat(Constants.ENVIRONMENTAL_COLUMN_ARRAY, Constants.ECOLOGICAL_COLUMN_ARRAY,
-      Constants.DIRECT_USE_COLUMN_ARRAY, Constants.DIRECT_USER_COLUMN_ARRAY, Constants.BENEFICIARY_COLUMN_ARRAY,
-      Constants.BENEFICIARY_ID_COLUMN_ARRAY, Constants.ANCILIARY_COLUMN_ARRAY, Constants.ID_COLUMN_ARRAY);
-    localStorage.setItem('data', JSON.stringify(this.getDefinedColumns(data, displayColumns)));
-  }
-
-  private setDeDupedDisplay(data: any): void {
-    let displayColumns = [];
-    displayColumns = displayColumns.concat(Constants.ENVIRONMENTAL_COLUMN_ARRAY, Constants.ECOLOGICAL_COLUMN_ARRAY,
-      Constants.DIRECT_USE_COLUMN_ARRAY, Constants.DIRECT_USER_COLUMN_ARRAY, Constants.ID_COLUMN_ARRAY);
-    localStorage.setItem('dataNonDuplicate', JSON.stringify(this.getDefinedColumns(data, displayColumns)));
+    localStorage.setItem('data', JSON.stringify(data));
   }
 
   private setEnvironmentalArray(data: any) {
@@ -86,22 +70,7 @@ export class AppLoadService {
       const ecoClassB = b.environmentalClass.toUpperCase();
       const ecoSubClassA = a.environmentalSubClass.toUpperCase();
       const ecoSubClassB = b.environmentalSubClass.toUpperCase();
-      if (ecoClassA < ecoClassB) {
-        return -1;
-      }
-      if (ecoClassA > ecoClassB) {
-        return 1;
-      }
-      if (ecoSubClassA < ecoSubClassB) {
-        return -1;
-      }
-      if (ecoSubClassA > ecoSubClassB) {
-        return 1;
-      }
-
-      // names must be equal
-      return 0;
-
+      return this.classSort(ecoClassA, ecoClassB, ecoSubClassA, ecoSubClassB, null, null);
     });
     localStorage.setItem('environmentalArray', JSON.stringify(environmentalArray));
   }
@@ -128,15 +97,8 @@ export class AppLoadService {
     ecologicalArray.sort((a, b) => {
       const ecoClassA = a.ecologicalClass.toUpperCase();
       const ecoClassB = b.ecologicalClass.toUpperCase();
-      if (ecoClassA < ecoClassB) {
-        return -1;
-      }
-      if (ecoClassA > ecoClassB) {
-        return 1;
-      }
 
-      // names must be equal
-      return 0;
+      return this.classSort(ecoClassA, ecoClassB, null, null, null, null);
     });
     localStorage.setItem('ecologicalArray', JSON.stringify(ecologicalArray));
   }
@@ -164,34 +126,13 @@ export class AppLoadService {
       }
     });
     directUseArray.sort((a, b) => {
-      const ecoClassA = a.directUseClass.toUpperCase();
       const ecoClassB = b.directUseClass.toUpperCase();
       const ecoSubIClassA = a.directUseSubClassI.toUpperCase();
       const ecoSubIClassB = b.directUseSubClassI.toUpperCase();
       const ecoSubIIClassA = a.directUseSubClassII.toUpperCase();
       const ecoSubIIClassB = b.directUseSubClassII.toUpperCase();
-      if (ecoClassA < ecoClassB) {
-        return -1;
-      }
-      if (ecoClassA > ecoClassB) {
-        return 1;
-      }
-      if (ecoSubIClassA < ecoSubIClassB) {
-        return -1;
-      }
-      if (ecoSubIClassA > ecoSubIClassB) {
-        return 1;
-      }
-      if (ecoSubIIClassA < ecoSubIIClassB) {
-        return -1;
-      }
-      if (ecoSubIIClassA > ecoSubIIClassB) {
-        return 1;
-      }
 
-      // names must be equal
-      return 0;
-
+      return this.classSort(a.directUseClass.toUpperCase(), ecoClassB, ecoSubIClassA, ecoSubIClassB, ecoSubIIClassA, ecoSubIIClassB);
     });
     localStorage.setItem('directUseArray', JSON.stringify(directUseArray));
   }
@@ -224,28 +165,8 @@ export class AppLoadService {
       const ecoSubIClassB = b.directUserSubClassI.toUpperCase();
       const ecoSubIIClassA = a.directUserSubClassII.toUpperCase();
       const ecoSubIIClassB = b.directUserSubClassII.toUpperCase();
-      if (ecoClassA < ecoClassB) {
-        return -1;
-      }
-      if (ecoClassA > ecoClassB) {
-        return 1;
-      }
-      if (ecoSubIClassA < ecoSubIClassB) {
-        return -1;
-      }
-      if (ecoSubIClassA > ecoSubIClassB) {
-        return 1;
-      }
-      if (ecoSubIIClassA < ecoSubIIClassB) {
-        return -1;
-      }
-      if (ecoSubIIClassA > ecoSubIIClassB) {
-        return 1;
-      }
 
-      // names must be equal
-      return 0;
-
+      return this.classSort(ecoClassA, ecoClassB, ecoSubIClassA, ecoSubIClassB, ecoSubIIClassA, ecoSubIIClassB);
     });
     localStorage.setItem('directUserArray', JSON.stringify(directUserArray));
   }
@@ -263,7 +184,7 @@ export class AppLoadService {
           return x.id;
         }).indexOf(beneficiaryId);
         if (foundItem === -1) {
-          beneficiaryArray.push( {
+          beneficiaryArray.push({
             id: beneficiaryId,
             beneficiaryClass: item[0].trim(),
             beneficiarySubClass: item[1].trim()
@@ -276,23 +197,37 @@ export class AppLoadService {
       const ecoClassB = b.beneficiaryClass.toUpperCase();
       const ecoSubClassA = a.beneficiarySubClass.toUpperCase();
       const ecoSubClassB = b.beneficiarySubClass.toUpperCase();
-      if (ecoClassA < ecoClassB) {
-        return -1;
-      }
-      if (ecoClassA > ecoClassB) {
-        return 1;
-      }
-      if (ecoSubClassA < ecoSubClassB) {
-        return -1;
-      }
-      if (ecoSubClassA > ecoSubClassB) {
-        return 1;
-      }
-
-      // names must be equal
-      return 0;
-
+      return this.classSort(ecoClassA, ecoClassB, ecoSubClassA, ecoSubClassB, null, null);
     });
     localStorage.setItem('beneficiaryArray', JSON.stringify(beneficiaryArray));
+  }
+
+
+  classSort(ecoClassA, ecoClassB, ecoSubIClassA, ecoSubIClassB, ecoSubIIClassA, ecoSubIIClassB) {
+    if (ecoClassA < ecoClassB) {
+      return -1;
+    }
+    if (ecoClassA > ecoClassB) {
+      return 1;
+    }
+    if (ecoSubIClassA) {
+      if (ecoSubIClassA < ecoSubIClassB) {
+        return -1;
+      }
+      if (ecoSubIClassA > ecoSubIClassB) {
+        return 1;
+      }
+    }
+    if (ecoSubIIClassA) {
+      if (ecoSubIIClassA < ecoSubIIClassB) {
+        return -1;
+      }
+      if (ecoSubIIClassA > ecoSubIIClassB) {
+        return 1;
+      }
+    }
+
+    // names must be equal
+    return 0;
   }
 }

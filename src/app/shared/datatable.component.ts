@@ -6,6 +6,9 @@ import {ListItem} from '../models/listItem';
 import {ToggleColumnsService} from '../services/toggle-columns.service';
 import {HelperService} from '../services/helper.service';
 import {ExcelService} from '../services/excel.service';
+import {DataService} from '../services/data.service';
+import {DataTableData} from '../models/data-table-data.model';
+import {Constants} from '../models/constants';
 
 declare var $;
 
@@ -20,14 +23,13 @@ export class DataTableComponent implements AfterViewInit, OnDestroy, OnInit {
   @ViewChild('template', {static: false}) template;
   @Input() navigationItems: Array<ListItem>;
   @Input() activeFilter: string;
-  anciliaryColumns = new Set(['Importance', 'Status', 'Source', 'Notes', 'MeasurementType', 'FEGSMeasurementincludingUnits']);
   selectedRemovedColumns: Set<ListItem>;
   toggleHideColumns: Array<string> = new Array<string>();
   modalRef: BsModalRef;
   dtOptions: any;
   dataTable: any;
   columns: Array<string>;
-  displayOptions: any;
+  displayOptions: DataTableData;
   navigationChanges: Subscription;
   activeFilterChange: Subscription;
   toggleColumnChange: Subscription;
@@ -43,29 +45,31 @@ export class DataTableComponent implements AfterViewInit, OnDestroy, OnInit {
       setTimeout(() => {
         this.navigationItems = resultActive;
         // call rerender --
-        this.rerender();
-      });
-    });
-    this.activeFilterChange = this.advancedQueryService.activeFilterChange$.subscribe(resultActive => {
-      setTimeout(() => {
-        this.activeFilter = resultActive;
-        this.rerender();
+        this.renderDataTable();
       });
     });
     this.toggleColumnChange = this.toggleColumnsService.toggleColumnChange$.subscribe(columns => {
       this.selectedRemovedColumns = new Set<ListItem>(columns);
-      this.rerender();
+      this.renderDataTable();
+    });
+    this.activeFilterChange = this.advancedQueryService.activeFilterChange$.subscribe(resultActive => {
+      setTimeout(() => {
+        this.activeFilter = resultActive;
+        this.renderDataTable();
+      });
     });
   }
 
   ngOnInit(): void {
-    const removedFields = null;
     this.selectedRemovedColumns = this.toggleColumnsService.getColumnToggleHideList();
-    this.displayOptions = this.advancedQueryService.prepDisplay(removedFields, 'data');
   }
 
   renderDataTable(): void {
     const self = this;
+    let displayOptions = DataService.getData();
+    console.log('displayOptions', displayOptions);
+    displayOptions = DataService.filterTable(displayOptions, this.navigationItems);
+    displayOptions = DataService.removeColumns(this.selectedRemovedColumns, displayOptions);
     this.dtOptions = {
       dom: 'Bfrtip',
       buttons: [
@@ -80,17 +84,19 @@ export class DataTableComponent implements AfterViewInit, OnDestroy, OnInit {
           }
         }
       ],
-      data: this.displayOptions.data,
-      columns: this.displayOptions.columns,
+      data: DataService.returnArray(displayOptions),
+      columns: DataService.returnColumnArray(displayOptions.columns),
       lengthMenu: [[10, 25, 50, 100, 200, -1], [10, 25, 50, 100, 200, 'All']],
       fixedHeader: {
         header: false,
         adjust: true
       }
     };
+    if (this.dataTable) {
+      this.dataTable.destroy();
+    }
     this.dataTable = $(this.table.nativeElement);
     this.dataTable.DataTable(this.dtOptions);
-    this.rerender();
   }
 
   openModal(template: TemplateRef<any>) {
@@ -107,71 +113,6 @@ export class DataTableComponent implements AfterViewInit, OnDestroy, OnInit {
     this.activeFilterChange.unsubscribe();
   }
 
-  rerender(): void {
-    this.filterTable(this.displayOptions.columns);
-    this.hideColumns();
-    const dataTableAPI = this.dataTable.DataTable();
-    dataTableAPI.draw();
-  }
-
-  hideColumns(): void {
-    let results = this.extractProp(this.selectedRemovedColumns, 'title');
-    results = this.helper.union(results, this.anciliaryColumns);
-    const dataTableAPI = this.dataTable.DataTable();
-    let hideItems = [...results].map((item) => {
-      const foundItem = this.displayOptions.columns.findIndex(x => x.title === item);
-      if (typeof foundItem !== 'undefined' && foundItem !== -1) {
-        this.toggleHideColumns = this.toggleHideColumns.filter(x => x !== foundItem);
-        return foundItem;
-      }
-    });
-    hideItems = hideItems.filter(item => typeof item !== 'undefined');
-    if (hideItems) {
-      hideItems.forEach((item) => {
-        dataTableAPI.column(item).visible(false);
-      });
-    }
-    this.toggleHideColumns.forEach((item) => {
-      dataTableAPI.column(item).visible(true);
-    });
-    this.toggleHideColumns = hideItems;
-  }
-
-  filterTable(columns): void {
-    const dataTableAPI = this.dataTable.DataTable();
-    const filterOptions = this.getFilterOptions();
-    if (filterOptions) {
-      filterOptions.forEach((item) => {
-        const columnItem = this.advancedQueryService.findColumnItem(item.column);
-        const elementList = new Array<string>();
-        // build a regex filter string with an or(|) condition
-        this.getSearchList(this.navigationItems[item.arrayIndex].children, elementList, item.level, 0);
-        const elementValues: string = elementList.map((element) => {
-          return element.split(' ')[0]; // Return first word because search doesnt like spaces at this time - debug database.net search
-        }).sort().join('|');
-        const index = columns.map((column) => {
-          return column.title;
-        }).indexOf(columnItem[2]);
-
-        if (index !== -1) {
-          // arguments (input, isRegex?, isSmartSearch?, case-sensitive? )
-          dataTableAPI.column(index).search(elementValues, true, true);
-        }
-      });
-    }
-  }
-
-  getSearchList(items: Array<ListItem>, resultArray: Array<string>, index: number, level: number): void {
-    items.forEach((item) => {
-      if (index === level) {
-        if (item.checked) {
-          resultArray.push(item.title);
-        }
-      } else if (item.children.length) {
-        this.getSearchList(item.children, resultArray, index, level + 1);
-      }
-    });
-  }
 
   getFilterOptions(): Array<any> {
     let filterOptions = [{column: 'EnvironmentalClass', arrayIndex: 0, level: 0},
@@ -192,33 +133,16 @@ export class DataTableComponent implements AfterViewInit, OnDestroy, OnInit {
     }
 
     // Remove Columns that are hidden
-    const selectedRemovedColumns = this.extractProp(this.selectedRemovedColumns, 'column');
+    const selectedRemovedColumns = DataService.extractProp(this.selectedRemovedColumns, 'column');
     filterOptions = filterOptions.filter((element) => {
       return !selectedRemovedColumns.has(element.column);
     });
     return filterOptions;
   }
 
-  extractProp(values: Set<ListItem>, propName: string): Set<string> {
-    const results = new Set<string>();
-    values.forEach((item) => {
-      if (!item.checked) {
-        results.add(item[propName]);
-      }
-
-      if (item.children && item.children.length) {
-        const tempList = this.extractProp(new Set(item.children), propName);
-        if (tempList) {
-          tempList.forEach(results.add, results);
-        }
-      }
-    });
-    return results;
-  }
-
   extraSheet(xlsx): void {
-    let columnsToHide = this.extractProp(this.selectedRemovedColumns, 'title');
-    columnsToHide = this.helper.union(columnsToHide, this.anciliaryColumns);
+    let columnsToHide = DataService.extractProp(this.selectedRemovedColumns, 'title');
+    columnsToHide = HelperService.union(columnsToHide, new Set(Constants.ANCILIARY_COLUMN_ARRAY));
     const dataTableAPI = this.dataTable.DataTable();
     const data = Object.values(dataTableAPI.rows({selected: true}).data());
     data.unshift(dataTableAPI.settings().init().columns.map((item) => {

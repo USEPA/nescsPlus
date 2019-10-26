@@ -8,7 +8,7 @@ export class HelperService {
   constructor() {
   }
 
-  union(setA: Set<any>, setB: Set<any>): Set<any> {
+  static union(setA: Set<any>, setB: Set<any>): Set<any> {
     const unionLocal = new Set(setA);
     setB.forEach((elem) => {
       unionLocal.add(elem);
@@ -16,7 +16,7 @@ export class HelperService {
     return unionLocal;
   }
 
-  intersection(setA: Set<any>, setB: Set<any>): Set<any> {
+  static intersection(setA: Set<any>, setB: Set<any>): Set<any> {
     const intersectionLocal = new Set();
     setB.forEach((elem) => {
       if (setA.has(elem)) {
