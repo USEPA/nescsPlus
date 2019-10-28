@@ -1,7 +1,6 @@
 
 
 export class Column {
-  arrayName = '';
   columnName = '';
   columnTitle = '';
   arrayIndex = 0;

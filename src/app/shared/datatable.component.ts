@@ -66,10 +66,8 @@ export class DataTableComponent implements AfterViewInit, OnDestroy, OnInit {
 
   renderDataTable(): void {
     const self = this;
-    let displayOptions = DataService.getData();
+    const displayOptions = DataService.getTableData(this.navigationItems);
     console.log('displayOptions', displayOptions);
-    displayOptions = DataService.filterTable(displayOptions, this.navigationItems);
-    displayOptions = DataService.removeColumns(this.selectedRemovedColumns, displayOptions);
     this.dtOptions = {
       dom: 'Bfrtip',
       buttons: [
@@ -85,7 +83,7 @@ export class DataTableComponent implements AfterViewInit, OnDestroy, OnInit {
         }
       ],
       data: DataService.returnArray(displayOptions),
-      columns: DataService.returnColumnArray(displayOptions.columns),
+      columns: DataService.returnDataColumnArray(displayOptions.columns),
       lengthMenu: [[10, 25, 50, 100, 200, -1], [10, 25, 50, 100, 200, 'All']],
       fixedHeader: {
         header: false,
@@ -141,8 +139,7 @@ export class DataTableComponent implements AfterViewInit, OnDestroy, OnInit {
   }
 
   extraSheet(xlsx): void {
-    let columnsToHide = DataService.extractProp(this.selectedRemovedColumns, 'title');
-    columnsToHide = HelperService.union(columnsToHide, new Set(Constants.ANCILIARY_COLUMN_ARRAY));
+    const columnsToHide = DataService.extractProp(this.selectedRemovedColumns, 'title');
     const dataTableAPI = this.dataTable.DataTable();
     const data = Object.values(dataTableAPI.rows({selected: true}).data());
     data.unshift(dataTableAPI.settings().init().columns.map((item) => {

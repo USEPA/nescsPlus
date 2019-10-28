@@ -1,6 +1,5 @@
 import {Component, OnDestroy, OnInit, Renderer2} from '@angular/core';
 import {AppService} from '../services/app.service';
-import {environment} from '../../environments/environment';
 import {AdvancedQueryService} from '../services/advanced-query.service';
 import {ListItem} from '../models/listItem';
 import {Subscription} from 'rxjs';
@@ -19,6 +18,11 @@ export class AdvancedQueryComponent implements OnInit, OnDestroy {
   level = 0;
   listChanges: Subscription;
   disableChildren = false;
+  environmentalNav: Array<ListItem>;
+  ecologicalNav: Array<ListItem>;
+  directUseNav: Array<ListItem>;
+  directUserNav: Array<ListItem>;
+  beneficiaryNav: Array<ListItem>;
 
   constructor(private renderer: Renderer2, private appService: AppService, private advancedQueryService: AdvancedQueryService) {
 
@@ -33,6 +37,11 @@ export class AdvancedQueryComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.appService.setNavigation('advancedQuery');
     this.navItems = this.advancedQueryService.getAdvancedQueryNav();
+    this.environmentalNav = [this.navItems[0]];
+    this.ecologicalNav = [this.navItems[1]];
+    this.directUseNav = [this.navItems[2]];
+    this.directUserNav = [this.navItems[3]];
+    this.beneficiaryNav = [this.navItems[4]];
   }
 
   ngOnDestroy(): void {

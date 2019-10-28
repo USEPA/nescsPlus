@@ -4,6 +4,9 @@ import {Constants} from '../models/constants';
 import {Subject} from 'rxjs';
 import {HelperService} from './helper.service';
 import {DataService} from './data.service';
+import {Data} from '../models/data.model';
+import {NavArray} from '../models/nav-array.model';
+import {Column} from '../models/column.model';
 
 @Injectable()
 export class AdvancedQueryService {
@@ -35,19 +38,24 @@ export class AdvancedQueryService {
 
   getAdvancedQueryNav(): Array<ListItem> {
     const returnResult = new Array<ListItem>();
-    Constants.NAV_ARRAY.forEach((item) => {
-      const dataItem = JSON.parse(localStorage.getItem(item.dataPoint));
-      returnResult.push(new ListItem({
-        column: item.name.replace(' ', '_'),
-        title: item.name,
-        children: this.filterArray(dataItem, item.keys),
-        checked: true
-      }));
+    Constants.COLUMN_MAP.forEach((item: NavArray) => {
+      const dataItem = JSON.parse(localStorage.getItem(item.arrayName));
+      const firstLevel = item.arrayName;
+      const siblingColumns = item.columnArray.map(column => column.columnName);
+      // Exclude ID fields which have no corresponding stored array
+      if (dataItem) {
+        returnResult.push(new ListItem({
+          column: firstLevel,
+          title: firstLevel,
+          children: this.filterArray(dataItem, siblingColumns),
+          checked: true
+        }));
+      }
     });
     return returnResult;
   }
 
-  private filterArray(data: Array<any>, keys: Array<string>): Array<any> {
+  private filterArray(data: Array<Data>, keys: Array<string>): Array<any> {
     switch (keys.length) {
       case 1:
         return this.filterFirst(data, keys);
@@ -73,21 +81,22 @@ export class AdvancedQueryService {
 
   private filterFirst(data: Array<any>, keys: Array<string>): any {
     const first = [...new Set(data.map(item => item[keys[0]]))];
-
-    return first.map((item) => {
+    return first.map(item => {
       return new ListItem({title: item || '', column: item.replace(/\s/g, '_'), children: [], checked: true});
     });
   }
 
-  private filterSecond(data: Array<any>, keys: Array<string>, firstLevel: string): any {
-    const second = [...new Set(data.map((item) => {
-      const temp = item[keys[1]][0];
+  private filterSecond(data: Array<Data>, keys: Array<string>, firstLevel: string): any {
+    const second = new Set(data.map(item => {
+      const temp = item[keys[1]];
       if (item[keys[0]] === firstLevel && typeof temp !== 'undefined') {
-        return item[keys[1]];
+        return temp;
       }
-    }))];
-
-    return this.returnListItem(second);
+    }));
+    if (second.has(undefined)) {
+      second.delete(undefined);
+    }
+    return this.returnListItem(Array.from(second));
   }
 
   private filterThird(data: Array<any>, keys: Array<string>, firstLevel: string, secondLevel: string): any {

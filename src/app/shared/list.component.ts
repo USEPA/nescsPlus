@@ -49,14 +49,14 @@ export class ListComponent implements OnInit {
       item.checked = checked;
       if (item.children && item.children.length) {
         this.toggleChecks(item.children, checked);
-      // } else if (!item.children) {
-      //   item.children = [];
+        // } else if (!item.children) {
+        //   item.children = [];
       }
     });
   }
 
-  enableDisableChildren(items: Array<ListItem>,enable: boolean): void {
-    items.forEach((item:ListItem) => {
+  enableDisableChildren(items: Array<ListItem>, enable: boolean): void {
+    items.forEach((item: ListItem) => {
 
     });
   }

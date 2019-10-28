@@ -2,6 +2,9 @@ import {Injectable} from '@angular/core';
 import {BehaviorSubject, Subject} from 'rxjs';
 import {ListItem} from '../models/listItem';
 import {SingleQueryItem} from '../models/single-query-item';
+import {Constants} from '../models/constants';
+import {Column} from '../models/column.model';
+import {DataService} from './data.service';
 
 @Injectable({
   providedIn: 'root'
@@ -43,16 +46,14 @@ export class SingleQueryService {
 
   getText(scope, id) {
     function isId(element, index, array) {
-      return element.id === id;
+      return element.FESID2244 === id;
     }
 
     const data = JSON.parse(localStorage.getItem(scope + 'Array'));
     const item = data.find(isId);
-    let keys = Object.keys(item);
-    const values = [];
-    keys = keys.splice(1, keys.length);
-    keys.forEach((propertyName) => {
-      values.push(item[propertyName]);
+    const columns = DataService.returnColumnNames( scope + 'Array');
+    const values = columns.map(propertyName => {
+      return item[propertyName];
     });
     return values.join(' - ');
   }

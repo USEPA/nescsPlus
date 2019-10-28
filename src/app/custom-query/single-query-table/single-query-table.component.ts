@@ -44,6 +44,7 @@ export class SingleQueryTableComponent implements OnInit, AfterViewInit {
   }
 
   renderDataTable(): void {
+    console.log('this.displayOPtions', this.displayOptions);
     this.dtOptions = {
       dom: 'Bfrtip',
       buttons: [

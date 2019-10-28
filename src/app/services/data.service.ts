@@ -3,8 +3,8 @@ import {ListItem} from '../models/listItem';
 import {Constants} from '../models/constants';
 import {DataTableData} from '../models/data-table-data.model';
 import {Column} from '../models/column.model';
-import {HelperService} from './helper.service';
 import {Data} from '../models/data.model';
+import {NavArray} from '../models/nav-array.model';
 
 @Injectable({
   providedIn: 'root'
@@ -36,29 +36,38 @@ export class DataService {
     const options = new DataTableData();
     options.data = rawData;
 
-    options.columns = Constants.COLUMN_MAP;
+    options.columns = this.concatColumns(Constants.COLUMN_MAP);
     return options;
   }
 
-  static filterTable(dataTableData: DataTableData, navigationItems: Array<ListItem>): DataTableData {
-    Constants.COLUMN_MAP.forEach((column: Column) => {
-      let elementList = new Array<string>();
-      if (column.arrayName) {
-        console.log('column',column);
-        // build a regex filter string with an or(|) condition
-        elementList = this.getSearchList(navigationItems[column.arrayIndex].children, elementList, column.level, 0);
-
-        const elementValues: string = elementList.map((element) => {
-          return element.split(' ').join('/s');
-        }).sort().join('|');
-        dataTableData.data = dataTableData.data.filter(item => {
-          console.log('item, column', item[column.columnName], item[column.columnName].match(elementValues), elementValues);
-          return item[column.columnName].match(elementValues) && item[column.columnName].match(elementValues).length;
-        });
-      }
-      console.log('dataTableData.data', dataTableData.data);
-
+  static concatColumns(navArray: Array<NavArray>) {
+    let results = new Array<Column>();
+    navArray.forEach(item => {
+      results = results.concat(item.columnArray);
     });
+    console.log('concat', results);
+    return results;
+  }
+
+  static filterTable(dataTableData: DataTableData, navigationItems: Array<ListItem>): DataTableData {
+    // Constants.COLUMN_MAP.forEach((navArray: NavArray) => {
+    //   if (navArray.arrayName !== 'beneficiaryIdArray' && navArray.arrayName !== 'idArray') {
+    //     navArray.columnArray.forEach((column: Column) => {
+    //       let elementList = new Array<string>();
+    //       // build a regex filter string with an or(|) condition
+    //       elementList = this.getSearchList(navigationItems[column.arrayIndex].children, elementList, column.level, 0);
+    //
+    //       const elementValues: string = elementList.map((element) => {
+    //         return element.split(' ').join('/s');
+    //       }).sort().join('|');
+    //       dataTableData.data = dataTableData.data.filter(item => {
+    //         return item[column.columnName].match(elementValues) && item[column.columnName].match(elementValues).length;
+    //       });
+    //     });
+    //   }
+    //   console.log('dataTableData.data', dataTableData.data);
+    //
+    // });
     return dataTableData;
   }
 
@@ -76,8 +85,8 @@ export class DataService {
   }
 
   static hideColumns(selectedRemovedColumns: Set<ListItem>, dataTableData: DataTableData): DataTableData {
-    let results = DataService.extractProp(selectedRemovedColumns, 'title');
-    results = HelperService.union(results, new Set(Constants.ANCILIARY_COLUMN_ARRAY));
+    const results = DataService.extractProp(selectedRemovedColumns, 'title');
+    // results = HelperService.union(results, new Set(Constants.ANCILIARY_COLUMN_ARRAY));
     // let hideItems = [...results].map((item) => {
     //   const foundItem = dataTableData.columns.findIndex(x => x.columnTitle === item);
     //   if (typeof foundItem !== 'undefined' && foundItem !== -1) {
@@ -110,7 +119,7 @@ export class DataService {
   }
 
   static returnArray(dataTableData: DataTableData): any[] {
-    const results = [];
+    let results = [];
     dataTableData.data.forEach((rowData) => {
       const row = [];
       dataTableData.columns.forEach((columnItem: Column) => {
@@ -118,13 +127,32 @@ export class DataService {
       });
       results.push(row);
     });
-    console.log(results, dataTableData);
-    return [['2', '2', '2']];
+    console.log('results', results);
+    return results;
+    // return [['2', '2', '2']];
   }
 
-  static returnColumnArray(columns: Array<Column>) {
-    return columns.map(item => {
+  static returnDataColumnArray(columns: Array<Column>) {
+    console.log('columns', columns, columns.map(item => {
       return item.columnTitle;
-    }).concat(Constants.ANCILIARY_COLUMN_ARRAY);
+    }));
+    return columns.map(item => {
+      return {title: item.columnTitle, class: 'blue'};
+    });
+  }
+
+  static returnColumnNames(arrayName: string) {
+    return Constants.COLUMN_MAP.find(nav => {
+      return nav.arrayName === arrayName;
+    }).columnArray.map((column: Column) => {
+      return column.columnName;
+    });
+  }
+
+  static getTableData(navigationItems): DataTableData {
+    let displayOptions = this.getData();
+    displayOptions = this.filterTable(displayOptions, navigationItems);
+    // displayOptions = DataService.removeColumns(this.selectedRemovedColumns, displayOptions);
+    return displayOptions;
   }
 }

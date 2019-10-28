@@ -7,6 +7,9 @@ import {DeleteModalComponent} from '../modals/delete-modal/delete-modal.componen
 import {SingleQueryService} from '../services/single-query.service';
 import {BehaviorSubject, Subscription} from 'rxjs';
 import {SingleQueryItem} from '../models/single-query-item';
+import {Constants} from '../models/constants';
+import {Column} from '../models/column.model';
+import {DataService} from '../services/data.service';
 
 @Component({
   selector: 'app-custom-query',
@@ -79,7 +82,7 @@ export class CustomQueryComponent implements OnInit {
   }
 
   editAction(event): void {
-    console.log('editAction openNameModal', event,this);
+    console.log('editAction openNameModal', event, this);
     const initialState = {
       ecological: this.selectedEcological,
       environmental: this.selectedEnvironmental,
@@ -110,17 +113,15 @@ export class CustomQueryComponent implements OnInit {
 
   private retrieveOptions(item: string): Array<Options> {
     const data: any = JSON.parse(localStorage.getItem(item));
+    const columns = DataService.returnColumnNames(item);
 
-    let keys: Array<string> = Object.keys(data[0]);
-    keys = keys.splice(1, keys.length);
-
-    const options = data.map((items) => {
-      const values = keys.map((propertyName: string) => {
-        return items[propertyName];
+    const options = data.map(items => {
+      const values = columns.map(columnName => {
+        return items[columnName];
       });
       return new Options({
         text: values.join(' - '),
-        id: items.id
+        id: items.FESID2244
       });
     });
     return options;
