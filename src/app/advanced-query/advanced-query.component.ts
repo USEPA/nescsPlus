@@ -3,6 +3,7 @@ import {AppService} from '../services/app.service';
 import {AdvancedQueryService} from '../services/advanced-query.service';
 import {ListItem} from '../models/listItem';
 import {Subscription} from 'rxjs';
+import {ActiveFilter} from '../models/enums';
 
 @Component({
   selector: 'app-advanced-query',
@@ -12,7 +13,8 @@ import {Subscription} from 'rxjs';
 })
 
 export class AdvancedQueryComponent implements OnInit, OnDestroy {
-  activeFilter = '';
+  ActiveFilter = ActiveFilter;
+  activeFilter: ActiveFilter = null;
   showReport = false;
   navItems: Array<ListItem>;
   level = 0;
@@ -34,6 +36,7 @@ export class AdvancedQueryComponent implements OnInit, OnDestroy {
     });
   }
 
+
   ngOnInit() {
     this.appService.setNavigation('advancedQuery');
     this.navItems = this.advancedQueryService.getAdvancedQueryNav();
@@ -52,6 +55,10 @@ export class AdvancedQueryComponent implements OnInit, OnDestroy {
     this.showReport = true;
   }
 
+  activeFilterChange(value: ActiveFilter) {
+    this.activeFilter = value;
+    this.advancedQueryService.pushActiveFilterChange(this.activeFilter);
+  }
 
   toggleClass(event: any, cssClass: string): void {
     const hasClass = event.target.classList.contains(cssClass);

@@ -1,8 +1,9 @@
 export class ListItem {
   title: string;
   column: string;
-  enabled: boolean;
+  style: string;
   checked: boolean;
+  id: string;
   children = new Array<ListItem>();
 
   public constructor(init?: Partial<ListItem>) {

@@ -10,6 +10,7 @@ import {Column} from '../models/column.model';
 @Injectable()
 export class AppLoadService {
   private dataUrl: string = environment.deployPath + 'assets/data.json';  // URL to web api
+  private styleXMLUrl: string = environment.deployPath + 'assets/excelStyles.xml';  // URL to web api
 
   constructor(private httpClient: HttpClient) {
   }
@@ -33,7 +34,11 @@ export class AppLoadService {
 
   getSettings() {
 
-    this.httpClient.get(this.dataUrl).subscribe((rows: Array<Data>) => {
+    this.httpClient.get(this.styleXMLUrl, {responseType: 'text'}).subscribe((xmlStyle: string) => {
+      localStorage.setItem('xmlStyle', xmlStyle);
+    });
+
+    this.httpClient.get(this.dataUrl,).subscribe((rows: Array<Data>) => {
       AppLoadService.setFullDisplay(rows);
       this.setEnvironmentalArray(rows);
       this.setEcologicalArray(rows);

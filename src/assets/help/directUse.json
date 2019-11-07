@@ -1,0 +1,126 @@
+[
+  {
+    "DirectUseId": 1,
+    "DirectUseHelpText": "Direct Use -  -"
+  },
+  {
+    "DirectUseId": 11,
+    "DirectUseHelpText": "Direct Use - Extractive Use -"
+  },
+  {
+    "DirectUseId": 1101,
+    "DirectUseHelpText": "Direct Use - Extractive Use - Raw material for transformation"
+  },
+  {
+    "DirectUseId": 1102,
+    "DirectUseHelpText": "Direct Use - Extractive Use - Fuel/energy"
+  },
+  {
+    "DirectUseId": 1103,
+    "DirectUseHelpText": "Direct Use - Extractive Use -  Industrial processing"
+  },
+  {
+    "DirectUseId": 1104,
+    "DirectUseHelpText": "Direct Use - Extractive Use - Distribution to other users"
+  },
+  {
+    "DirectUseId": 1105,
+    "DirectUseHelpText": "Direct Use - Extractive Use - Support of plant or animal cultivation"
+  },
+  {
+    "DirectUseId": 1106,
+    "DirectUseHelpText": "Direct Use - Extractive Use - Support of human health and life or subsistence"
+  },
+  {
+    "DirectUseId": 1107,
+    "DirectUseHelpText": "Direct Use - Extractive Use - Recreation/tourism"
+  },
+  {
+    "DirectUseId": 1108,
+    "DirectUseHelpText": "Direct Use - Extractive Use - Cultural/spiritual activities"
+  },
+  {
+    "DirectUseId": 1109,
+    "DirectUseHelpText": "Direct Use - Extractive Use -  Information, science, education, and research"
+  },
+  {
+    "DirectUseId": 1199,
+    "DirectUseHelpText": "Direct Use - Extractive Use - Other extractive use"
+  },
+  {
+    "DirectUseId": 12,
+    "DirectUseHelpText": "Direct Use - In-situ Use -"
+  },
+  {
+    "DirectUseId": 1201,
+    "DirectUseHelpText": "Direct Use - In-situ Use - Energy"
+  },
+  {
+    "DirectUseId": 1202,
+    "DirectUseHelpText": "Direct Use - In-situ Use - Transportation medium"
+  },
+  {
+    "DirectUseId": 1203,
+    "DirectUseHelpText": "Direct Use - In-situ Use - Support of plant or animal cultivation"
+  },
+  {
+    "DirectUseId": 1204,
+    "DirectUseHelpText": "Direct Use - In-situ Use - Waste disposal/assimilation"
+  },
+  {
+    "DirectUseId": 1205,
+    "DirectUseHelpText": "Direct Use - In-situ Use - Protection or support of human health and life"
+  },
+  {
+    "DirectUseId": 1206,
+    "DirectUseHelpText": "Direct Use - In-situ Use - Protection of human property"
+  },
+  {
+    "DirectUseId": 1207,
+    "DirectUseHelpText": "Direct Use - In-situ Use - Recreation/tourism"
+  },
+  {
+    "DirectUseId": 1208,
+    "DirectUseHelpText": "Direct Use - In-situ Use - Cultural/spiritual activities"
+  },
+  {
+    "DirectUseId": 1209,
+    "DirectUseHelpText": "Direct Use - In-situ Use - Aesthetic appreciation"
+  },
+  {
+    "DirectUseId": 1210,
+    "DirectUseHelpText": "Direct Use - In-situ Use - Information, science, education, and research"
+  },
+  {
+    "DirectUseId": 1299,
+    "DirectUseHelpText": "Direct Use - In-situ Use - Other in-situ use"
+  },
+  {
+    "DirectUseId": 2,
+    "DirectUseHelpText": "Non-use -  -"
+  },
+  {
+    "DirectUseId": 21,
+    "DirectUseHelpText": "Non-use - Existence -"
+  },
+  {
+    "DirectUseId": 2101,
+    "DirectUseHelpText": "Non-use - Existence - Existence"
+  },
+  {
+    "DirectUseId": 22,
+    "DirectUseHelpText": "Non-use - Bequest -"
+  },
+  {
+    "DirectUseId": 2201,
+    "DirectUseHelpText": "Non-use - Bequest - Bequest"
+  },
+  {
+    "DirectUseId": 29,
+    "DirectUseHelpText": "Non-use - Non-use, Other  -"
+  },
+  {
+    "DirectUseId": 2901,
+    "DirectUseHelpText": "Non-use - Non-use, Other  - Non-use, Other"
+  }
+]

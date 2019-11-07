@@ -3,6 +3,8 @@ import {Column} from './column.model';
 
 export class NavArray {
   arrayName: string;
+  indexColumnName: string;
+  index: number;
   columnArray: Array<Column>;
 
   public constructor(init?: Partial<NavArray>) {

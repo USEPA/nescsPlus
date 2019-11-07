@@ -81,8 +81,8 @@ export class CustomQueryComponent implements OnInit {
     this.nameModalRef = this.modalService.show(NameModalComponent, {initialState});
   }
 
-  editAction(event): void {
-    console.log('editAction openNameModal', event, this);
+  editAction(): void {
+    console.log('editAction openNameModal',  this);
     const initialState = {
       ecological: this.selectedEcological,
       environmental: this.selectedEnvironmental,

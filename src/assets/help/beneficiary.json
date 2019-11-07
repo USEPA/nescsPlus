@@ -1,0 +1,206 @@
+[
+  {
+    "BeneficiaryId": "01",
+    "BeneficiaryHelpText": "Agricultural -"
+  },
+  {
+    "BeneficiaryId": "011",
+    "BeneficiaryHelpText": "Agricultural - Livestock Grazers"
+  },
+  {
+    "BeneficiaryId": "012",
+    "BeneficiaryHelpText": "Agricultural - Agricultural Processors"
+  },
+  {
+    "BeneficiaryId": "013",
+    "BeneficiaryHelpText": "Agricultural - Aquaculturists"
+  },
+  {
+    "BeneficiaryId": "014",
+    "BeneficiaryHelpText": "Agricultural - Farmers"
+  },
+  {
+    "BeneficiaryId": "015",
+    "BeneficiaryHelpText": "Agricultural - Foresters"
+  },
+  {
+    "BeneficiaryId": "016",
+    "BeneficiaryHelpText": "Agricultural - Other Agricultural Beneficiaries"
+  },
+  {
+    "BeneficiaryId": "02",
+    "BeneficiaryHelpText": "Commercial/Industrial -"
+  },
+  {
+    "BeneficiaryId": "021",
+    "BeneficiaryHelpText": "Commercial/Industrial - Food Extractors"
+  },
+  {
+    "BeneficiaryId": "022",
+    "BeneficiaryHelpText": "Commercial/Industrial - Timber, Fiber, and Ornamental Extractors"
+  },
+  {
+    "BeneficiaryId": "023",
+    "BeneficiaryHelpText": "Commercial/Industrial - Industrial Processors"
+  },
+  {
+    "BeneficiaryId": "024",
+    "BeneficiaryHelpText": "Commercial/Industrial - Private Energy Generators"
+  },
+  {
+    "BeneficiaryId": "025",
+    "BeneficiaryHelpText": "Commercial/Industrial - Pharmaceutical and Food Supplement Suppliers"
+  },
+  {
+    "BeneficiaryId": "026",
+    "BeneficiaryHelpText": "Commercial/Industrial - Fur / Hide Trappers and Hunters"
+  },
+  {
+    "BeneficiaryId": "027",
+    "BeneficiaryHelpText": "Commercial/Industrial - Private Drinking Water Plant Operators"
+  },
+  {
+    "BeneficiaryId": "028",
+    "BeneficiaryHelpText": "Commercial/Industrial - Commerical/Industrial Property Owner"
+  },
+  {
+    "BeneficiaryId": "03",
+    "BeneficiaryHelpText": "Government, Municipal, and Residential -"
+  },
+  {
+    "BeneficiaryId": "031",
+    "BeneficiaryHelpText": "Government, Municipal, and Residential - Municipal Drinking Water Plant Operators"
+  },
+  {
+    "BeneficiaryId": "042",
+    "BeneficiaryHelpText": "Government, Municipal, and Residential - Residential Property Owners"
+  },
+  {
+    "BeneficiaryId": "053",
+    "BeneficiaryHelpText": "Government, Municipal, and Residential - Public Sector Property Owners"
+  },
+  {
+    "BeneficiaryId": "064",
+    "BeneficiaryHelpText": "Government, Municipal, and Residential - Military / Coast Guard"
+  },
+  {
+    "BeneficiaryId": "075",
+    "BeneficiaryHelpText": "Government, Municipal, and Residential - Public Energy Generators"
+  },
+  {
+    "BeneficiaryId": "04",
+    "BeneficiaryHelpText": "Commercial/Military Transportation -"
+  },
+  {
+    "BeneficiaryId": "041",
+    "BeneficiaryHelpText": "Commercial/Military Transportation - Transporters of Goods"
+  },
+  {
+    "BeneficiaryId": "042",
+    "BeneficiaryHelpText": "Commercial/Military Transportation - Transporters of People"
+  },
+  {
+    "BeneficiaryId": "05",
+    "BeneficiaryHelpText": "Subsistence -"
+  },
+  {
+    "BeneficiaryId": "051",
+    "BeneficiaryHelpText": "Subsistence - Water Subsisters"
+  },
+  {
+    "BeneficiaryId": "052",
+    "BeneficiaryHelpText": "Subsistence - Food and Medical Subsisters"
+  },
+  {
+    "BeneficiaryId": "053",
+    "BeneficiaryHelpText": "Subsistence - Timber, Fiber, and Fur / Hide Subsisters"
+  },
+  {
+    "BeneficiaryId": "054",
+    "BeneficiaryHelpText": "Subsistence - Building Material Subsisters"
+  },
+  {
+    "BeneficiaryId": "055",
+    "BeneficiaryHelpText": "Subsistence - Other Subsistence"
+  },
+  {
+    "BeneficiaryId": "06",
+    "BeneficiaryHelpText": "Recreational -"
+  },
+  {
+    "BeneficiaryId": "061",
+    "BeneficiaryHelpText": "Recreational - Experiencers and Viewers"
+  },
+  {
+    "BeneficiaryId": "062",
+    "BeneficiaryHelpText": "Recreational - Food Pickers and Gatherers"
+  },
+  {
+    "BeneficiaryId": "063",
+    "BeneficiaryHelpText": "Recreational - Hunters"
+  },
+  {
+    "BeneficiaryId": "064",
+    "BeneficiaryHelpText": "Recreational - Anglers"
+  },
+  {
+    "BeneficiaryId": "065",
+    "BeneficiaryHelpText": "Recreational - Waders, Swimmers, and Divers"
+  },
+  {
+    "BeneficiaryId": "066",
+    "BeneficiaryHelpText": "Recreational - Boaters"
+  },
+  {
+    "BeneficiaryId": "067",
+    "BeneficiaryHelpText": "Recreational - Other Recreational"
+  },
+  {
+    "BeneficiaryId": "07",
+    "BeneficiaryHelpText": "Inspirational -"
+  },
+  {
+    "BeneficiaryId": "071",
+    "BeneficiaryHelpText": "Inspirational - Spiritual and Ceremonial Participants and Participants of Celebration"
+  },
+  {
+    "BeneficiaryId": "072",
+    "BeneficiaryHelpText": "Inspirational - Artists"
+  },
+  {
+    "BeneficiaryId": "073",
+    "BeneficiaryHelpText": "Inspirational - Other Inspirational"
+  },
+  {
+    "BeneficiaryId": "08",
+    "BeneficiaryHelpText": "Learning -"
+  },
+  {
+    "BeneficiaryId": "081",
+    "BeneficiaryHelpText": "Learning - Educators and Students"
+  },
+  {
+    "BeneficiaryId": "082",
+    "BeneficiaryHelpText": "Learning - Researchers"
+  },
+  {
+    "BeneficiaryId": "09",
+    "BeneficiaryHelpText": "Non-Use -"
+  },
+  {
+    "BeneficiaryId": "091",
+    "BeneficiaryHelpText": "Non-Use - People Who Care (Existence)"
+  },
+  {
+    "BeneficiaryId": "092",
+    "BeneficiaryHelpText": "Non-Use - People Who Care (Option /Bequest)"
+  },
+  {
+    "BeneficiaryId": 10,
+    "BeneficiaryHelpText": "Humanity -"
+  },
+  {
+    "BeneficiaryId": 101,
+    "BeneficiaryHelpText": "Humanity - All Humans"
+  }
+]

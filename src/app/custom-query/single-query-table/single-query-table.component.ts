@@ -73,12 +73,10 @@ export class SingleQueryTableComponent implements OnInit, AfterViewInit {
     this.nativeDataTable = $(this.table.nativeElement);
     // Add listener once
     if (!this.dataTable) {
-      console.log('adding listener');
       this.nativeDataTable.on('click', 'tr', (event) => {
         const element = $(event.currentTarget);
         const tdExist = element.find('td').length !== 0;
         const dataTableAPI = this.nativeDataTable.DataTable();
-        console.log('element, tdExist', element, tdExist);
         if (element.hasClass('selected')) {
           element.removeClass('selected');
           dataTableAPI.buttons(0, '1, 2').disable();

@@ -5,6 +5,7 @@ import {DataTableData} from '../models/data-table-data.model';
 import {Column} from '../models/column.model';
 import {Data} from '../models/data.model';
 import {NavArray} from '../models/nav-array.model';
+import {ActiveFilter} from '../models/enums';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,19 @@ import {NavArray} from '../models/nav-array.model';
 export class DataService {
 
   constructor() {
+  }
+
+  static getTableData(navigationItems: Array<ListItem>, activeFilter: ActiveFilter, selectedColumns: Set<ListItem>): DataTableData {
+    let displayOptions = this.getExportData(navigationItems, activeFilter);
+    displayOptions = this.filterTable(displayOptions, navigationItems, activeFilter);
+    displayOptions = this.deDuped(displayOptions, selectedColumns);
+    return displayOptions;
+  }
+
+  static getExportData(navigationItems: Array<ListItem>, activeFilter: ActiveFilter): DataTableData {
+    let displayOptions = this.getData();
+    displayOptions = this.filterTable(displayOptions, navigationItems, activeFilter);
+    return displayOptions;
   }
 
   static extractProp(values: Set<ListItem>, propName: string): Set<string> {
@@ -45,30 +59,42 @@ export class DataService {
     navArray.forEach(item => {
       results = results.concat(item.columnArray);
     });
-    console.log('concat', results);
     return results;
   }
 
-  static filterTable(dataTableData: DataTableData, navigationItems: Array<ListItem>): DataTableData {
-    // Constants.COLUMN_MAP.forEach((navArray: NavArray) => {
-    //   if (navArray.arrayName !== 'beneficiaryIdArray' && navArray.arrayName !== 'idArray') {
-    //     navArray.columnArray.forEach((column: Column) => {
-    //       let elementList = new Array<string>();
-    //       // build a regex filter string with an or(|) condition
-    //       elementList = this.getSearchList(navigationItems[column.arrayIndex].children, elementList, column.level, 0);
-    //
-    //       const elementValues: string = elementList.map((element) => {
-    //         return element.split(' ').join('/s');
-    //       }).sort().join('|');
-    //       dataTableData.data = dataTableData.data.filter(item => {
-    //         return item[column.columnName].match(elementValues) && item[column.columnName].match(elementValues).length;
-    //       });
-    //     });
-    //   }
-    //   console.log('dataTableData.data', dataTableData.data);
-    //
-    // });
+  static filterTable(dataTableData: DataTableData, navigationItems: Array<ListItem>, activeFilter: ActiveFilter): DataTableData {
+    Constants.COLUMN_MAP.forEach((navArray: NavArray) => {
+      if (this.checkActiveFilter(navArray, activeFilter)) {
+
+        navArray.columnArray.forEach((column: Column) => {
+          // build a regex filter string with an or(|) condition
+          const elementList = this.getSearchList(navigationItems[column.arrayIndex].children, new Array<string>(), column.level, 0);
+
+          const elementValues: string = elementList.map((element) => {
+            return element.split(' ').join('\\s');
+          }).sort().join('|');
+
+          dataTableData.data = dataTableData.data.filter(item => {
+            return item[column.columnName].match(elementValues) && item[column.columnName].match(elementValues).length;
+          });
+        });
+      }
+
+    });
     return dataTableData;
+  }
+
+  static checkActiveFilter(navArray: NavArray, activeFilter: ActiveFilter): boolean {
+    const excludeIdFields = navArray.arrayName !== 'beneficiaryIdArray' && navArray.arrayName !== 'idArray';
+
+    // When ActiveFilter is Direct exclude Beneficiary Columns
+    const checkDirect = activeFilter === ActiveFilter.Direct && !(navArray.arrayName === 'beneficiaryArray');
+
+    // When ActiveFilter is Beneficiary exclude Direct Use and Direct User Columns
+    const checkBeneficiary = activeFilter === ActiveFilter.Beneficiary &&
+      !(navArray.arrayName === 'directUseArray' || navArray.arrayName === 'directUserArray');
+
+    return excludeIdFields && (checkDirect || checkBeneficiary);
   }
 
   static getSearchList(items: Array<ListItem>, resultArray: Array<string>, index: number, level: number): string[] {
@@ -84,42 +110,23 @@ export class DataService {
     return resultArray;
   }
 
-  static hideColumns(selectedRemovedColumns: Set<ListItem>, dataTableData: DataTableData): DataTableData {
-    const results = DataService.extractProp(selectedRemovedColumns, 'title');
-    // results = HelperService.union(results, new Set(Constants.ANCILIARY_COLUMN_ARRAY));
-    // let hideItems = [...results].map((item) => {
-    //   const foundItem = dataTableData.columns.findIndex(x => x.columnTitle === item);
-    //   if (typeof foundItem !== 'undefined' && foundItem !== -1) {
-    //     this.toggleHideColumns = this.toggleHideColumns.filter(x => x !== foundItem);
-    //     return foundItem;
-    //   }
-    // });
-    // hideItems = hideItems.filter(item => typeof item !== 'undefined');
-    // if (hideItems) {
-    //   hideItems.forEach((item) => {
-    //     dataTableAPI.column(item).visible(false);
-    //   });
-    // }
-    // this.toggleHideColumns.forEach((item) => {
-    //   dataTableAPI.column(item).visible(true);
-    // });
-    // this.toggleHideColumns = hideItems;
-
-    return dataTableData;
-  }
-
-  static removeColumns(selectedRemovedColumns: Set<ListItem>, dataTableData: DataTableData): DataTableData {
-    dataTableData.columns = dataTableData.columns.filter((column) => {
-      return Array.from(selectedRemovedColumns).find((item) => {
-        return item.title === column.columnTitle;
-      });
+  static returnFlatListItemArray(selectedColumns: Array<ListItem>): Array<ListItem> {
+    let results = new Array<ListItem>();
+    selectedColumns.forEach(item => {
+      const tempItem = new ListItem(item);
+      let tempChildren = item.children ? Array.from(item.children) : null;
+      tempItem.children = null;
+      results.push(tempItem);
+      if (tempChildren) {
+        tempChildren = this.returnFlatListItemArray(Array.from(item.children));
+        results = results.concat(tempChildren);
+      }
     });
-
-    return dataTableData;
+    return results;
   }
 
   static returnArray(dataTableData: DataTableData): any[] {
-    let results = [];
+    const results = [];
     dataTableData.data.forEach((rowData) => {
       const row = [];
       dataTableData.columns.forEach((columnItem: Column) => {
@@ -127,17 +134,16 @@ export class DataService {
       });
       results.push(row);
     });
-    console.log('results', results);
     return results;
-    // return [['2', '2', '2']];
   }
 
-  static returnDataColumnArray(columns: Array<Column>) {
-    console.log('columns', columns, columns.map(item => {
-      return item.columnTitle;
-    }));
+  static returnDataColumnArray(columns: Array<Column>, selectedColumns: Set<ListItem>) {
+    const flatColumns = this.returnFlatListItemArray(Array.from(selectedColumns));
     return columns.map(item => {
-      return {title: item.columnTitle, class: 'blue'};
+      const column = flatColumns.find(columnItem => {
+        return columnItem.column === item.columnName;
+      });
+      return {title: item.columnTitle, class: 'blue', visible: column.checked};
     });
   }
 
@@ -149,10 +155,21 @@ export class DataService {
     });
   }
 
-  static getTableData(navigationItems): DataTableData {
-    let displayOptions = this.getData();
-    displayOptions = this.filterTable(displayOptions, navigationItems);
-    // displayOptions = DataService.removeColumns(this.selectedRemovedColumns, displayOptions);
-    return displayOptions;
+  static deDuped(displayOptions, selectedColumns: Set<ListItem>): DataTableData {
+    const columns = this.returnFlatListItemArray(Array.from(selectedColumns));
+    const results = new DataTableData();
+    results.columns = displayOptions.columns;
+    const data = new Map<string, Data>();
+    displayOptions.data.forEach((row: Data) => {
+      let key = '';
+      columns.forEach((item: ListItem) => {
+        if (item.checked) {
+          key += row[item.column];
+        }
+      });
+      data.set(key, row);
+    });
+    results.data = Array.from(data.values());
+    return results;
   }
 }

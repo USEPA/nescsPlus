@@ -3,10 +3,9 @@ import {ListItem} from '../models/listItem';
 import {Constants} from '../models/constants';
 import {Subject} from 'rxjs';
 import {HelperService} from './helper.service';
-import {DataService} from './data.service';
 import {Data} from '../models/data.model';
 import {NavArray} from '../models/nav-array.model';
-import {Column} from '../models/column.model';
+import {ActiveFilter} from '../models/enums';
 
 @Injectable()
 export class AdvancedQueryService {
@@ -14,7 +13,7 @@ export class AdvancedQueryService {
   pushNavigationChange$ = this.pushNavigationChange.asObservable();
   private listChange = new Subject<boolean>();
   listChange$ = this.listChange.asObservable();
-  private activeFilterChange = new Subject<string>();
+  private activeFilterChange = new Subject<ActiveFilter>();
   activeFilterChange$ = this.activeFilterChange.asObservable();
 
   constructor(private helper: HelperService) {
@@ -28,12 +27,8 @@ export class AdvancedQueryService {
     this.pushNavigationChange.next(value);
   }
 
-  pushActiveFilterChange(activeFilter: string) {
+  pushActiveFilterChange(activeFilter: ActiveFilter) {
     this.activeFilterChange.next(activeFilter);
-  }
-
-  prepDisplayTable(): any {
-    return DataService.getData();
   }
 
   getAdvancedQueryNav(): Array<ListItem> {

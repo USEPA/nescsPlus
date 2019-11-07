@@ -1,9 +1,6 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Subject} from 'rxjs';
-import {ListItem} from '../models/listItem';
 import {SingleQueryItem} from '../models/single-query-item';
-import {Constants} from '../models/constants';
-import {Column} from '../models/column.model';
 import {DataService} from './data.service';
 
 @Injectable({

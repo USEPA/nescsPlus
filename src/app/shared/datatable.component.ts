@@ -7,8 +7,7 @@ import {ToggleColumnsService} from '../services/toggle-columns.service';
 import {HelperService} from '../services/helper.service';
 import {ExcelService} from '../services/excel.service';
 import {DataService} from '../services/data.service';
-import {DataTableData} from '../models/data-table-data.model';
-import {Constants} from '../models/constants';
+import {ActiveFilter} from '../models/enums';
 
 declare var $;
 
@@ -22,14 +21,13 @@ export class DataTableComponent implements AfterViewInit, OnDestroy, OnInit {
   @ViewChild('dataTable', {static: false}) table;
   @ViewChild('template', {static: false}) template;
   @Input() navigationItems: Array<ListItem>;
-  @Input() activeFilter: string;
-  selectedRemovedColumns: Set<ListItem>;
-  toggleHideColumns: Array<string> = new Array<string>();
+  @Input() activeFilter: ActiveFilter;
+  selectedColumns: Set<ListItem>;
   modalRef: BsModalRef;
   dtOptions: any;
+  nativeDataTable: any;
   dataTable: any;
   columns: Array<string>;
-  displayOptions: DataTableData;
   navigationChanges: Subscription;
   activeFilterChange: Subscription;
   toggleColumnChange: Subscription;
@@ -49,7 +47,7 @@ export class DataTableComponent implements AfterViewInit, OnDestroy, OnInit {
       });
     });
     this.toggleColumnChange = this.toggleColumnsService.toggleColumnChange$.subscribe(columns => {
-      this.selectedRemovedColumns = new Set<ListItem>(columns);
+      this.selectedColumns = new Set<ListItem>(columns);
       this.renderDataTable();
     });
     this.activeFilterChange = this.advancedQueryService.activeFilterChange$.subscribe(resultActive => {
@@ -61,15 +59,17 @@ export class DataTableComponent implements AfterViewInit, OnDestroy, OnInit {
   }
 
   ngOnInit(): void {
-    this.selectedRemovedColumns = this.toggleColumnsService.getColumnToggleHideList();
+    this.selectedColumns = this.toggleColumnsService.getColumnToggleHideList();
   }
 
   renderDataTable(): void {
     const self = this;
-    const displayOptions = DataService.getTableData(this.navigationItems);
-    console.log('displayOptions', displayOptions);
+    const dataTableData = DataService.getTableData(this.navigationItems, this.activeFilter, this.selectedColumns);
     this.dtOptions = {
+      destroy: true,
       dom: 'Bfrtip',
+      columns: DataService.returnDataColumnArray(dataTableData.columns, this.selectedColumns),
+      data: DataService.returnArray(dataTableData),
       buttons: [
         {
           extend: 'excelHtml5',
@@ -82,19 +82,13 @@ export class DataTableComponent implements AfterViewInit, OnDestroy, OnInit {
           }
         }
       ],
-      data: DataService.returnArray(displayOptions),
-      columns: DataService.returnDataColumnArray(displayOptions.columns),
-      lengthMenu: [[10, 25, 50, 100, 200, -1], [10, 25, 50, 100, 200, 'All']],
-      fixedHeader: {
-        header: false,
-        adjust: true
-      }
+      lengthMenu: [[10, 25, 50, 100, 200, -1], [10, 25, 50, 100, 200, 'All']]
     };
     if (this.dataTable) {
       this.dataTable.destroy();
     }
-    this.dataTable = $(this.table.nativeElement);
-    this.dataTable.DataTable(this.dtOptions);
+    this.nativeDataTable = $(this.table.nativeElement);
+    this.dataTable = this.nativeDataTable.DataTable(this.dtOptions);
   }
 
   openModal(template: TemplateRef<any>) {
@@ -111,41 +105,11 @@ export class DataTableComponent implements AfterViewInit, OnDestroy, OnInit {
     this.activeFilterChange.unsubscribe();
   }
 
-
-  getFilterOptions(): Array<any> {
-    let filterOptions = [{column: 'EnvironmentalClass', arrayIndex: 0, level: 0},
-      {column: 'EnvironmentalSubclass', arrayIndex: 0, level: 1},
-      {column: 'Ecological End-Product Class', arrayIndex: 1, level: 0}];
-
-
-    if (this.activeFilter === 'directFilter') {
-      filterOptions.push({column: 'Direct Use/Non-Use Class', arrayIndex: 2, level: 0});
-      filterOptions.push({column: 'Direct Use/Non-Use Subclass I', arrayIndex: 2, level: 1});
-      filterOptions.push({column: 'Direct Use/Non-Use Subclass II', arrayIndex: 2, level: 2});
-      filterOptions.push({column: 'Direct User Class', arrayIndex: 3, level: 0});
-      filterOptions.push({column: 'Direct User Subclass I', arrayIndex: 3, level: 1});
-      filterOptions.push({column: 'Direct User Subclass II', arrayIndex: 3, level: 2});
-    } else {
-      filterOptions.push({column: 'BeneficiaryCategory', arrayIndex: 4, level: 0});
-      filterOptions.push({column: 'BeneficiarySubcategory', arrayIndex: 4, level: 0});
-    }
-
-    // Remove Columns that are hidden
-    const selectedRemovedColumns = DataService.extractProp(this.selectedRemovedColumns, 'column');
-    filterOptions = filterOptions.filter((element) => {
-      return !selectedRemovedColumns.has(element.column);
-    });
-    return filterOptions;
-  }
-
   extraSheet(xlsx): void {
-    const columnsToHide = DataService.extractProp(this.selectedRemovedColumns, 'title');
-    const dataTableAPI = this.dataTable.DataTable();
-    const data = Object.values(dataTableAPI.rows({selected: true}).data());
-    data.unshift(dataTableAPI.settings().init().columns.map((item) => {
-      return item.title;
-    }));
-    this.excelService.exportData(xlsx, this.navigationItems, data, columnsToHide);
+    const data = DataService.returnArray(DataService.getExportData(this.navigationItems, this.activeFilter));
+    const toggleColumns = DataService.returnFlatListItemArray(Array.from(this.selectedColumns));
+    console.log('this.navigationItems, data', this.navigationItems, data, toggleColumns);
+    this.excelService.exportData(xlsx, toggleColumns, data);
   }
 
 }

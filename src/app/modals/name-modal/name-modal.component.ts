@@ -23,7 +23,7 @@ export class NameModalComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('this',this);
+    console.log('this', this);
   }
 
   actionItem(): void {

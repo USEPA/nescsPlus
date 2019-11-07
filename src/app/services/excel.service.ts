@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {AdvancedQueryService} from './advanced-query.service';
 import {ListItem} from '../models/listItem';
 import {Constants} from '../models/constants';
+import {DataService} from './data.service';
 
 declare var $;
 
@@ -15,8 +16,10 @@ export class ExcelService {
   constructor() {
   }
 
-  exportData(xlsx, navigationItems, data, columnsToHide): void {
-    xlsx.xl.worksheets['sheet1.xml'] = this.generateFirstSheet(data, columnsToHide);
+  exportData(xlsx, toggleColumns, data): void {
+    // xlsx.xl['styles.xml'] = this.xlsxStyleSheet();
+    console.log('xlsx.xl', xlsx.xl);
+    xlsx.xl.worksheets['sheet1.xml'] = this.generateFirstSheet(toggleColumns, data);
     // Add sheet2 to [Content_Types].xml => <Types>
     // ============================================
     let source = xlsx['[Content_Types].xml'].getElementsByTagName('Override')[1];
@@ -94,7 +97,7 @@ export class ExcelService {
       '</c>' +
       '</row>';
     this.childrenExcelRow = new Map<number, Array<string>>();
-    newSheet += this.getXmlFirstRow(navigationItems[0].children, 2);
+    newSheet += this.getXmlFirstRow(toggleColumns[0], 2);
     newSheet += '<row  r="' + (++this.row) + '">' +
       '<c t="inlineStr" r="B' + this.row + '" s="3">' +
       '<is>' +
@@ -102,76 +105,72 @@ export class ExcelService {
       '</is>' +
       '</c>' +
       '</row>';
-    this.childrenExcelRow = new Map<number, Array<string>>();
-    newSheet += this.getXmlOneRow(navigationItems[1].children, 2);
-    newSheet += '<row  r="' + (++this.row) + '">' +
-      '<c t="inlineStr" r="B' + this.row + '" s="3">' +
-      '<is>' +
-      '<t>Direct Use Classes and Subclasses</t>' +
-      '</is>' +
-      '</c>' +
-      '</row>';
-    let navItem = navigationItems[2].children;
-    newSheet = this.getCustomOuput(navItem, 2, newSheet);
-    newSheet += '<row  r="' + (++this.row) + '">' +
-      '<c t="inlineStr" r="B' + this.row + '" s="3">' +
-      '<is>' +
-      '<t>Direct User Classes and Subclasses</t>' +
-      '</is>' +
-      '</c>' +
-      '</row>';
-    navItem = navigationItems[3].children;
-    newSheet = this.getCustomOuput(navItem, 3, newSheet);
-    newSheet += '<row  r="' + (++this.row) + '">' +
-      '<c t="inlineStr" r="B' + this.row + '" s="3">' +
-      '<is>' +
-      '<t>Beneficiary class</t>' +
-      '</is>' +
-      '</c>' +
-      '</row>';
-    this.childrenExcelRow = new Map<number, Array<string>>();
-    newSheet += this.getXmlFirstRow(navigationItems[4].children, 2);
+    // this.childrenExcelRow = new Map<number, Array<string>>();
+    // newSheet += this.getXmlOneRow(navigationItems[1].children, 2);
+    // newSheet += '<row  r="' + (++this.row) + '">' +
+    //   '<c t="inlineStr" r="B' + this.row + '" s="3">' +
+    //   '<is>' +
+    //   '<t>Direct Use Classes and Subclasses</t>' +
+    //   '</is>' +
+    //   '</c>' +
+    //   '</row>';
+    // let navItem = navigationItems[2].children;
+    // newSheet = this.getCustomOuput(navItem, 2, newSheet);
+    // newSheet += '<row  r="' + (++this.row) + '">' +
+    //   '<c t="inlineStr" r="B' + this.row + '" s="3">' +
+    //   '<is>' +
+    //   '<t>Direct User Classes and Subclasses</t>' +
+    //   '</is>' +
+    //   '</c>' +
+    //   '</row>';
+    // navItem = navigationItems[3].children;
+    // newSheet = this.getCustomOuput(navItem, 3, newSheet);
+    // newSheet += '<row  r="' + (++this.row) + '">' +
+    //   '<c t="inlineStr" r="B' + this.row + '" s="3">' +
+    //   '<is>' +
+    //   '<t>Beneficiary class</t>' +
+    //   '</is>' +
+    //   '</c>' +
+    //   '</row>';
+    // this.childrenExcelRow = new Map<number, Array<string>>();
+    // newSheet += this.getXmlFirstRow(navigationItems[4].children, 2);
     newSheet += '</sheetData>' +
       '</worksheet>';
     xlsx.xl.worksheets['sheet2.xml'] = $.parseXML(newSheet);
   }
 
-  getCustomOuput(navItem: Array<ListItem>, itemCount: number, newSheet: string): string {
-    for (let i = 0; i < itemCount; i++) {
-      if (navItem[i].checked) {
-        newSheet += '<row  r="' + (++this.row) + '">' +
-          '<c t="inlineStr" r="C' + this.row + '" s="3">' +
-          '<is>' +
-          '<t>' + navItem[i].title + '</t>' +
-          '</is>' +
-          '</c>' +
-          '</row>';
-        this.childrenExcelRow = new Map<number, Array<string>>();
-        newSheet += this.getXmlFirstRow(navItem[i].children, 3);
-      }
-    }
-    return newSheet;
-  }
+  // getCustomOuput(navItem: Array<ListItem>, itemCount: number, newSheet: string): string {
+  //   for (let i = 0; i < itemCount; i++) {
+  //     if (navItem[i].checked) {
+  //       newSheet += '<row  r="' + (++this.row) + '">' +
+  //         '<c t="inlineStr" r="C' + this.row + '" s="3">' +
+  //         '<is>' +
+  //         '<t>' + navItem[i].title + '</t>' +
+  //         '</is>' +
+  //         '</c>' +
+  //         '</row>';
+  //       this.childrenExcelRow = new Map<number, Array<string>>();
+  //       newSheet += this.getXmlFirstRow(navItem[i].children, 3);
+  //     }
+  //   }
+  //   return newSheet;
+  // }
 
-  getXmlFirstRow(items: Array<ListItem>, columnIndex: number): string {
+  getXmlFirstRow(item: ListItem, columnIndex: number): string {
     let result = '';
     let initialRow = this.row + 1;
     result += '<row  r="' + initialRow + '">';
-    items.forEach((item) => {
-      if (item.checked) {
-        const column = Constants.EXCEL_COLUMNS[columnIndex];
-        columnIndex++;
-        result += '<c t="inlineStr" r="' + column + (this.row + 1) + '" s="3">' +
-          '<is>' +
-          '<t>' + item.title + '</t>' +
-          '</is>' +
-          '</c>';
-        if (item.children) {
-          this.getXmlRows(item.children, columnIndex, initialRow);
-          columnIndex++;
-        }
-      }
-    });
+    const column = Constants.EXCEL_COLUMNS[columnIndex];
+    columnIndex++;
+    result += '<c t="inlineStr" r="' + column + (this.row + 1) + '" s="3">' +
+      '<is>' +
+      '<t>' + item.title + '</t>' +
+      '</is>' +
+      '</c>';
+    if (item.children) {
+      this.getXmlRows(item.children, columnIndex, initialRow);
+      columnIndex++;
+    }
     result += '</row>';
     this.childrenExcelRow.forEach((item) => {
       const rowNumber = ++initialRow;
@@ -224,55 +223,68 @@ export class ExcelService {
     });
   }
 
-  generateFirstSheet(data, columnsToHide): XMLDocument {
+  generateFirstSheet(toggleColumns: Array<ListItem>, data: Array<any>): XMLDocument {
     this.row = 1;
-    console.log('columnsToHide', columnsToHide);
     let newSheet = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
       '<worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" ' +
       'xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" ' +
       'xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" ' +
-      'xmlns:x14ac="http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac" mc:Ignorable="x14ac">' +
+      'xmlns:x14ac="http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac" mc:Ignorable="">' +
       '<cols >' +
-      this.colDefintion(data, columnsToHide) +
+      this.colDefintion(toggleColumns) +
       '</cols>' +
       '<sheetData>';
-    data.forEach((item) => {
-      if (Array.isArray(item)) {
-        let columnIndex = 0;
-        const row = item.map((cell) => {
-          return new ListItem({title: cell});
-        });
-        newSheet += '<row  r="' + this.row + '">';
-        item.forEach((cell) => {
-          const cellText = typeof cell === 'string' ? cell : 'nothing';
-          const column = Constants.EXCEL_COLUMNS[columnIndex];
-          newSheet += '<c t="inlineStr" r="' + column + this.row + '" s="3">' +
-            '<is>' +
-            '<t>' + cellText + '</t>' +
-            '</is>' +
-            '</c>';
-          columnIndex++;
-        });
-        newSheet += '</row>';
-        this.row++;
-      }
+
+    newSheet += '<row  r="' + this.row + '">';
+    toggleColumns.forEach(column => {
+      const style = 27 + (parseInt(column.style) || 0);
+      newSheet += '<c t="inlineStr" r="' + column + this.row + '" s="' + style + '">' +
+        '<is>' +
+        '<t>' + column.title + '</t>' +
+        '</is>' +
+        '</c>';
+    });
+    newSheet += '</row>';
+    this.row++;
+    data.forEach(dataRow => {
+      let columnIndex = 0;
+      newSheet += '<row  r="' + this.row + '">';
+      dataRow.forEach((cell) => {
+        const cellText = typeof cell === 'string' ? cell : 'nothing';
+        const column = Constants.EXCEL_COLUMNS[columnIndex];
+        const columnStyle = toggleColumns[columnIndex].style || 0;
+
+        newSheet += '<c t="inlineStr" r="' + column + this.row + '" s="' + columnStyle + '">' +
+          '<is>' +
+          '<t>' + cellText + '</t>' +
+          '</is>' +
+          '</c>';
+        columnIndex++;
+      });
+      newSheet += '</row>';
+      this.row++;
     });
     newSheet += '</sheetData>' +
       '</worksheet>';
+    console.log('newSheet', newSheet);
     return $.parseXML(newSheet);
   }
 
-  colDefintion(data, columnsToHide: Set<string>): string {
+  colDefintion(toggleColumns): string {
     let cols = '';
-    data[0].forEach((item, index) => {
+    toggleColumns.forEach((item, index) => {
       let hidden = ' width="20"';
-      if (columnsToHide.has(item)) {
+      if (!item.checked) {
         hidden = ' hidden="true"';
       }
       const columnIndex = index + 1;
       cols += '<col min="' + columnIndex + '" max="' + columnIndex + '" customWidth="1"' + hidden + '/>';
     });
     return cols;
+  }
+
+  xlsxStyleSheet(): string {
+    return localStorage.getItem('xmlStyle');
   }
 
 

@@ -15,6 +15,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { SplashScreenComponent } from './splash-screen/splash-screen.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ApplicationModule } from './application/application.module';
+import { HelpComponent } from './modals/help/help.component';
 
 export function get_settings(appLoadService: AppLoadService) {
   return () => appLoadService.getSettings();
@@ -24,7 +25,8 @@ export function get_settings(appLoadService: AppLoadService) {
   declarations: [
     AppComponent,
     SplashScreenComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    HelpComponent
   ],
   exports: [],
   imports: [

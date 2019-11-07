@@ -1,5 +1,4 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ToggleItem} from '../../models/toggle-item.model';
 import {ToggleColumnsService} from '../../services/toggle-columns.service';
 import {ListItem} from '../../models/listItem';
 import {Subscription} from 'rxjs';
