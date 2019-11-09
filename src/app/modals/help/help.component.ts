@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {BsModalRef} from 'ngx-bootstrap';
 
 @Component({
@@ -7,9 +7,10 @@ import {BsModalRef} from 'ngx-bootstrap';
   styleUrls: ['./help.component.scss']
 })
 export class HelpComponent implements OnInit {
-  @Input('helpText') helpText;
+  helpText: string;
 
-  constructor(public bsModalRef: BsModalRef) { }
+  constructor(public bsModalRef: BsModalRef) {
+  }
 
   ngOnInit() {
   }

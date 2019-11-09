@@ -4,4 +4,33 @@ ul.level0 {
 
 li {
   list-style: none;
+
+}
+.li-block {
+  margin-bottom: 7px;
+}
+
+.checkedImage {
+
+  &.checked {
+    background-color: #0071bc;
+    background-image: url(https://www.epa.gov/sites/all/themes/epa/img/svg/correct.svg);
+    background-position: 50%;
+  }
+
+  background-repeat: no-repeat;
+  box-shadow: 0 0 0 1px #0071bc;
+  background: #fff;
+  border-radius: 3px;
+  box-shadow: 0 0 0 1px #757575;
+  content: '\a0';
+  display: inline-block;
+  height: 1.05882em;
+  line-height: 0.8;
+  margin-right: 0.6em;
+  text-indent: 0.15em;
+  vertical-align: 0.2em;
+  width: 1.05882em;
+  height:19px;
+  margin-bottom: -6px;
 }

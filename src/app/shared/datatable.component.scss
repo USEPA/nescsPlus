@@ -36,4 +36,18 @@
   padding: 10px;
 }
 
+table {
+  &.dataTable {
+    thead {
+      tr {
+        th {
+          &.blue {
+            background-color: #AFCCDC;
+          }
+        }
+      }
+    }
+  }
+}
+
 

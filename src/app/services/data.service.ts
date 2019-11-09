@@ -85,14 +85,14 @@ export class DataService {
   }
 
   static checkActiveFilter(navArray: NavArray, activeFilter: ActiveFilter): boolean {
-    const excludeIdFields = navArray.arrayName !== 'beneficiaryIdArray' && navArray.arrayName !== 'idArray';
+    const excludeIdFields = navArray.baseName !== 'beneficiaryId' && navArray.baseName !== 'id';
 
     // When ActiveFilter is Direct exclude Beneficiary Columns
-    const checkDirect = activeFilter === ActiveFilter.Direct && !(navArray.arrayName === 'beneficiaryArray');
+    const checkDirect = activeFilter === ActiveFilter.Direct && !(navArray.baseName === 'beneficiary');
 
     // When ActiveFilter is Beneficiary exclude Direct Use and Direct User Columns
     const checkBeneficiary = activeFilter === ActiveFilter.Beneficiary &&
-      !(navArray.arrayName === 'directUseArray' || navArray.arrayName === 'directUserArray');
+      !(navArray.baseName === 'directUse' || navArray.baseName === 'directUser');
 
     return excludeIdFields && (checkDirect || checkBeneficiary);
   }
@@ -143,13 +143,13 @@ export class DataService {
       const column = flatColumns.find(columnItem => {
         return columnItem.column === item.columnName;
       });
-      return {title: item.columnTitle, class: 'blue', visible: column.checked};
+      return {title: item.columnTitle, className: item.className, visible: column.checked};
     });
   }
 
-  static returnColumnNames(arrayName: string) {
+  static returnColumnNames(baseName: string) {
     return Constants.COLUMN_MAP.find(nav => {
-      return nav.arrayName === arrayName;
+      return nav.baseName === baseName;
     }).columnArray.map((column: Column) => {
       return column.columnName;
     });

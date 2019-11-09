@@ -2,7 +2,7 @@ import {Column} from './column.model';
 
 
 export class NavArray {
-  arrayName: string;
+  baseName: string;
   indexColumnName: string;
   index: number;
   columnArray: Array<Column>;

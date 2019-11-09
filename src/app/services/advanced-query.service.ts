@@ -6,6 +6,8 @@ import {HelperService} from './helper.service';
 import {Data} from '../models/data.model';
 import {NavArray} from '../models/nav-array.model';
 import {ActiveFilter} from '../models/enums';
+import {HelpItem} from '../models/help-item';
+import {Column} from '../models/column.model';
 
 @Injectable()
 export class AdvancedQueryService {
@@ -34,81 +36,97 @@ export class AdvancedQueryService {
   getAdvancedQueryNav(): Array<ListItem> {
     const returnResult = new Array<ListItem>();
     Constants.COLUMN_MAP.forEach((item: NavArray) => {
-      const dataItem = JSON.parse(localStorage.getItem(item.arrayName));
-      const firstLevel = item.arrayName;
-      const siblingColumns = item.columnArray.map(column => column.columnName);
+      const dataItem = JSON.parse(localStorage.getItem(item.baseName + 'Array'));
+      const helpContent: Array<HelpItem> = JSON.parse(localStorage.getItem(item.baseName + 'Help'));
+      const firstLevel = item.baseName + 'Array';
       // Exclude ID fields which have no corresponding stored array
       if (dataItem) {
         returnResult.push(new ListItem({
           column: firstLevel,
           title: firstLevel,
-          children: this.filterArray(dataItem, siblingColumns),
+          children: this.filterArray(dataItem, item.columnArray, helpContent, item.indexColumnName),
           checked: true
         }));
       }
     });
+    console.log('returnResult', returnResult);
     return returnResult;
   }
 
-  private filterArray(data: Array<Data>, keys: Array<string>): Array<any> {
+  private filterArray(data: Array<Data>, keys: Array<Column>, helpContent: Array<HelpItem>, idField: string): Array<any> {
     switch (keys.length) {
       case 1:
-        return this.filterFirst(data, keys);
+        return this.filterFirst(data, keys[0], helpContent, idField);
       case 2:
-        const first2 = this.filterFirst(data, keys);
-        first2.forEach((item) => {
-          item.children = this.filterSecond(data, keys, item.title);
+        const first2 = this.filterFirst(data, keys[0], helpContent, idField);
+        first2.forEach(item => {
+          item.children = this.filterSecond(data, keys, helpContent, item.title, idField);
         });
         return first2;
       case 3:
-        const first3 = this.filterFirst(data, keys);
+        const first3 = this.filterFirst(data, keys[0], helpContent, idField);
         first3.forEach((item) => {
-          item.children = this.filterSecond(data, keys, item.title);
+          item.children = this.filterSecond(data, keys, helpContent, item.title, idField);
         });
-        first3.forEach((item) => {
+        first3.forEach(item => {
           item.children.forEach((second2) => {
-            second2.children = this.filterThird(data, keys, item.title, second2.title);
+            second2.children = this.filterThird(data, keys, helpContent, item.title, second2.title, idField);
           });
         });
         return first3;
     }
   }
 
-  private filterFirst(data: Array<any>, keys: Array<string>): any {
-    const first = [...new Set(data.map(item => item[keys[0]]))];
-    return first.map(item => {
-      return new ListItem({title: item || '', column: item.replace(/\s/g, '_'), children: [], checked: true});
+  private filterFirst(data: Array<Data>, column: Column, helpContent: Array<HelpItem>, idField: string): any {
+    const mapItem = new Map<string, Data>();
+    data.forEach(item => {
+      const id = item[idField].match(column.findExpression) ? item[idField].match(column.findExpression)[0] : null;
+      mapItem.set(id, item);
     });
+    return this.returnListItem(mapItem, helpContent, column);
   }
 
-  private filterSecond(data: Array<Data>, keys: Array<string>, firstLevel: string): any {
-    const second = new Set(data.map(item => {
-      const temp = item[keys[1]];
-      if (item[keys[0]] === firstLevel && typeof temp !== 'undefined') {
-        return temp;
-      }
-    }));
-    if (second.has(undefined)) {
-      second.delete(undefined);
-    }
-    return this.returnListItem(Array.from(second));
-  }
-
-  private filterThird(data: Array<any>, keys: Array<string>, firstLevel: string, secondLevel: string): any {
-    const third = [...new Set(data.map((item) => {
-      if (item[keys[0]] === firstLevel && item[keys[1]] === secondLevel && item[keys[2]]) {
-        return item[keys[2]];
-      }
-    }))];
-
-    return this.returnListItem(third);
-  }
-
-  private returnListItem(items) {
-    items = this.helper.remove(items, row => row !== undefined);
-    return items.map((item) => {
-      return new ListItem({title: item[0], column: item[0].replace(/\s/g, '_').toLowerCase(), children: [], checked: true});
+  private filterSecond(data: Array<Data>, columns: Array<Column>, helpContent: Array<HelpItem>, firstLevel: string, idField: string): any {
+    const mapItem = new Map<string, Data>();
+    const filteredResults = data.filter(item => {
+      return item[columns[0].columnName] === firstLevel;
     });
+    filteredResults.forEach(item => {
+      const id = item[idField].match(columns[1].findExpression)[0];
+      mapItem.set(id, item);
+    });
+    return this.returnListItem(mapItem, helpContent, columns[1]);
+  }
+
+  private filterThird(data: Array<any>, columns: Array<Column>, helpContent: Array<HelpItem>,
+                      firstLevel: string, secondLevel: string, idField: string): any {
+    const mapItem = new Map<string, Data>();
+    data.forEach(item => {
+      if (item[columns[0].columnName] === firstLevel && item[columns[1].columnName] === secondLevel && item[columns[2].columnName]) {
+        const id = item[idField].match(columns[2].findExpression)[0];
+        mapItem.set(id, item);
+      }
+    });
+    return this.returnListItem(mapItem, helpContent, columns[2]);
+  }
+
+  private returnListItem(mapItem: Map<string, Data>, helpContent: Array<HelpItem>, column: Column): Array<ListItem> {
+    const result = new Array<ListItem>();
+    mapItem.forEach((item, key) => {
+      const helpItem = helpContent.find(content => {
+        return content.id.toString().trim() === key.toString().trim();
+      }) || new HelpItem();
+      if (key) {
+        result.push(new ListItem({
+          title: item[column.columnName],
+          column: item[column.columnName].replace(/\s/g, '_'),
+          children: [],
+          checked: true,
+          helpText: helpItem.helpText
+        }));
+      }
+    });
+    return result;
   }
 
 

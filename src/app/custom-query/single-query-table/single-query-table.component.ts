@@ -44,7 +44,6 @@ export class SingleQueryTableComponent implements OnInit, AfterViewInit {
   }
 
   renderDataTable(): void {
-    console.log('this.displayOPtions', this.displayOptions);
     this.dtOptions = {
       dom: 'Bfrtip',
       buttons: [
@@ -98,7 +97,6 @@ export class SingleQueryTableComponent implements OnInit, AfterViewInit {
   editRow(e, dt, node, config): void {
     const key = dt.rows('.selected', {selected: true}).data()[0][0];
     const editItem = new Map<string, SingleQueryItem>();
-    console.log('key, editItem', key, editItem);
     editItem.set(key, this.singleQueryMap.get(key));
     this.editItem.emit(editItem);
   }

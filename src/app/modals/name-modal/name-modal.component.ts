@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {BsModalRef} from 'ngx-bootstrap';
 import {SingleQueryService} from '../../services/single-query.service';
 import {SingleQueryItem} from '../../models/single-query-item';

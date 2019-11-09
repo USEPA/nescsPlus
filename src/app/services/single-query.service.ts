@@ -48,7 +48,7 @@ export class SingleQueryService {
 
     const data = JSON.parse(localStorage.getItem(scope + 'Array'));
     const item = data.find(isId);
-    const columns = DataService.returnColumnNames( scope + 'Array');
+    const columns = DataService.returnColumnNames(scope);
     const values = columns.map(propertyName => {
       return item[propertyName];
     });

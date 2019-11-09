@@ -9,20 +9,22 @@ export class Constants {
   // Groupings can not be determined automatically so the definition of groupings are done here
   public static get ENVIRONMENTAL_COLUMN_ARRAY(): NavArray {
     return new NavArray({
-      arrayName: 'environmentalArray',
+      baseName: 'environmental',
       indexColumnName: 'FESID2244',
       index: 0,
       columnArray: [
         new Column({
           columnName: 'EnvironmentalClass',
           columnTitle: 'Environmental Class',
+          className: 'greenBackground',
           arrayIndex: 0,
           level: 0,
-          findExpression: /.(?=.{1}$)/
+          findExpression: /\d/
         }),
         new Column({
           columnName: 'EnvironmentalSubclass',
           columnTitle: 'Environmental Subclass',
+          className: 'greenBackground',
           arrayIndex: 0,
           level: 1,
           findExpression: /.(?=.{0}$)/
@@ -33,13 +35,14 @@ export class Constants {
 
   public static get ECOLOGICAL_COLUMN_ARRAY(): NavArray {
     return new NavArray({
-      arrayName: 'ecologicalArray',
+      baseName: 'ecological',
       indexColumnName: 'FESID2244',
       index: 1,
       columnArray: [
         new Column({
           columnName: 'EcologicalClass',
           columnTitle: 'Ecological End-Product Class',
+          className: 'lightGreenBackground',
           arrayIndex: 1,
           level: 0,
           findExpression: /.(?=.{0}$)/
@@ -49,20 +52,22 @@ export class Constants {
 
   public static get DIRECT_USE_COLUMN_ARRAY(): NavArray {
     return new NavArray({
-      arrayName: 'directUseArray',
+      baseName: 'directUse',
       indexColumnName: 'FESID2244',
       index: 2,
       columnArray: [
         new Column({
           columnName: 'DirectUseClass',
           columnTitle: 'Direct Use/Non-Use Class',
+          className: 'darkBlueBackground',
           arrayIndex: 2,
           level: 0,
-          findExpression: /.(?=.{3}$)/
+          findExpression: /\d/
         }),
         new Column({
           columnName: 'DirectUseSubclassI',
           columnTitle: 'Direct Use/Non-Use Subclass I',
+          className: 'darkBlueBackground',
           arrayIndex: 2,
           level: 1,
           findExpression: /.(?=.{3}$)+.(?=.{2}$)/
@@ -70,6 +75,7 @@ export class Constants {
         new Column({
           columnName: 'DirectUseSubclassII',
           columnTitle: 'Direct Use/Non-Use Subclass II',
+          className: 'darkBlueBackground',
           arrayIndex: 2,
           level: 2,
           findExpression: /.(?=.{3}$)+.(?=.{2}$)+.(?=.{1}$)+.(?=.{0}$)/
@@ -80,13 +86,14 @@ export class Constants {
 
   public static get DIRECT_USER_COLUMN_ARRAY(): NavArray {
     return new NavArray({
-      arrayName: 'directUserArray',
+      baseName: 'directUser',
       indexColumnName: 'FESID2244',
       index: 3,
       columnArray: [
         new Column({
           columnName: 'DirectUserClass',
           columnTitle: 'Direct User Class',
+          className: 'lightBlueBackground',
           level: 3,
           arrayIndex: 0,
           findExpression: /.(?=.{3}$)/
@@ -94,6 +101,7 @@ export class Constants {
         new Column({
           columnName: 'DirectUserSubclassI',
           columnTitle: 'Direct User Subclass I',
+          className: 'lightBlueBackground',
           arrayIndex: 3,
           level: 1,
           findExpression: /.(?=.{2}$)+.(?=.{1}$)/
@@ -101,6 +109,7 @@ export class Constants {
         new Column({
           columnName: 'DirectUserSubclassII',
           columnTitle: 'Direct User Subclass II',
+          className: 'lightBlueBackground',
           arrayIndex: 3,
           level: 2,
           findExpression: /.(?=.{0}$)/
@@ -110,13 +119,14 @@ export class Constants {
 
   public static get BENEFICIARY_COLUMN_ARRAY(): NavArray {
     return new NavArray({
-      arrayName: 'beneficiaryArray',
+      baseName: 'beneficiary',
       indexColumnName: 'FEGSIDNumber',
       index: 1,
       columnArray: [
         new Column({
           columnName: 'BeneficiaryCategory',
           columnTitle: 'Beneficiary Category',
+          className: 'blueBackground',
           arrayIndex: 4,
           level: 0,
           findExpression: /.(?=.{2}$)+.(?=.{1}$)/
@@ -124,6 +134,7 @@ export class Constants {
         new Column({
           columnName: 'BeneficiarySubcategory',
           columnTitle: 'Beneficiary Subcategory',
+          className: 'blueBackground',
           arrayIndex: 4,
           level: 1,
           findExpression: /.(?=.{0}$)/
@@ -133,7 +144,7 @@ export class Constants {
 
   public static get BENEFICIARY_ID_COLUMN(): NavArray {
     return new NavArray({
-      arrayName: 'beneficiaryIdArray',
+      baseName: 'beneficiaryId',
       columnArray: [
         new Column({columnName: 'FEGSIDNumber', columnTitle: 'FEGS ID Number', arrayIndex: 0, level: 0})
       ]
@@ -146,7 +157,7 @@ export class Constants {
 
   public static get ID_COLUMN(): NavArray {
     return new NavArray({
-      arrayName: 'idArray',
+      baseName: 'id',
       columnArray: [
         new Column({columnName: 'FESID2244', columnTitle: 'FESID2244', arrayIndex: 0, level: 0})
       ]
@@ -167,13 +178,13 @@ export class Constants {
       title: 'Environmental Class',
       column: 'EnvironmentalClass',
       checked: true,
-      style: '0',
+      style: '25',
       children: [
         new ListItem({
           title: 'Environmental Subclass',
           column: 'EnvironmentalSubclass',
           checked: true,
-          style: '0',
+          style: '25',
           children: []
         })
       ]
@@ -250,13 +261,15 @@ export class Constants {
       title: 'FEGS ID Number',
       column: 'FEGSIDNumber',
       checked: true,
-      children: []
+      children: [],
+      style: '0'
     }),
     new ListItem({
       title: 'FESID2244',
       column: 'FESID2244',
       checked: true,
-      children: []
+      children: [],
+      style: '0'
     })
   );
 

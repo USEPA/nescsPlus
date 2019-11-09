@@ -1,7 +1,10 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ListItem} from '../models/listItem';
 import {AdvancedQueryService} from '../services/advanced-query.service';
 import {ToggleColumnsService} from '../services/toggle-columns.service';
+import {BsModalRef, BsModalService} from 'ngx-bootstrap';
+import {NameModalComponent} from '../modals/name-modal/name-modal.component';
+import {HelpComponent} from '../modals/help/help.component';
 
 @Component({
   selector: 'app-list',
@@ -15,9 +18,11 @@ export class ListComponent implements OnInit {
   @Input() level;
   @Input() serviceName: string;
   @Input() disableChildren: boolean;
+  modalRef: BsModalRef;
   service: any;
 
-  constructor(private advancedQueryService: AdvancedQueryService, private toggleColumnsService: ToggleColumnsService) {
+  constructor(private advancedQueryService: AdvancedQueryService, private toggleColumnsService: ToggleColumnsService,
+              private modalService: BsModalService) {
   }
 
   ngOnInit(): void {
@@ -59,5 +64,13 @@ export class ListComponent implements OnInit {
     items.forEach((item: ListItem) => {
 
     });
+  }
+
+  openModal(argumentText: string) {
+    const initialState = {
+      helpText: argumentText
+    };
+    this.modalRef = this.modalService.show(HelpComponent, {initialState});
+
   }
 }

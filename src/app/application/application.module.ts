@@ -17,6 +17,7 @@ import {SearchInstructionsModalComponent} from '../modals/search-instructions-mo
 import {ExcelService} from '../services/excel.service';
 import {AdvancedQueryService} from '../services/advanced-query.service';
 import {SingleQueryTableComponent} from '../custom-query/single-query-table/single-query-table.component';
+import {HelpComponent} from '../modals/help/help.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import {SingleQueryTableComponent} from '../custom-query/single-query-table/sing
   entryComponents: [
     DeleteModalComponent,
     NameModalComponent,
-    SearchInstructionsModalComponent
+    SearchInstructionsModalComponent,
+    HelpComponent
   ],
   exports: [
     DataTableComponent,

@@ -1,6 +1,12 @@
 <ul class="level{{level}}" *ngFor="let item of data">
-  <li><input type="checkbox" [checked]="item.checked" id="{{item.column}}" (click)="sendChange(item)">
-    <label for="{{item.column}}">{{item.title}}</label>
+  <li>
+    <div class="li-block">
+    <span (click)="sendChange(item)">
+      <div [ngClass]="{checkedImage:true,checked:item.checked}"></div>
+    {{item.title}}
+    </span>
+    <i *ngIf="item.helpText" class="i-ui-icon link"(click)="openModal(item.helpText)"></i>
+    </div>
     <div *ngIf="item.children">
       <app-list [data]="item.children" [serviceName]="serviceName" [level]="(level+1)" [disableChildren]="disableChildren"></app-list>
     </div>

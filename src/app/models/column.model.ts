@@ -3,6 +3,8 @@
 export class Column {
   columnName = '';
   columnTitle = '';
+  // Used on web to define class for styling of Datatable
+  className: string;
   arrayIndex = 0;
   level = 0;
   findExpression: any;

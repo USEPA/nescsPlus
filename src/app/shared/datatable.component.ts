@@ -108,8 +108,7 @@ export class DataTableComponent implements AfterViewInit, OnDestroy, OnInit {
   extraSheet(xlsx): void {
     const data = DataService.returnArray(DataService.getExportData(this.navigationItems, this.activeFilter));
     const toggleColumns = DataService.returnFlatListItemArray(Array.from(this.selectedColumns));
-    console.log('this.navigationItems, data', this.navigationItems, data, toggleColumns);
-    this.excelService.exportData(xlsx, toggleColumns, data);
+    this.excelService.exportData(xlsx, this.navigationItems, toggleColumns, data, this.activeFilter);
   }
 
 }

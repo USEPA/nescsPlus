@@ -54,10 +54,10 @@ export class CustomQueryComponent implements OnInit {
   ngOnInit(): void {
     console.log('CustomQueryComponent - ngOnInit');
     this.appService.setNavigation('customQuery');
-    this.ecologicalList = this.retrieveOptions('ecologicalArray');
-    this.environmentalList = this.retrieveOptions('environmentalArray');
-    this.directUseList = this.retrieveOptions('directUseArray');
-    this.directUserList = this.retrieveOptions('directUserArray');
+    this.ecologicalList = this.retrieveOptions('ecological');
+    this.environmentalList = this.retrieveOptions('environmental');
+    this.directUseList = this.retrieveOptions('directUse');
+    this.directUserList = this.retrieveOptions('directUser');
   }
 
   enableButton(): void {
@@ -82,7 +82,7 @@ export class CustomQueryComponent implements OnInit {
   }
 
   editAction(): void {
-    console.log('editAction openNameModal',  this);
+    console.log('editAction openNameModal', this);
     const initialState = {
       ecological: this.selectedEcological,
       environmental: this.selectedEnvironmental,
@@ -112,7 +112,7 @@ export class CustomQueryComponent implements OnInit {
   }
 
   private retrieveOptions(item: string): Array<Options> {
-    const data: any = JSON.parse(localStorage.getItem(item));
+    const data: any = JSON.parse(localStorage.getItem(item + 'Array'));
     const columns = DataService.returnColumnNames(item);
 
     const options = data.map(items => {
