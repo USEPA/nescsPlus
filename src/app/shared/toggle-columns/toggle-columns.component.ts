@@ -12,7 +12,7 @@ export class ToggleColumnsComponent implements OnInit, OnDestroy {
   data: Set<ListItem>;
   serviceName = 'ToggleColumnsService';
   level = 0;
-  disableChildren = true;
+  disableChildren = false;
   signalColumnChange: Subscription;
 
   constructor(private toggleColumnsService: ToggleColumnsService ) {
