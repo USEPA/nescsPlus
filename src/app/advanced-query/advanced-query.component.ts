@@ -41,7 +41,9 @@ export class AdvancedQueryComponent implements OnInit, OnDestroy {
     this.appService.setNavigation('advancedQuery');
     this.navItems = this.advancedQueryService.getAdvancedQueryNav();
     this.environmentalNav = [this.navItems[0]];
+    // console.log('environment', this.environmentalNav);
     this.ecologicalNav = [this.navItems[1]];
+    // console.log('ecological', this.ecologicalNav);
     this.directUseNav = [this.navItems[2]];
     this.directUserNav = [this.navItems[3]];
     this.beneficiaryNav = [this.navItems[4]];

@@ -18,20 +18,6 @@
   </div>
   <div class="row">
     <div class="col-md-12 mt-2">
-      <label for="ecological">Ecological</label>
-      <span validation="ecological" class="help-block"></span>
-    </div>
-    <div class="col-md-12">
-      <ng-select [items]="ecologicalList" placeholder="Select" id="ecological"
-                 bindLabel="text" labelForId="ecological"
-                 bindValue="id"
-                 (change)="enableButton()"
-                 [(ngModel)]="selectedEcological">
-      </ng-select>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12 mt-2">
       <label for="environmental">Environmental</label>
       <span validation="environmental" class="help-block"></span>
     </div>
@@ -41,6 +27,20 @@
                  bindValue="id"
                  (change)="enableButton()"
                  [(ngModel)]="selectedEnvironmental">
+      </ng-select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 mt-2">
+      <label for="ecological">Ecological</label>
+      <span validation="ecological" class="help-block"></span>
+    </div>
+    <div class="col-md-12">
+      <ng-select [items]="ecologicalList" placeholder="Select" id="ecological"
+                 bindLabel="text" labelForId="ecological"
+                 bindValue="id"
+                 (change)="enableButton()"
+                 [(ngModel)]="selectedEcological">
       </ng-select>
     </div>
   </div>

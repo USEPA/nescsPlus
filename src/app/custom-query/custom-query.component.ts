@@ -70,8 +70,8 @@ export class CustomQueryComponent implements OnInit {
 
   openNameModal(): void {
     const initialState = {
-      ecological: this.selectedEcological,
       environmental: this.selectedEnvironmental,
+      ecological: this.selectedEcological,
       directUse: this.selectedDirectUse,
       directUser: this.selectedDirectUser,
       action: this.buttonAction,
@@ -84,8 +84,8 @@ export class CustomQueryComponent implements OnInit {
   editAction(): void {
     console.log('editAction openNameModal', this);
     const initialState = {
-      ecological: this.selectedEcological,
       environmental: this.selectedEnvironmental,
+      ecological: this.selectedEcological,
       directUse: this.selectedDirectUse,
       directUser: this.selectedDirectUser,
       action: this.buttonAction,
@@ -104,8 +104,8 @@ export class CustomQueryComponent implements OnInit {
   initializeEdit(map): void {
     console.log('initializeEdit: ', map, map.entries().next().value);
     const value = map.values().next().value;
-    this.selectedEcological = value.ecological;
     this.selectedEnvironmental = value.environmental;
+    this.selectedEcological = value.ecological;
     this.selectedDirectUse = value.directUse;
     this.selectedDirectUser = value.directUser;
     this.filterName = map.keys().next().value;
@@ -113,18 +113,21 @@ export class CustomQueryComponent implements OnInit {
 
   private retrieveOptions(item: string): Array<Options> {
     const data: any = JSON.parse(localStorage.getItem(item + 'Array'));
+    const navArray = Constants[item.toUpperCase() + '_COLUMN_ARRAY'];
     const columns = DataService.returnColumnNames(item);
-
-    const options = data.map(items => {
+    const results = new Map<string, Options>();
+    data.forEach(items => {
+      const NescsId = items.NESCSPlusID.split('.')[navArray.index];
       const values = columns.map(columnName => {
         return items[columnName];
       });
-      return new Options({
-        text: values.join(' - '),
-        id: items.FESID2244
-      });
+      results.set(NescsId, new Options({
+          text: values.join(' - '),
+          id: NescsId
+        })
+      );
     });
-    return options;
+    return Array.from(results.values());
   }
 
 }

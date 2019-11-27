@@ -1,7 +1,9 @@
 export class Data {
-  FESID2244 = '';
+  NESCSPlusID = '';
+  BeneficiaryId = '';
   EnvironmentalClass = '';
-  EnvironmentalSubclass = '';
+  EnvironmentalSubclassI = '';
+  EnvironmentalSubclassII = '';
   EcologicalClass = '';
   DirectUseClass = '';
   DirectUseSubclassI = '';
@@ -11,13 +13,4 @@ export class Data {
   DirectUserSubclassII = '';
   BeneficiaryCategory = '';
   BeneficiarySubcategory = '';
-  FEGSIDNumber = '';
-  FEGtype = '';
-  Example = '';
-  Importance = '';
-  FEGSMeasurementincludingUnits = '';
-  MeasurementType = '';
-  Status = '';
-  Source = '';
-  Notes = '';
 }

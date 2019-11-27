@@ -34,8 +34,8 @@ export class NameModalComponent implements OnInit {
       this.singleQueryMap.delete(this.originalName);
     }
     this.singleQueryMap.set(this.filterName, new SingleQueryItem({
-      ecological: this.ecological,
       environmental: this.environmental,
+      ecological: this.ecological,
       directUse: this.directUse,
       directUser: this.directUser
     }));

@@ -9,7 +9,7 @@ export class Column {
   level = 0;
   findExpression: any;
 
-  // Used to determine location of id in either FESID2244 or FEGSIDNumber
+  // Used to determine location of id in either NESCSPlusID or BeneficiaryId
   index: number;
 
   public constructor(init?: Partial<Column>) {

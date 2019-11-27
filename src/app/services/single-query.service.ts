@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {BehaviorSubject, Subject} from 'rxjs';
 import {SingleQueryItem} from '../models/single-query-item';
 import {DataService} from './data.service';
+import {Constants} from '../models/constants';
 
 @Injectable({
   providedIn: 'root'
@@ -20,10 +21,10 @@ export class SingleQueryService {
       prepData.push([
         key,
         this.retrieveFES2244ID(value),
-        value.ecological,
-        this.getText('ecological', value.ecological),
         value.environmental,
         this.getText('environmental', value.environmental),
+        value.ecological,
+        this.getText('ecological', value.ecological),
         value.directUse,
         this.getText('directUse', value.directUse),
         value.directUser,
@@ -34,8 +35,8 @@ export class SingleQueryService {
     return {
       data: prepData,
       columns: [{title: 'Name/Label', className: 'blue'}, {title: 'FESCID2244', className: 'blue'},
-        {title: 'Ecological ID', className: 'blue'}, {title: 'Ecological Text', className: 'blue'},
         {title: 'Environmental ID', className: 'blue'}, {title: 'Environmental Text', className: 'blue'},
+        {title: 'Ecological ID', className: 'blue'}, {title: 'Ecological Text', className: 'blue'},
         {title: 'Direct Use ID', className: 'blue'}, {title: 'Direct Use Text', className: 'blue'},
         {title: 'Direct User ID', className: 'blue'}, {title: 'Direct User Text', className: 'blue'}]
     };
@@ -43,10 +44,11 @@ export class SingleQueryService {
 
   getText(scope, id) {
     function isId(element, index, array) {
-      return element.FESID2244 === id;
+      return element.NESCSPlusID.split('.')[navArray.index] === id;
     }
 
     const data = JSON.parse(localStorage.getItem(scope + 'Array'));
+    const navArray = Constants[scope.toUpperCase() + '_COLUMN_ARRAY'];
     const item = data.find(isId);
     const columns = DataService.returnColumnNames(scope);
     const values = columns.map(propertyName => {
@@ -57,7 +59,7 @@ export class SingleQueryService {
 
   retrieveFES2244ID(data) {
     const FESArray = [];
-    ['ecological', 'environmental', 'directUse', 'directUser'].forEach((item) => {
+    ['environmental', 'ecological', 'directUse', 'directUser'].forEach((item) => {
       FESArray.push(data[item]);
     });
     return FESArray.join('.');

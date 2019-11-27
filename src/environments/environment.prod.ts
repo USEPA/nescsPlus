@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  deployPath: '/nescs/'
+  deployPath: '/nescs/',
+  version: '0.0.0'
 };

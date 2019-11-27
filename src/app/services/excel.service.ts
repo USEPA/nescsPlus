@@ -39,8 +39,9 @@ export class ExcelService {
     // Add second sheet to xl/workbook.xml => <workbook><sheets>
     // =========================================================
     source = xlsx.xl['workbook.xml'].getElementsByTagName('sheet')[0];
+    source.setAttribute('name', 'Results');
     clone = source.cloneNode(true);
-    clone.setAttribute('name', 'Info');
+    clone.setAttribute('name', 'Metadata');
     clone.setAttribute('sheetId', '2');
     clone.setAttribute('r:id', 'rId3');
     xlsx.xl['workbook.xml'].getElementsByTagName('sheets')[0].appendChild(clone);
@@ -117,7 +118,7 @@ export class ExcelService {
         '</is>' +
         '</c>' +
         '</row>';
-      newSheet += this.getXmlFirstRow(toggleColumns, navigationItems[2], Constants.DIRECT_USE_COLUMN_ARRAY);
+      newSheet += this.getXmlFirstRow(toggleColumns, navigationItems[2], Constants.DIRECTUSE_COLUMN_ARRAY);
       newSheet += this.addLineRow();
       newSheet += '<row  r="' + (++this.row) + '">' +
         '<c t="inlineStr" r="B' + this.row + '" s="3">' +
@@ -126,7 +127,7 @@ export class ExcelService {
         '</is>' +
         '</c>' +
         '</row>';
-      newSheet += this.getXmlFirstRow(toggleColumns, navigationItems[3], Constants.DIRECT_USER_COLUMN_ARRAY);
+      newSheet += this.getXmlFirstRow(toggleColumns, navigationItems[3], Constants.DIRECTUSER_COLUMN_ARRAY);
     } else {
       newSheet += '<row  r="' + (++this.row) + '">' +
         '<c t="inlineStr" r="B' + this.row + '" s="3">' +
