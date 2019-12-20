@@ -1,9 +1,10 @@
 <ul class="level{{level}}" *ngFor="let item of data">
+  <span *ngIf="item.visible">
   <li>
     <div class="li-block">
     <span (click)="sendChange(item)">
       <div [ngClass]="{checkedImage:true,checked:item.checked}"></div>
-    {{item.title}}
+    {{display(item)}}
     </span>
     <i *ngIf="item.helpText" class="i-ui-icon link"(click)="openModal(item.helpText)"></i>
     </div>
@@ -11,5 +12,6 @@
       <app-list [data]="item.children" [serviceName]="serviceName" [level]="(level+1)" [disableChildren]="disableChildren"></app-list>
     </div>
   </li>
+  </span>
 </ul>
 

@@ -5,6 +5,7 @@ import {environment} from '../../environments/environment';
 import {AppService} from '../services/app.service';
 import {Router} from '@angular/router';
 import {SearchInstructionsModalComponent} from '../modals/search-instructions-modal/search-instructions-modal.component';
+import {Constants} from '../models/constants';
 
 @Component({
   selector: 'app-application',
@@ -15,6 +16,8 @@ export class ApplicationComponent implements OnInit {
   currentNavigation: string;
   appServiceCurrent: Subscription;
   modalRef: BsModalRef;
+  CONTACT_US = Constants.CONTACT_US;
+
   // Create a "Last Updated" date for the One EPA Template footer
   lastModifiedDate = new Date(document.lastModified);
 

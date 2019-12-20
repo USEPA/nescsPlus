@@ -8,7 +8,7 @@
   to view the results of your query. If you would like to download the results to a
   spreadsheet file, click on the "Export CSV" button. </p>
 
-<div class="panel-container" (click)="toggleClass($event,'active')">
+<div class="panel-container greenBackground" (click)="toggleClass($event,'active')">
   Where? <i class="informationIcon"></i>
   <div class="inner-class">
     <b><i>Environmental classes</i></b> <i class="i-ui-icon"></i> and <b><i>subclasses</i></b> <i class="i-ui-icon"></i>
@@ -21,7 +21,7 @@
             [disableChildren]="disableChildren" class="filterContainer"></app-list>
 </div>
 
-<div class="panel-container" (click)="toggleClass($event,'active')">
+<div class="panel-container lightGreenBackground" (click)="toggleClass($event,'active')">
   What? <i class="informationIcon"></i>
   <div class="inner-class">
     <b><i>Ecological End-Product Classes</i></b> <i class="i-ui-icon"></i> are the relevant biophysical components of
@@ -47,7 +47,7 @@
 </div>
 
 <div *ngIf="activeFilter === ActiveFilter.Direct">
-  <div class="panel-container" (click)="toggleClass($event,'active')">
+  <div class="panel-container darkBlueBackground" (click)="toggleClass($event,'active')">
     How? <i class="informationIcon"></i>
     <div class="inner-class">
       <b><i>Direct Use Classes</i></b> <i class="i-ui-icon"></i> and <b><i>Subclasses</i></b> <i class="i-ui-icon"></i>
@@ -60,10 +60,10 @@
               [disableChildren]="disableChildren" class="filterContainer"></app-list>
   </div>
 
-  <div class="panel-container" (click)="toggleClass($event,'active')">
+  <div class="panel-container lightBlueBackground" (click)="toggleClass($event,'active')">
     Who? <i class="informationIcon"></i>
     <div class="inner-class">
-      North American Industrial Classification System (<a href="https://classcodes.com/naics-code-lookup"
+      North American Industrial Classification System (<a href="https://www.census.gov/eos/www/naics/"
                                                           target="_blank">NAICS) <span
       class="btn btn-outline-dark btn-sm">EXIT</span></a><br>
       <b><i>Direct User Classes</i></b> <i class="i-ui-icon"></i> and <b><i>Subclasses</i></b>
@@ -80,13 +80,16 @@
 
 <div *ngIf="activeFilter === ActiveFilter.Beneficiary">
 
-  <div class="panel-container" (click)="toggleClass($event,'active')">
-    Who? <i class="informationIcon"></i>
+  <div class="blueBackground panel-container" (click)="toggleClass($event,'active')">
+    How? <i class="informationIcon"></i>
     <div class="inner-class">
-      <b><i>Beneficiary class</i></b> <i class="i-ui-icon"></i> needs text
+      <b><i>Beneficiary classes</i></b> <i class="i-ui-icon"></i> and <b><i>subclasses</i></b>
+      <i class="i-ui-icon"></i> are the interests of individuals, groups of people, or organizations that drive their use or
+      appreciation of ecological end-products.
     </div>
   </div>
   <div class="adjoining-container">
+    <app-toggle-items [data]="navItems[4].children"></app-toggle-items>
     <app-list [data]="navItems[4].children" [serviceName]="'advancedQuery'" [level]="level"
               [disableChildren]="disableChildren" class="filterContainer"></app-list>
   </div>

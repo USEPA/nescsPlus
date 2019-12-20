@@ -65,16 +65,25 @@ export class ExcelService {
     newSheet += '</cols>' +
       '<sheetData>' +
       '<row  r="' + (++this.row) + '">' +
-      '<c t="inlineStr" r="A' + this.row + '" s="7">' +
+      '<c t="inlineStr" r="A' + this.row + '" s="12">' +
       '<is>' +
-      '<t>Information sheet</t>' +
+      '<t>National Ecosystem Services Classification System (NESCS Plus) Metadata Sheet</t>' +
+      '</is>' +
+      '</c>' +
+      '<c t="inlineStr" r="B' + this.row + '" s="12"/>' +
+      '<c t="inlineStr" r="C' + this.row + '" s="12"/>' +
+      '</row>' +
+      '<row  r="' + (++this.row) + '">' +
+      '<c t="inlineStr" r="A' + this.row + '" s="2">' +
+      '<is>' +
+      '<t>http://www.epa.gov/NESCS</t>' +
       '</is>' +
       '</c>' +
       '</row>' +
       '<row  r="' + (++this.row) + '">' +
       '<c t="inlineStr" r="A' + this.row + '" s="2">' +
       '<is>' +
-      '<t>Date</t>' +
+      '<t>Search Date:</t>' +
       '</is>' +
       '</c>' +
       '<c t="inlineStr" r="B' + this.row + '" s="3">' +
@@ -86,13 +95,72 @@ export class ExcelService {
       '<row  r="' + (++this.row) + '">' +
       '<c t="inlineStr" r="A' + this.row + '" s="2">' +
       '<is>' +
-      '<t>Selected Values:</t>' +
+      '<t>Search Type:</t>' +
+      '</is>' +
+      '</c>' +
+      '<c t="inlineStr" r="B' + this.row + '" s="3">' +
+      '<is>' +
+      '<t>Browse Core Options</t>' +
+      '</is>' +
+      '</c>' +
+      '</row>' +
+      '<row  r="' + (++this.row) + '">' +
+      '<c t="inlineStr" r="A' + this.row + '" s="2">' +
+      '<is>' +
+      '<t>Disclaimer:</t>' +
+      '</is>' +
+      '</c>' +
+      '<c t="inlineStr" r="B' + this.row + '" s="3">' +
+      '<is>' +
+      '<t>NESCS Plus offers two options for searching. (1) The default option is "Browse Core Options" which</t>' +
+      '</is>' +
+      '</c>' +
+      '</row>' +
+      '<row  r="' + (++this.row) + '">' +
+      '<c t="inlineStr" r="B' + this.row + '" s="3">' +
+      '<is>' +
+      '<t>refines the >75,000 possible combinations to a shorter "core" set of  ~1,000 most plausible combinations.</t>' +
+      '</is>' +
+      '</c>' +
+      '</row>' +
+      '<row  r="' + (++this.row) + '">' +
+      '<c t="inlineStr" r="B' + this.row + '" s="3">' +
+      '<is>' +
+      '<t>(2) In contrast, the “Query All Options” enables users to consider every possibility and build a custom table a </t>' +
+      '</is>' +
+      '</c>' +
+      '</row>' +
+      '<row  r="' + (++this.row) + '">' +
+      '<c t="inlineStr" r="B' + this.row + '" s="3">' +
+      '<is>' +
+      '<t>single row at a time.  If you discover a row that is missing that should be included in the "core" set,</t>' +
+      '</is>' +
+      '</c>' +
+      '</row>' +
+      '<row  r="' + (++this.row) + '">' +
+      '<c t="inlineStr" r="B' + this.row + '" s="3">' +
+      '<is>' +
+      '<t>please let us know by using the "Contact Us" feature on the website.</t>' +
+      '</is>' +
+      '</c>' +
+      '</row>' +
+      '<row  r="' + (++this.row) + '">' +
+      '<c t="inlineStr" r="B' + this.row + '" s="3">' +
+      '<is>' +
+      '<t>Definitions can be found in the Glossary at: www.epa.gov/NESCS/Glossary</t>' +
+      '</is>' +
+      '</c>' +
+      '</row>' +
+      '<row  r="' + (++this.row) + '">' +
+      '<c t="inlineStr" r="A' + this.row + '" s="2">' +
+      '<is>' +
+      '<t>Search Criteria:</t>' +
       '</is>' +
       '</c>' +
       '</row>';
     newSheet += this.addLineRow();
     newSheet += '<row  r="' + (++this.row) + '">' +
-      '<c t="inlineStr" r="B' + this.row + '" s="3">' +
+      '<c t="inlineStr" r="B' + this.row + '" s="2">' +
       '<is>' +
       '<t>Environmental Classes and subclasses</t>' +
       '</is>' +
@@ -102,7 +170,7 @@ export class ExcelService {
     newSheet += this.getXmlFirstRow(toggleColumns, navigationItems[0], Constants.ENVIRONMENTAL_COLUMN_ARRAY);
     newSheet += this.addLineRow();
     newSheet += '<row  r="' + (++this.row) + '">' +
-      '<c t="inlineStr" r="B' + this.row + '" s="3">' +
+      '<c t="inlineStr" r="B' + this.row + '" s="2">' +
       '<is>' +
       '<t>Ecological End-Product Classes</t>' +
       '</is>' +
@@ -112,7 +180,7 @@ export class ExcelService {
     newSheet += this.addLineRow();
     if (activeFilter === ActiveFilter.Direct) {
       newSheet += '<row  r="' + (++this.row) + '">' +
-        '<c t="inlineStr" r="B' + this.row + '" s="3">' +
+        '<c t="inlineStr" r="B' + this.row + '" s="2">' +
         '<is>' +
         '<t>Direct Use Classes and Subclasses</t>' +
         '</is>' +
@@ -121,7 +189,7 @@ export class ExcelService {
       newSheet += this.getXmlFirstRow(toggleColumns, navigationItems[2], Constants.DIRECTUSE_COLUMN_ARRAY);
       newSheet += this.addLineRow();
       newSheet += '<row  r="' + (++this.row) + '">' +
-        '<c t="inlineStr" r="B' + this.row + '" s="3">' +
+        '<c t="inlineStr" r="B' + this.row + '" s="2">' +
         '<is>' +
         '<t>Direct User Classes and Subclasses</t>' +
         '</is>' +
@@ -130,7 +198,7 @@ export class ExcelService {
       newSheet += this.getXmlFirstRow(toggleColumns, navigationItems[3], Constants.DIRECTUSER_COLUMN_ARRAY);
     } else {
       newSheet += '<row  r="' + (++this.row) + '">' +
-        '<c t="inlineStr" r="B' + this.row + '" s="3">' +
+        '<c t="inlineStr" r="B' + this.row + '" s="2">' +
         '<is>' +
         '<t>Beneficiary class</t>' +
         '</is>' +
@@ -140,6 +208,9 @@ export class ExcelService {
     }
     newSheet += this.addLineRow();
     newSheet += '</sheetData>' +
+      '<mergeCells count="1">' +
+      '<mergeCell ref="A2:C2"/>' +
+      '</mergeCells>' +
       '</worksheet>';
     xlsx.xl.worksheets['sheet2.xml'] = $.parseXML(newSheet);
   }

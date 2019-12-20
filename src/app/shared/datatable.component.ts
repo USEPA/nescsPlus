@@ -8,6 +8,7 @@ import {HelperService} from '../services/helper.service';
 import {ExcelService} from '../services/excel.service';
 import {DataService} from '../services/data.service';
 import {ActiveFilter} from '../models/enums';
+import {Constants} from '../models/constants';
 
 declare var $;
 
@@ -32,6 +33,7 @@ export class DataTableComponent implements AfterViewInit, OnDestroy, OnInit {
   activeFilterChange: Subscription;
   toggleColumnChange: Subscription;
   row = 1;
+  CONTACT_US = Constants.CONTACT_US;
 
   constructor(private advancedQueryService: AdvancedQueryService,
               private modalService: BsModalService,
@@ -74,7 +76,7 @@ export class DataTableComponent implements AfterViewInit, OnDestroy, OnInit {
         {
           extend: 'excelHtml5',
           text: 'Export',
-          customize: this.extraSheet.bind(self)
+          customize: this.customExport.bind(self)
         }, {
           text: 'Hide/Show Columns',
           action: (e, dt, node, config) => {
@@ -89,6 +91,8 @@ export class DataTableComponent implements AfterViewInit, OnDestroy, OnInit {
     }
     this.nativeDataTable = $(this.table.nativeElement);
     this.dataTable = this.nativeDataTable.DataTable(this.dtOptions);
+    console.log('this.dataTable.buttons()', this.dataTable.buttons(), this.dataTable.table().container());
+    this.dataTable.buttons().containers().appendTo($('#dataTablesButtons'));
   }
 
   openModal(template: TemplateRef<any>) {
@@ -105,7 +109,7 @@ export class DataTableComponent implements AfterViewInit, OnDestroy, OnInit {
     this.activeFilterChange.unsubscribe();
   }
 
-  extraSheet(xlsx): void {
+  customExport(xlsx): void {
     const data = DataService.returnArray(DataService.getExportData(this.navigationItems, this.activeFilter));
     const toggleColumns = DataService.returnFlatListItemArray(Array.from(this.selectedColumns));
     this.excelService.exportData(xlsx, this.navigationItems, toggleColumns, data, this.activeFilter);

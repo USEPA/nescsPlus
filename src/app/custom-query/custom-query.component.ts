@@ -117,7 +117,7 @@ export class CustomQueryComponent implements OnInit {
     const columns = DataService.returnColumnNames(item);
     const results = new Map<string, Options>();
     data.forEach(items => {
-      const NescsId = items.NESCSPlusID.split('.')[navArray.index];
+      const NescsId = items.NESCSPlusID;
       const values = columns.map(columnName => {
         return items[columnName];
       });

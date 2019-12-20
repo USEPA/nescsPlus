@@ -70,12 +70,10 @@ export class DataService {
           // build a regex filter string with an or(|) condition
           const elementList = this.getSearchList(navigationItems[column.arrayIndex].children, new Array<string>(), column.level, 0);
 
-          const elementValues: string = elementList.map((element) => {
-            return element.split(' ').join('\\s');
-          }).sort().join('|');
+          const elementValues: string = elementList.sort().join('|');
 
           dataTableData.data = dataTableData.data.filter(item => {
-            return item[column.columnName].match(elementValues) && item[column.columnName].match(elementValues).length;
+            return item[navArray.indexColumnName].match(elementValues) && item[navArray.indexColumnName].match(elementValues).length;
           });
         });
       }
@@ -101,7 +99,7 @@ export class DataService {
     items.forEach((item) => {
       if (index === level) {
         if (item.checked) {
-          resultArray.push(item.title);
+          resultArray.push(item.id);
         }
       } else if (item.children.length) {
         resultArray = this.getSearchList(item.children, resultArray, index, level + 1);
@@ -122,6 +120,7 @@ export class DataService {
         results = results.concat(tempChildren);
       }
     });
+    console.log('results', results);
     return results;
   }
 

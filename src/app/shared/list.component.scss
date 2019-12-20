@@ -1,15 +1,19 @@
 ul.level {
   margin-bottom: -20px;
 }
+
 ul.level0 {
   margin-bottom: -15px;
-  float:left;
+}
+
+.floatLeft {
+  float: left
 }
 
 li {
   list-style: none;
-
 }
+
 .li-block {
   margin-bottom: 7px;
 }
@@ -35,6 +39,6 @@ li {
   text-indent: 0.15em;
   vertical-align: 0.2em;
   width: 1.05882em;
-  height:19px;
+  height: 19px;
   margin-bottom: -6px;
 }

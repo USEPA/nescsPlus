@@ -71,6 +71,13 @@ export class ListComponent implements OnInit {
       helpText: argumentText
     };
     this.modalRef = this.modalService.show(HelpComponent, {initialState});
+  }
 
+  display(item: ListItem): string {
+    let result = item.title;
+    if (item.id) {
+      result = item.id + ' - ' + item.title;
+    }
+    return result;
   }
 }

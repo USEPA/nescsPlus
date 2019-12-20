@@ -33,6 +33,9 @@ export class AdvancedQueryService {
     this.activeFilterChange.next(activeFilter);
   }
 
+  /**
+   * If no results are returned check the regEx in the findExpression property
+   */
   getAdvancedQueryNav(): Array<ListItem> {
     const returnResult = new Array<ListItem>();
     Constants.COLUMN_MAP.forEach((item: NavArray) => {
@@ -49,52 +52,57 @@ export class AdvancedQueryService {
         }));
       }
     });
-    console.log('returnResult', returnResult);
     return returnResult;
   }
 
   private filterArray(data: Array<Data>, keys: Array<Column>, helpContent: Array<HelpItem>, idField: string): Array<any> {
     switch (keys.length) {
       case 1:
-        console.log(data, keys[0], helpContent, idField);
         return this.filterFirst(data, keys[0], helpContent, idField);
       case 2:
         const first2 = this.filterFirst(data, keys[0], helpContent, idField);
         first2.forEach(item => {
-          item.children = this.filterSecond(data, keys, helpContent, item.title, idField);
+          item.children = this.filterSecond(data, keys, helpContent, item, idField);
         });
         return first2;
       case 3:
         const first3 = this.filterFirst(data, keys[0], helpContent, idField);
-        first3.forEach((item) => {
-          item.children = this.filterSecond(data, keys, helpContent, item.title, idField);
+        first3.forEach(item => {
+          item.children = this.filterSecond(data, keys, helpContent, item, idField);
+          if (item.children.length === 1) {
+            item.children[0].visible = false;
+          }
         });
         first3.forEach(item => {
-          item.children.forEach((second2) => {
-            second2.children = this.filterThird(data, keys, helpContent, item.title, second2.title, idField);
+          item.children.forEach(second2 => {
+            second2.children = this.filterThird(data, keys, helpContent, second2, idField);
+            if (second2.children.length === 1) {
+              second2.children[0].visible = false;
+            }
           });
         });
         return first3;
     }
   }
 
-  private filterFirst(data: Array<Data>, column: Column, helpContent: Array<HelpItem>, idField: string): any {
+  private filterFirst(data: Array<Data>, column: Column, helpContent: Array<HelpItem>, idField: string): Array<ListItem> {
     const mapItem = new Map<string, Data>();
     data.forEach(item => {
       try {
         const id = item[idField].match(column.findExpression) ? item[idField].match(column.findExpression)[1] : null;
         mapItem.set(id, item);
       } catch (e) {
-        console.error('filterFirst', e, item, data, column, helpContent, idField);
+        console.error('error occurred - arguments for filterFirst', e, item, data, column, helpContent, idField);
       }
     });
     return this.returnListItem(mapItem, helpContent, column);
   }
 
-  private filterSecond(data: Array<Data>, columns: Array<Column>, helpContent: Array<HelpItem>, firstLevel: string, idField: string): any {
+  private filterSecond(data: Array<Data>, columns: Array<Column>, helpContent: Array<HelpItem>,
+                       firstLevel: ListItem, idField: string): Array<ListItem> {
     const mapItem = new Map<string, Data>();
     const filteredResults = data.filter(item => {
-      return item[columns[0].columnName] === firstLevel;
+      return item[idField].match(firstLevel.findExpression)[1] === firstLevel.id;
     });
     filteredResults.forEach(item => {
       const id = item[idField].match(columns[1].findExpression)[1];
@@ -104,16 +112,16 @@ export class AdvancedQueryService {
   }
 
   private filterThird(data: Array<any>, columns: Array<Column>, helpContent: Array<HelpItem>,
-                      firstLevel: string, secondLevel: string, idField: string): any {
+                      secondLevel: ListItem, idField: string): Array<ListItem> {
 
     const mapItem = new Map<string, Data>();
     data.forEach(item => {
-      if (item[columns[0].columnName] === firstLevel && item[columns[1].columnName] === secondLevel && item[columns[2].columnName]) {
+      if (item[idField].match(secondLevel.findExpression)[1] === secondLevel.id && item[columns[2].columnName]) {
         try {
           const id = item[idField].match(columns[2].findExpression)[1];
           mapItem.set(id, item);
         } catch (e) {
-          console.error('filterThird', e, item, data, columns, helpContent, firstLevel, secondLevel, idField);
+          console.error('filterThird', e, item, data, columns, helpContent, secondLevel, idField);
         }
       }
     });
@@ -131,8 +139,10 @@ export class AdvancedQueryService {
           title: item[column.columnName],
           column: item[column.columnName].replace(/\s/g, '_'),
           children: [],
-          checked: true,
-          helpText: helpItem.helpText
+          checked: false,
+          helpText: helpItem.helpText,
+          id: key,
+          findExpression: column.findExpression
         }));
       }
     });

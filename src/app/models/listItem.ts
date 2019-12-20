@@ -6,6 +6,9 @@ export class ListItem {
   checked: boolean;
   helpText: string;
   children = new Array<ListItem>();
+  id: string;
+  visible = true;
+  findExpression: any;
 
   public constructor(init?: Partial<ListItem>) {
     Object.assign(this, init);

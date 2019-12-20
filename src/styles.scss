@@ -56,6 +56,10 @@ div#homeContent {
 
 #reportViewer {
   overflow: auto;
+
+  #dataTablesButtons .dt-buttons {
+    margin: 10px 0 -15px 0 !important;
+  }
 }
 
 .i-ui-icon {
@@ -125,21 +129,31 @@ div#homeContent {
 }
 
 .lightBlueBackground {
-  background: #D1EAF2;
+  background: #D1EAF2 !important;
 }
 .darkBlueBackground {
-  background: #9FB8CD;
+  background: #9FB8CD !important;
 }
 .blueBackground {
-  background: #AFCCDC;
+  background: #AFCCDC !important;
 }
 .lightGreenBackground {
-  background: #D5FFAA;
+  background: #D5FFAA !important;
 }
 .greenBackground {
-  background: #9BBB59;
+  background: #9BBB59 !important;
+}
+.red {
+  color:red;
 }
 
+.filterContainer {
+  ul {
+    &.level0 {
+      float:left;
+    }
+  }
+}
 
 
 

@@ -44,7 +44,7 @@ export class SingleQueryService {
 
   getText(scope, id) {
     function isId(element, index, array) {
-      return element.NESCSPlusID.split('.')[navArray.index] === id;
+      return element.NESCSPlusID === id;
     }
 
     const data = JSON.parse(localStorage.getItem(scope + 'Array'));

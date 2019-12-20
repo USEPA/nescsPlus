@@ -72,7 +72,7 @@ export class AppLoadService {
       navArray.columnArray.forEach(column => {
         row[column.columnName] = item[column.columnName];
       });
-      row[navArray.indexColumnName] = item[navArray.indexColumnName];
+      row[navArray.indexColumnName] = item[navArray.indexColumnName].split('.')[navArray.index];
       results.set(row[navArray.indexColumnName], row);
     });
     return Array.from(results.values());
@@ -86,7 +86,8 @@ export class AppLoadService {
       return column.columnName;
     });
     environmentalArray.sort((a, b) => {
-      return AppLoadService.compareFn(a, b, columnArray);
+      // return AppLoadService.compareFn(a, b, columnArray);
+      return AppLoadService.compareFn(a, b, [navArray.indexColumnName]);
     });
     localStorage.setItem('environmentalArray', JSON.stringify(environmentalArray));
   }
@@ -98,8 +99,8 @@ export class AppLoadService {
       return column.columnName;
     });
     ecologicalArray.sort((a, b) => {
-      const sortResult = AppLoadService.compareFn(a, b, columnArray);
-      return sortResult;
+      // const sortResult = AppLoadService.compareFn(a, b, columnArray);
+      return AppLoadService.compareFn(a, b, [navArray.indexColumnName]);
     });
     localStorage.setItem('ecologicalArray', JSON.stringify(ecologicalArray));
   }
@@ -112,7 +113,8 @@ export class AppLoadService {
       return column.columnName;
     });
     directUseArray.sort((a, b) => {
-      return AppLoadService.compareFn(a, b, columnArray);
+      // return AppLoadService.compareFn(a, b, columnArray);
+      return AppLoadService.compareFn(a, b, [navArray.indexColumnName]);
     });
     localStorage.setItem('directUseArray', JSON.stringify(directUseArray));
   }
@@ -120,11 +122,13 @@ export class AppLoadService {
   private setDirectUserArray(data: Array<Data>): void {
     const navArray = Constants.DIRECTUSER_COLUMN_ARRAY;
     const directUserArray = this.getDefinedColumns(data, navArray);
+    console.log('directUserArray', directUserArray);
     const columnArray = navArray.columnArray.map(column => {
       return column.columnName;
     });
     directUserArray.sort((a, b) => {
-      return AppLoadService.compareFn(a, b, columnArray);
+      // return AppLoadService.compareFn(a, b, columnArray);
+      return AppLoadService.compareFn(a, b, [navArray.indexColumnName]);
     });
     localStorage.setItem('directUserArray', JSON.stringify(directUserArray));
   }
@@ -137,7 +141,8 @@ export class AppLoadService {
       return column.columnName;
     });
     beneficiaryArray.sort((a, b) => {
-      return AppLoadService.compareFn(a, b, columnArray);
+      // return AppLoadService.compareFn(a, b, columnArray);
+      return AppLoadService.compareFn(a, b, [navArray.indexColumnName]);
     });
     localStorage.setItem('beneficiaryArray', JSON.stringify(beneficiaryArray));
   }
