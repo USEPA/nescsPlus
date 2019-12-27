@@ -1,126 +1,207 @@
 [
   {
     "id": 1,
-    "helpText": "Direct Use -  -"
+    "text": "Direct Use",
+    "helpText": "Direct use of Ecological End-Product means that the user or beneficiary directly extracts, interacts with, or physically senses the Ecological End-Product in its environment."
   },
   {
-    "id": 11,
-    "helpText": "Direct Use - Extractive Use -"
+    "id": 101,
+    "text": "Direct Use - Raw material for transformation",
+    "helpText": "Ecological End-Product is extracted or harvested and transformed into other commercial products"
+  },
+  {
+    "id": 1011,
+    "text": "Direct Use - Raw material for transformation - Extractive use",
+    "helpText": "Ecological End-Product is used in way that involves extraction or harvesting of the Ecological End-Product"
+  },
+  {
+    "id": 102,
+    "text": "Direct Use - Distribution to other users",
+    "helpText": "Ecological End-Product is extracted or harvested for distribution to other users"
+  },
+  {
+    "id": 1021,
+    "text": "Direct Use - Distribution to other users - Extractive use",
+    "helpText": "Ecological End-Product is used in way that involves extraction or harvesting of the Ecological End-Product"
+  },
+  {
+    "id": 103,
+    "text": "Direct Use - Industrial processing",
+    "helpText": "Ecological End-Product is extracted or harvested and directly used in other ways as a material in industrial processing"
+  },
+  {
+    "id": 1031,
+    "text": "Direct Use - Industrial processing - Extractive use",
+    "helpText": "Ecological End-Product is used in way that involves extraction or harvesting of the Ecological End-Product"
+  },
+  {
+    "id": 104,
+    "text": "Direct Use - Transportation medium",
+    "helpText": "Ecological End-Product is used in situ as a medium for transporting goods or humans"
+  },
+  {
+    "id": 1042,
+    "text": "Direct Use - Transportation medium - In-situ use",
+    "helpText": "Ecological End-Product is used in-place, in way that does not involve extraction"
+  },
+  {
+    "id": 105,
+    "text": "Direct Use - Waste disposal/assimilation",
+    "helpText": "Ecological End-Product is used in situ as a sink for assimilating and disposing of waste"
+  },
+  {
+    "id": 1052,
+    "text": "Direct Use - Waste disposal/assimilation - In-situ use",
+    "helpText": "Ecological End-Product is used in-place, in way that does not involve extraction"
+  },
+  {
+    "id": 106,
+    "text": "Direct Use - Aesthetic appreciation",
+    "helpText": "Ecological End-Product is used in situ for aesthetic (visual and other senses) appreciation, separate from outdoor/nature recreational, tourist, cultural or spiritual activities"
+  },
+  {
+    "id": 1062,
+    "text": "Direct Use - Aesthetic appreciation - In-situ use",
+    "helpText": "Ecological End-Product is used in-place, in way that does not involve extraction"
+  },
+  {
+    "id": 107,
+    "text": "Direct Use - Fuel/energy",
+    "helpText": "Ecological End-Product is directly used as an energy source for commercial production"
+  },
+  {
+    "id": 1071,
+    "text": "Direct Use - Fuel/energy - Extractive use",
+    "helpText": "Ecological End-Product is used in way that involves extraction or harvesting of the Ecological End-Product"
+  },
+  {
+    "id": 1072,
+    "text": "Direct Use - Fuel/energy - In-situ use",
+    "helpText": "Ecological End-Product is used in-place, in way that does not involve extraction"
+  },
+  {
+    "id": 108,
+    "text": "Direct Use - Support of plant or animal cultivation",
+    "helpText": "Ecological End-Product is directly used to support human cultivation of plant or animal life"
+  },
+  {
+    "id": 1081,
+    "text": "Direct Use - Support of plant or animal cultivation - Extractive use",
+    "helpText": "Ecological End-Product is used in way that involves extraction or harvesting of the Ecological End-Product"
+  },
+  {
+    "id": 1082,
+    "text": "Direct Use - Support of plant or animal cultivation - In-situ use",
+    "helpText": "Ecological End-Product is used in-place, in way that does not involve extraction"
+  },
+  {
+    "id": 109,
+    "text": "Direct Use - Support of human health and life or subsistence",
+    "helpText": "Ecological End-Product is  directly used by humans for subsistence, health, or other life support"
+  },
+  {
+    "id": 1091,
+    "text": "Direct Use - Support of human health and life or subsistence - Extractive use",
+    "helpText": "Ecological End-Product is used in way that involves extraction or harvesting of the Ecological End-Product"
+  },
+  {
+    "id": 1092,
+    "text": "Direct Use - Support of human health and life or subsistence - In-situ use",
+    "helpText": "Ecological End-Product is used in-place, in way that does not involve extraction"
+  },
+  {
+    "id": 110,
+    "text": "Direct Use - Support for protection of human property",
+    "helpText": "Ecological End-Product is directly used to protect human property from being damaged"
   },
   {
     "id": 1101,
-    "helpText": "Direct Use - Extractive Use - Raw material for transformation"
+    "text": "Direct Use - Support for protection of human property - Extractive use",
+    "helpText": "Ecological End-Product is used in way that involves extraction or harvesting of the Ecological End-Product"
   },
   {
     "id": 1102,
-    "helpText": "Direct Use - Extractive Use - Fuel/energy"
+    "text": "Direct Use - Support for protection of human property - In-situ use",
+    "helpText": "Ecological End-Product is used in-place, in way that does not involve extraction"
   },
   {
-    "id": 1103,
-    "helpText": "Direct Use - Extractive Use -  Industrial processing"
+    "id": 111,
+    "text": "Direct Use - Recreation/tourism",
+    "helpText": "Ecological End-Product is directly used as part of an outdoor recreational or nature tourist activity"
   },
   {
-    "id": 1104,
-    "helpText": "Direct Use - Extractive Use - Distribution to other users"
+    "id": 1111,
+    "text": "Direct Use - Recreation/tourism - Extractive use",
+    "helpText": "Ecological End-Product is used in way that involves extraction or harvesting of the Ecological End-Product"
   },
   {
-    "id": 1105,
-    "helpText": "Direct Use - Extractive Use - Support of plant or animal cultivation"
+    "id": 1112,
+    "text": "Direct Use - Recreation/tourism - In-situ use",
+    "helpText": "Ecological End-Product is used in-place, in way that does not involve extraction"
   },
   {
-    "id": 1106,
-    "helpText": "Direct Use - Extractive Use - Support of human health and life or subsistence"
+    "id": 112,
+    "text": "Direct Use - Cultural/spiritual activities",
+    "helpText": "Ecological End-Product is directly used as part of a non-recreational cultural or spiritual activity"
   },
   {
-    "id": 1107,
-    "helpText": "Direct Use - Extractive Use - Recreation/tourism"
+    "id": 1121,
+    "text": "Direct Use - Cultural/spiritual activities - Extractive use",
+    "helpText": "Ecological End-Product is used in way that involves extraction or harvesting of the Ecological End-Product"
   },
   {
-    "id": 1108,
-    "helpText": "Direct Use - Extractive Use - Cultural/spiritual activities"
+    "id": 1122,
+    "text": "Direct Use - Cultural/spiritual activities - In-situ use",
+    "helpText": "Ecological End-Product is used in-place, in way that does not involve extraction"
   },
   {
-    "id": 1109,
-    "helpText": "Direct Use - Extractive Use -  Information, science, education, and research"
+    "id": 113,
+    "text": "Direct Use - Information, science, education, and research",
+    "helpText": "Ecological End-Product is directly used to support scientific research or education"
   },
   {
-    "id": 1199,
-    "helpText": "Direct Use - Extractive Use - Other extractive use"
+    "id": 1131,
+    "text": "Direct Use - Information, science, education, and research - Extractive use",
+    "helpText": "Ecological End-Product is used in way that involves extraction or harvesting of the Ecological End-Product"
   },
   {
-    "id": 12,
-    "helpText": "Direct Use - In-situ Use -"
+    "id": 1132,
+    "text": "Direct Use - Information, science, education, and research - In-situ use",
+    "helpText": "Ecological End-Product is used in-place, in way that does not involve extraction"
   },
   {
-    "id": 1201,
-    "helpText": "Direct Use - In-situ Use - Energy"
+    "id": 114,
+    "text": "Direct Use - Other direct use",
+    "helpText": "Ecological End-Product is directly used for other purposes"
   },
   {
-    "id": 1202,
-    "helpText": "Direct Use - In-situ Use - Transportation medium"
+    "id": 1141,
+    "text": "Direct Use - Other direct use - Extractive use",
+    "helpText": "Ecological End-Product is used in way that involves extraction or harvesting of the Ecological End-Product"
   },
   {
-    "id": 1203,
-    "helpText": "Direct Use - In-situ Use - Support of plant or animal cultivation"
-  },
-  {
-    "id": 1204,
-    "helpText": "Direct Use - In-situ Use - Waste disposal/assimilation"
-  },
-  {
-    "id": 1205,
-    "helpText": "Direct Use - In-situ Use - Protection or support of human health and life"
-  },
-  {
-    "id": 1206,
-    "helpText": "Direct Use - In-situ Use - Protection of human property"
-  },
-  {
-    "id": 1207,
-    "helpText": "Direct Use - In-situ Use - Recreation/tourism"
-  },
-  {
-    "id": 1208,
-    "helpText": "Direct Use - In-situ Use - Cultural/spiritual activities"
-  },
-  {
-    "id": 1209,
-    "helpText": "Direct Use - In-situ Use - Aesthetic appreciation"
-  },
-  {
-    "id": 1210,
-    "helpText": "Direct Use - In-situ Use - Information, science, education, and research"
-  },
-  {
-    "id": 1299,
-    "helpText": "Direct Use - In-situ Use - Other in-situ use"
+    "id": 1142,
+    "text": "Direct Use - Other direct use - In-situ use",
+    "helpText": "Ecological End-Product is used in-place, in way that does not involve extraction"
   },
   {
     "id": 2,
-    "helpText": "Non-use -  -"
+    "text": "Non-use",
+    "helpText": "Ecological End-Product is appreciated or valued by humans in a way that does not involve or require direct use or contact with the Ecological End-Product"
   },
   {
-    "id": 21,
-    "helpText": "Non-use - Existence -"
+    "id": 2011,
+    "text": "Non-use - Existence",
+    "helpText": "Ecological End-Product is appreciated or valued by humans for existence reasons (without direct use or contact)"
   },
   {
-    "id": 2101,
-    "helpText": "Non-use - Existence - Existence"
+    "id": 2021,
+    "text": "Non-use - Bequest",
+    "helpText": "Ecological End-Product is appreciated or valued by humans for bequest reasons (without direct use or contact)"
   },
   {
-    "id": 22,
-    "helpText": "Non-use - Bequest -"
-  },
-  {
-    "id": 2201,
-    "helpText": "Non-use - Bequest - Bequest"
-  },
-  {
-    "id": 29,
-    "helpText": "Non-use - Non-use, Other  -"
-  },
-  {
-    "id": 2901,
-    "helpText": "Non-use - Non-use, Other  - Non-use, Other"
+    "id": 2031,
+    "text": "Non-use - Other non-use",
+    "helpText": "Ecological End-Product is appreciated or valued by humans for other reasons (without direct use or contact)"
   }
 ]

@@ -48,7 +48,7 @@ export class AdvancedQueryService {
           column: firstLevel,
           title: firstLevel,
           children: this.filterArray(dataItem, item.columnArray, helpContent, item.indexColumnName),
-          checked: true
+          checked: false
         }));
       }
     });

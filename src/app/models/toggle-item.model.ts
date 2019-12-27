@@ -1,7 +1,7 @@
 export class ToggleItem {
   column: string;
   title: string;
-  checked: true;
+  checked: false;
   children: Array<ToggleItem> = new Array<ToggleItem>();
 
   public constructor(init?: Partial<ToggleItem>) {

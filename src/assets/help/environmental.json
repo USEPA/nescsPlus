@@ -1,1 +1,177 @@
-[]
+[
+  {
+    "id": 1,
+    "text": "Aquatic",
+    "helpText": "Lakes, rivers, streams, wetlands, estuaries and the open ocean. These ecosystems may be covered with ice either permanently or seasonally."
+  },
+  {
+    "id": 11,
+    "text": "Aquatic  - Open Water",
+    "helpText": "Areas of open water, generally with less than 25% cover of vegetation or soil."
+  },
+  {
+    "id": 111,
+    "text": "Aquatic  - Open Water - Rivers and Streams",
+    "helpText": "All streams and rivers that have flowing water during the summer excluding tidal rivers with salinity greater than 0.5ppt. Run-of-the-river ponds and pools are included while reservoirs are excluded. Source: Adapted from US EPA National Aquatic Resource Surveys."
+  },
+  {
+    "id": 112,
+    "text": "Aquatic  - Open Water - Lakes and Ponds",
+    "helpText": "All lakes, reservoirs, and ponds that are permanent water bodies. Lakes that are saline are excluded as are those used for aquaculture, disposal-tailings, sewage treatment, evaporation, or other unspecified disposal use. Source: Adapted from US EPA National Aquatic Resource Surveys."
+  },
+  {
+    "id": 113,
+    "text": "Aquatic  - Open Water - Near Coastal Marine and Estuaries",
+    "helpText": "All coastal waters of the conterminous United States with salinity greater than 0.5ppt  to confluence with the ocean, including inland waterways tidal rivers and creeks, lagoons, fjords, bays, and major embayments. The seaward boundary extends out to where an imaginary straight-line intersecting two land features would fully enclose a body of coastal water. All waters within the enclosed area are defined as estuarine, regardless of depth or salinity. Source: Adapted from US EPA National Aquatic Resource Surveys."
+  },
+  {
+    "id": 114,
+    "text": "Aquatic  - Open Water - Open Oceans and Seas",
+    "helpText": "All saline waters seaward of near coastal marine systems Source: Adapted from US EPA National Aquatic Resource Surveys."
+  },
+  {
+    "id": 12,
+    "text": "Aquatic  - Wetlands",
+    "helpText": "Tidal and nontidal wetlands including certain farmed wetlands not currently in crop production. The wetlands have rooted vegetation and, when present, open water less than 1 meter deep. Source: Adapted from US EPA National Aquatic Resource Surveys."
+  },
+  {
+    "id": 121,
+    "text": "Aquatic  - Wetlands - Woody Wetlands",
+    "helpText": "Areas where forest or shrubland vegetation accounts for greater than 20% of vegetative cover and the soil or substrate is periodically saturated with or covered with water.   Source: National Land Cover Database 2011 (NLCD2011) Legend"
+  },
+  {
+    "id": 122,
+    "text": "Aquatic  - Wetlands - Emergent Herbaceous Wetlands",
+    "helpText": "Areas where perennial herbaceous vegetation accounts for greater than 80% of vegetative cover and the soil or substrate is periodically saturated with or covered with water. Source: National Land Cover Database 2011 (NLCD2011) Legend"
+  },
+  {
+    "id": 2,
+    "text": "Terrestrial - Wetlands",
+    "helpText": "Areas of the Earth’s surface that are not classified as Aquatic."
+  },
+  {
+    "id": 21,
+    "text": "Terrestrial - Forests",
+    "helpText": "Land that is at least 10 percent stocked by forest trees of any size, or land formerly having such tree cover, and is not currently developed for a nonforest use. The minimum area for classification as forest land is 1 acre. Roadside, streamside, and shelterbelt strips of timber must be at least 120 feet wide to qualify as forest land. Unimproved roads and trails, streams and other bodies of water, or natural clearings in forested areas shall be classified as forest, if <120 feet in width or 1.0 acre in size. Source: US Forest Service's Southern Research Station's Forest Inventory and Analysis  (SRSFIA 2017)."
+  },
+  {
+    "id": 211,
+    "text": "Terrestrial - Forests - Deciduous Forest",
+    "helpText": "Areas dominated by trees generally greater than 5 meters tall, and greater than 20% of total vegetation cover. More than 75% of the tree species shed foliage simultaneously in response to seasonal change.  This is a subclass of Forests. Source: US Forest Service's Southern Research Station's Forest Inventory and Analysis  (SRSFIA 2017)."
+  },
+  {
+    "id": 212,
+    "text": "Terrestrial - Forests - Evergreen Forest",
+    "helpText": "Areas dominated by trees generally greater than 5 meters tall, and greater than 20% of total vegetation cover. More than 75% of the tree species maintain their leaves all year. Canopy is never without green foliage.  This is a subclass of Forests. Source: US Forest Service's Southern Research Station's Forest Inventory and Analysis  (SRSFIA 2017)."
+  },
+  {
+    "id": 213,
+    "text": "Terrestrial - Forests - Mixed Forest",
+    "helpText": "Areas dominated by trees generally greater than 5 meters tall, and greater than 20% of total vegetation cover. Neither deciduous nor evergreen species are greater than 75% of total tree cover.  This is a subclass of Forests. Source: US Forest Service's Southern Research Station's Forest Inventory and Analysis  (SRSFIA 2017)."
+  },
+  {
+    "id": 22,
+    "text": "Terrestrial - Agroecosystems",
+    "helpText": "The subset of Terrestrial Environments managed to grow crops. This includes Pasture/Hay and Cultivated Crops, but excludes areas managed to grow trees (those are included under “forests.”)"
+  },
+  {
+    "id": 221,
+    "text": "Terrestrial - Agroecosystems - Pasture/Hay",
+    "helpText": "Areas of grasses, legumes, or grass-legume mixtures planted for livestock grazing or the production of seed or hay crops, typically on a perennial cycle. Pasture/hay vegetation accounts for greater than 20% of total vegetation.  This is a subclass of Agroecosystems. Source: National Land Cover Database 2011 (NLCD2011) Legend"
+  },
+  {
+    "id": 222,
+    "text": "Terrestrial - Agroecosystems - Cultivated Crops",
+    "helpText": "Areas used for the production of annual crops, such as corn, soybeans, vegetables, tobacco, and cotton, and also perennial woody crops such as orchards and vineyards. Crop vegetation accounts for greater than 20% of total vegetation. This class also includes all land being actively tilled.  This is a subclass of Agroecosystems. Source: National Land Cover Database 2011 (NLCD2011) Legend"
+  },
+  {
+    "id": 23,
+    "text": "Terrestrial - Grasslands",
+    "helpText": "Areas dominated by gramanoid or herbaceous vegetation, generally greater than 80% of total vegetation. These areas are not subject to intensive management such as tilling, but can be utilized for grazing.  This is a Terrestrial Environment. Source: National Land Cover Database 2011 (NLCD2011) Legend"
+  },
+  {
+    "id": 231,
+    "text": "Terrestrial - Grasslands - Grassland/Herbaceous",
+    "helpText": "Areas dominated by gramanoid or herbaceous vegetation, generally greater than 80% of total vegetation. These areas are not subject to intensive management such as tilling, but can be utilized for grazing.  This is a Terrestrial Environment. Source: National Land Cover Database 2011 (NLCD2011) Legend"
+  },
+  {
+    "id": 24,
+    "text": "Terrestrial - Scrubland/Shrubland",
+    "helpText": "Areas dominated by shrubs; less than 5 meters tall with shrub canopy typically greater than 20% of total vegetation. This class includes true shrubs, young trees in an early successional stage or trees stunted from environmental conditions.   Source: National Land Cover Database 2011 (NLCD2011) Legend"
+  },
+  {
+    "id": 241,
+    "text": "Terrestrial - Scrubland/Shrubland - Shrub/Scrub",
+    "helpText": "Areas dominated by shrubs; less than 5 meters tall with shrub canopy typically greater than 20% of total vegetation. This class includes true shrubs, young trees in an early successional stage or trees stunted from environmental conditions.   Source: National Land Cover Database 2011 (NLCD2011) Legend"
+  },
+  {
+    "id": 25,
+    "text": "Terrestrial - Tundra",
+    "helpText": "Treeless regions in which the subsoil is permanently frozen."
+  },
+  {
+    "id": 251,
+    "text": "Terrestrial - Tundra - Lichens",
+    "helpText": "Areas dominated by fruticose or foliose lichens generally greater than 80% of total vegetation.  In the United States, this Terrestrial Environment only occurs in Alaska. Source: National Land Cover Database 2011 (NLCD2011) Legend"
+  },
+  {
+    "id": 252,
+    "text": "Terrestrial - Tundra - Moss",
+    "helpText": "Areas dominated by mosses, generally greater than 80% of total vegetation.  In the United States, this Terrestrial Environment only occurs in Alaska. Source: National Land Cover Database 2011 (NLCD2011) Legend"
+  },
+  {
+    "id": 253,
+    "text": "Terrestrial - Tundra - Dwarf Scrub",
+    "helpText": "Areas dominated by shrubs less than 20 centimeters tall with shrub canopy typically greater than 20% of total vegetation. This type is often co-associated with grasses, sedges, herbs, and non-vascular vegetation.  In the United States, this Terrestrial Environment only occurs in Alaska. Source: National Land Cover Database 2011 (NLCD2011) Legend"
+  },
+  {
+    "id": 254,
+    "text": "Terrestrial - Tundra - Sedge/Herbaceous",
+    "helpText": "Areas dominated by sedges and forbs, generally greater than 80% of total vegetation. This type can occur with significant other grasses or other grass like plants, and includes sedge tundra, and sedge tussock tundra.  In the United States, this Terrestrial Environment only occurs in Alaska. Source: National Land Cover Database 2011 (NLCD2011) Legend"
+  },
+  {
+    "id": 26,
+    "text": "Terrestrial - Ice and snow",
+    "helpText": "Areas characterized by a perennial cover of ice and/or snow, generally greater than 25% of total cover. Source: National Land Cover Database 2011 (NLCD2011) Legend"
+  },
+  {
+    "id": 261,
+    "text": "Terrestrial - Ice and snow - Perennial Ice/Snow",
+    "helpText": "Areas characterized by a perennial cover of ice and/or snow, generally greater than 25% of total cover. Source: National Land Cover Database 2011 (NLCD2011) Legend"
+  },
+  {
+    "id": 27,
+    "text": "Terrestrial - Urban/suburban",
+    "helpText": "Areas of intensive human use with much of the land covered by structures. Included in this category are cities, towns, villages, strip developments along highways, transportation, power, and communications facilities, and areas such as those occupied by mills, shopping centers, industrial and commercial complexes, and institutions that may, in some instances, be isolated from urban areas. Source: Adapted from Anderson et al. (1976) Geological Survey Professional Paper 964"
+  },
+  {
+    "id": 271,
+    "text": "Terrestrial - Urban/suburban  - Developed Open Space",
+    "helpText": "Areas with a mixture of some constructed materials, but mostly vegetation in the form of lawn grasses. Impervious surfaces account for less than 20% of total cover. These areas most commonly include large-lot single-family housing units, parks, golf courses, and vegetation planted in developed settings for recreation, erosion control, or aesthetic purposes.  This is a Terrestrial Urban/Suburban Environment. Source: National Land Cover Database 2011 (NLCD2011) Legend"
+  },
+  {
+    "id": 272,
+    "text": "Terrestrial - Urban/suburban  - Developed Low Intensity",
+    "helpText": "Areas with a mixture of constructed materials and vegetation. Impervious surfaces account for 20% to 49% percent of total cover. These areas most commonly include single-family housing units.  This is a Terrestrial Urban/Suburban Environment. Source: National Land Cover Database 2011 (NLCD2011) Legend"
+  },
+  {
+    "id": 273,
+    "text": "Terrestrial - Urban/suburban  - Developed Medium Intensity",
+    "helpText": "Areas with a mixture of constructed materials and vegetation. Impervious surfaces account for 50% to 79% of the total cover. These areas most commonly include single-family housing units.  This is a Terrestrial Urban/Suburban Environment. Source: National Land Cover Database 2011 (NLCD2011) Legend"
+  },
+  {
+    "id": 274,
+    "text": "Terrestrial - Urban/suburban  - Developed High Intensity",
+    "helpText": "Highly developed areas where people reside or work in high numbers. Examples include apartment complexes, row houses and commercial/industrial. Impervious surfaces account for 80% to 100% of the total cover.  This is a Terrestrial Urban/Suburban Environment. Source: National Land Cover Database 2011 (NLCD2011) Legend"
+  },
+  {
+    "id": 28,
+    "text": "Terrestrial - Barren/rock and sand",
+    "helpText": "Areas of bedrock, desert pavement, scarps, talus, slides, volcanic material, glacial debris, sand dunes, strip mines, gravel pits and other accumulations of earthen material. Generally, vegetation accounts for less than 15% of total cover. Source: National Land Cover Database 2011 (NLCD2011) Legend"
+  },
+  {
+    "id": 281,
+    "text": "Terrestrial - Barren/rock and sand - Barren Land (Rock/Sand/Clay)",
+    "helpText": "Areas of bedrock, desert pavement, scarps, talus, slides, volcanic material, glacial debris, sand dunes, strip mines, gravel pits and other accumulations of earthen material. Generally, vegetation accounts for less than 15% of total cover. Source: National Land Cover Database 2011 (NLCD2011) Legend"
+  }
+]

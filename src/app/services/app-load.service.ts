@@ -82,11 +82,7 @@ export class AppLoadService {
   private setEnvironmentalArray(data: Array<Data>) {
     const navArray = Constants.ENVIRONMENTAL_COLUMN_ARRAY;
     const environmentalArray = this.getDefinedColumns(data, navArray);
-    const columnArray = navArray.columnArray.map(column => {
-      return column.columnName;
-    });
     environmentalArray.sort((a, b) => {
-      // return AppLoadService.compareFn(a, b, columnArray);
       return AppLoadService.compareFn(a, b, [navArray.indexColumnName]);
     });
     localStorage.setItem('environmentalArray', JSON.stringify(environmentalArray));
@@ -95,11 +91,7 @@ export class AppLoadService {
   private setEcologicalArray(data: Array<Data>): void {
     const navArray = Constants.ECOLOGICAL_COLUMN_ARRAY;
     const ecologicalArray = this.getDefinedColumns(data, navArray);
-    const columnArray = navArray.columnArray.map(column => {
-      return column.columnName;
-    });
     ecologicalArray.sort((a, b) => {
-      // const sortResult = AppLoadService.compareFn(a, b, columnArray);
       return AppLoadService.compareFn(a, b, [navArray.indexColumnName]);
     });
     localStorage.setItem('ecologicalArray', JSON.stringify(ecologicalArray));
@@ -109,11 +101,7 @@ export class AppLoadService {
   private setDirectUseArray(data: Array<Data>): void {
     const navArray = Constants.DIRECTUSE_COLUMN_ARRAY;
     const directUseArray = this.getDefinedColumns(data, navArray);
-    const columnArray = navArray.columnArray.map(column => {
-      return column.columnName;
-    });
     directUseArray.sort((a, b) => {
-      // return AppLoadService.compareFn(a, b, columnArray);
       return AppLoadService.compareFn(a, b, [navArray.indexColumnName]);
     });
     localStorage.setItem('directUseArray', JSON.stringify(directUseArray));
@@ -123,11 +111,7 @@ export class AppLoadService {
     const navArray = Constants.DIRECTUSER_COLUMN_ARRAY;
     const directUserArray = this.getDefinedColumns(data, navArray);
     console.log('directUserArray', directUserArray);
-    const columnArray = navArray.columnArray.map(column => {
-      return column.columnName;
-    });
     directUserArray.sort((a, b) => {
-      // return AppLoadService.compareFn(a, b, columnArray);
       return AppLoadService.compareFn(a, b, [navArray.indexColumnName]);
     });
     localStorage.setItem('directUserArray', JSON.stringify(directUserArray));
@@ -137,11 +121,7 @@ export class AppLoadService {
   private setBeneficiaryArray(data: Array<Data>): void {
     const navArray = Constants.BENEFICIARY_COLUMN_ARRAY;
     const beneficiaryArray = this.getDefinedColumns(data, navArray);
-    const columnArray = navArray.columnArray.map(column => {
-      return column.columnName;
-    });
     beneficiaryArray.sort((a, b) => {
-      // return AppLoadService.compareFn(a, b, columnArray);
       return AppLoadService.compareFn(a, b, [navArray.indexColumnName]);
     });
     localStorage.setItem('beneficiaryArray', JSON.stringify(beneficiaryArray));
