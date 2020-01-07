@@ -1,226 +1,282 @@
 [
   {
-    "id": "01",
+    "id": 1,
+    "text": "Agricultural",
     "helpText": "This class includes beneficiaries who use the environment for agricultural or forest production activities."
   },
   {
-    "id": "011",
+    "id": 11,
+    "text": "Agricultural - Livestock Grazers",
     "helpText": "This beneficiary uses the environment to graze livestock."
   },
   {
-    "id": "012",
+    "id": 12,
+    "text": "Agricultural - Agricultural Processors",
     "helpText": "This beneficiary primarily consumes water for washing edible products."
   },
   {
-    "id": "013",
+    "id": 13,
+    "text": "Agricultural - Aquaculturists",
     "helpText": "Aquaculturists farm aquatic fauna, such as fish, shrimp, oysters, etc. Those who cultivate aquatic flora are accounted for under the Farmer Beneficiary subclass."
   },
   {
-    "id": "014",
+    "id": 14,
+    "text": "Agricultural - Farmers",
     "helpText": "Farmers may plant annual crops (e.g., corn, soybeans, rice) or introduce cultivars that produce perennial, long-term crops (e.g., hay, grapes, cranberries, watercress)."
   },
   {
-    "id": "015",
+    "id": 15,
+    "text": "Agricultural - Foresters",
     "helpText": "Foresters introduce tree cultivars and nurture those cultivars as they grow into trees, which are harvested. The rotation for the tree crops may be as short as 10 years or many decades."
   },
   {
-    "id": "016",
+    "id": 16,
+    "text": "Agricultural - Other Agricultural Beneficiaries",
     "helpText": "Agricultural beneficiaries not captured in the other agricultural subclasses"
   },
   {
-    "id": "02",
+    "id": 2,
+    "text": "Commercial/Industrial",
     "helpText": "This class includes beneficiaries who directly use the environment for industrial or commercial production activities not included in the other classes or subclasses"
   },
   {
-    "id": "021",
+    "id": 21,
+    "text": "Commercial/Industrial - Food Extractors",
     "helpText": "Food extractors utilize the wild abundance of edible organisms (i.e., non-cultivated or bred) for commercial use or sale. Includes commercial fishing and hunting (if legal) but excludes subsistence beneficiaries."
   },
   {
-    "id": "022",
+    "id": 22,
+    "text": "Commercial/Industrial - Timber, Fiber, and Ornamental Extractors",
     "helpText": "Timber, fiber, and ornamental extractors rely on the environment for products used or sold commercially."
   },
   {
-    "id": "023",
+    "id": 23,
+    "text": "Commercial/Industrial - Industrial Processors",
     "helpText": "This beneficiary primarily consumes water for cooling, producing pulp, etc. Except for agricultural processing which is a separate subclass."
   },
   {
-    "id": "024",
+    "id": 24,
+    "text": "Commercial/Industrial - Private Energy Generators",
     "helpText": "This beneficiary relies on the environment for energy or placement of power generation structures, including dams, wind, water, or wave turbines, solar panels, geothermal systems, etc."
   },
   {
-    "id": "025",
+    "id": 25,
+    "text": "Commercial/Industrial - Pharmaceutical and Food Supplement Suppliers",
     "helpText": "This beneficiary collects organisms or wild products from organisms that are used as or for the basis of pharmaceuticals or food supplements for commercial sale."
   },
   {
-    "id": "026",
+    "id": 26,
+    "text": "Commercial/Industrial - Fur / Hide Trappers and Hunters",
     "helpText": "This beneficiary captures wild fauna (i.e., not farm-raised or domesticated animals) for fur or hides for commercial use or sale."
   },
   {
-    "id": "027",
+    "id": 27,
+    "text": "Commercial/Industrial - Private Drinking Water Plant Operators",
     "helpText": "This beneficiary provides drinking water to a community and may do so by collecting water from rivers, reservoirs, lakes, wells, bays, or estuaries. Water is treated and distributed"
   },
   {
-    "id": "028",
+    "id": 28,
+    "text": "Commercial/Industrial - Commercial/Industrial Property Owner",
     "helpText": "This beneficiary uses or benefits from the environment as an owner of commercial/industrial property and in a way not specified in other commercial/industrial subclasses."
   },
   {
-    "id": "029",
+    "id": 29,
+    "text": "Commercial/Industrial - Other Commercial/Industrial",
     "helpText": "Commercial/Industrial beneficiaries not captured in the other commercial/industrial subclasses"
   },
   {
-    "id": "03",
+    "id": 3,
+    "text": "Government, Municipal, and Residential",
     "helpText": "This class includes governmental, military, and residential beneficiaries who make direct use of the environment in ways not included in the other classes or subclasses"
   },
   {
-    "id": "031",
+    "id": 31,
+    "text": "Government, Municipal, and Residential - Municipal Drinking Water Plant Operators",
     "helpText": "This beneficiary provides drinking water to a community and may do so by collecting water from rivers, reservoirs, lakes, wells, bays, or estuaries. Water is treated and distributed."
   },
   {
-    "id": "032",
+    "id": 32,
+    "text": "Government, Municipal, and Residential - Residential Property Owners",
     "helpText": "This beneficiary uses or benefits from the environment as an owner of residential property and in a way not specified in other beneficiary subclasses."
   },
   {
-    "id": "033",
+    "id": 33,
+    "text": "Government, Municipal, and Residential - Public Sector Property Owners",
     "helpText": "This public sector entity uses or benefits from the environment as an owner of property and in a way not specified in other government, municipal, and residential subclasses."
   },
   {
-    "id": "034",
+    "id": 34,
+    "text": "Government, Municipal, and Residential - Military / Coast Guard",
     "helpText": "The Military / Coast Guard relies on the environment for the placement of infrastructure (e.g., ports, bases, etc.) or conditions for training activities."
   },
   {
-    "id": "035",
+    "id": 35,
+    "text": "Government, Municipal, and Residential - Public Energy Generators",
     "helpText": "This beneficiary relies on the environment for energy or placement of power generation structures, including dams, wind, water, or wave turbines, solar panels, geothermal systems, etc."
   },
   {
-    "id": "036",
+    "id": 36,
+    "text": "Government, Municipal, and Residential - Other Government, Municipal, and Residential",
     "helpText": "Government, Municipal, and Residential beneficiaries not captured in the other government,municipal, and residential subclasses"
   },
   {
-    "id": "04",
+    "id": 4,
+    "text": "Commercial/Military Transportation",
     "helpText": "This class includes military and commercial beneficiaries who use the environment as a media to transport goods or people"
   },
   {
-    "id": "041",
+    "id": 41,
+    "text": "Commercial/Military Transportation - Transporters of Goods",
     "helpText": "This beneficiary uses the environment as a media to transport goods - specifically, via boats (e.g., barges), and overland/off-road vehicles (e.g., quads). It does not include railroads (which are covered under other property owners) or cars and trucks on public or private roads as the roads are covered under other property owners."
   },
   {
-    "id": "042",
+    "id": 42,
+    "text": "Commercial/Military Transportation - Transporters of People",
     "helpText": "This beneficiary uses the environment as a media to transport people - specifically, via boats (e.g., barges), and overland/off-road vehicles (e.g., quads). It does not include railroads (which are  be covered under property owners) or cars and trucks on public or private roads as the roads are covered under property owners."
   },
   {
-    "id": "043",
+    "id": 43,
+    "text": "Commercial/Military Transportation - Other Commercial/Military Transportation",
     "helpText": "Commercial/Military Transportationl beneficiaries not captured in the other transportation subclasses"
   },
   {
-    "id": "05",
+    "id": 5,
+    "text": "Subsistence",
     "helpText": "This class includes beneficiaries who use the environment to support subsistence activities"
   },
   {
-    "id": "051",
+    "id": 51,
+    "text": "Subsistence - Water Subsisters",
     "helpText": "Water Subsisters rely on a wild source for drinking water and may use wells or cisterns for storage (i.e., they do not receive municipal drinking water)."
   },
   {
-    "id": "052",
+    "id": 52,
+    "text": "Subsistence - Food and Medical Subsisters",
     "helpText": "Food and medical subsisters use the abundance of [edible] flora, fungi, and fauna whether collecting, hunting, or fishing as a major supplement to their existence."
   },
   {
-    "id": "053",
+    "id": 53,
+    "text": "Subsistence - Timber, Fiber, and Fur / Hide Subsisters",
     "helpText": "This beneficiary relies on the wild abundance of timber, fiber, and [fauna for] fur / hide for survival. Timber, fiber, and fur / hide used for building material is accounted for in this class."
   },
   {
-    "id": "054",
+    "id": 54,
+    "text": "Subsistence - Building Material Subsisters",
     "helpText": "This beneficiary relies on the environment to provide renewable, non-cellular material (primarily snow and ice) used for infrastructure and housing for personal use (i.e., not for commercial sale)."
   },
   {
-    "id": "055",
+    "id": 55,
+    "text": "Subsistence - Other Subsistence",
     "helpText": "This beneficiary relies on nature for subsistence activities not covered by the other subsistence subclasses"
   },
   {
-    "id": "06",
+    "id": 6,
+    "text": "Recreational",
     "helpText": "This class includes beneficiaries who use the environment to support recreational activities"
   },
   {
-    "id": "061",
+    "id": 61,
+    "text": "Recreational - Experiencers and Viewers",
     "helpText": "This beneficiary views and experiences the environment"
   },
   {
-    "id": "062",
+    "id": 62,
+    "text": "Recreational - Food Pickers and Gatherers",
     "helpText": "This beneficiary recreationally picks or gathers from the wild abundance of [edible] flora, fungi, and some fauna (as long as it is not fished or hunted). This beneficiary has potential contact with water."
   },
   {
-    "id": "063",
+    "id": 63,
+    "text": "Recreational - Hunters",
     "helpText": "This beneficiary is primarily interested in hunting mammals and fowl (not flora or fungi) recreationally (i.e., not for survival or subsistence)."
   },
   {
-    "id": "064",
+    "id": 64,
+    "text": "Recreational - Anglers",
     "helpText": "Anglers fish recreationally (i.e., not for survival) and include catch-and-release or catch-and-consume activities."
   },
   {
-    "id": "065",
+    "id": 65,
+    "text": "Recreational - Waders, Swimmers, and Divers",
     "helpText": "This beneficiary recreates in or under the water by either wading, swimming, or diving (i.e., snorkeling, SCUBA diving)."
   },
   {
-    "id": "066",
+    "id": 66,
+    "text": "Recreational - Boaters",
     "helpText": "Boaters may use motorized (i.e., motor boats) or non-motorized boats (i.e., canoes, kayaks, rafts) to recreate."
   },
   {
-    "id": "067",
+    "id": 67,
+    "text": "Recreational - Other Recreational",
     "helpText": "This beneficiary engages in nature-based recreational activities not covered by the other recreational subclasses"
   },
   {
-    "id": "07",
+    "id": 7,
+    "text": "Inspirational",
     "helpText": "This class includes beneficiaries who use or appreciate the environment as a source of inspiration"
   },
   {
-    "id": "071",
+    "id": 71,
+    "text": "Inspirational - Spiritual and Ceremonial Participants and Participants of Celebration",
     "helpText": "This beneficiary uses the environment for spiritual, ceremonial, or celebratory purposes, such as harvest festivals, seafood festivals, Native American observances, religious rites (i.e., baptisms, weddings), personal growth, etc."
   },
   {
-    "id": "072",
+    "id": 72,
+    "text": "Inspirational - Artists",
     "helpText": "Artists, amateur and professional, utilize the environment or their experience in the environment to produce art. This class may include writers, cinematographers, and recording artist among others."
   },
   {
-    "id": "073",
+    "id": 73,
+    "text": "Inspirational - Other Inspirational",
     "helpText": "This beneficiary uses or benefits from nature as a source of inspiration but in a way not covered by the other inspirational subclasses"
   },
   {
-    "id": "08",
+    "id": 8,
+    "text": "Learning",
     "helpText": "This class includes beneficiaries who directly rely on the environment for educational or scientific research activities"
   },
   {
-    "id": "081",
+    "id": 81,
+    "text": "Learning - Educators and Students",
     "helpText": "This beneficiary includes both formal and self-taught educators and students. All parts of the environment are of interest."
   },
   {
-    "id": "082",
+    "id": 82,
+    "text": "Learning - Researchers",
     "helpText": "Researchers are interested in the environment for academic and applied purposes."
   },
   {
-    "id": "083",
+    "id": 83,
+    "text": "Learning - Other Learning",
     "helpText": "Learning beneficiaries not captured in the other learning subclasses"
   },
   {
-    "id": "09",
+    "id": 9,
+    "text": "Non-Use",
     "helpText": "This class includes individuals who benefit from the environment in ways that do not require or are not associated with direct use of or contract with FEGs"
   },
   {
-    "id": "091",
+    "id": 91,
+    "text": "Non-Use - People Who Care (Existence)",
     "helpText": "This non-use beneficiary believes it is important to preserve the environment because of a moral/ethical connection or for fear of unintended consequences."
   },
   {
-    "id": "092",
+    "id": 92,
+    "text": "Non-Use - People Who Care (Option /Bequest)",
     "helpText": "Option/Bequest non-use beneficiaries consider that they or future generations may visit or rely on the environment. This includes beneficiaries that value the traditional aspects or features of an activity or FEGS."
   },
   {
-    "id": "093",
+    "id": 93,
+    "text": "Non-Use - Other Non-Use",
     "helpText": "Non-use beneficiaries not captured in the other non-use subclasses"
   },
   {
     "id": 10,
+    "text": "Humanity",
     "helpText": "This class includes everyone, regardless of whether they actively recognize or appreciate the FEGS, because the FEGS are available to everyone and used by everyone to live (e.g., air for breathing)."
   },
   {
     "id": 101,
+    "text": "Humanity - All Humans",
     "helpText": "This class includes everyone, regardless of whether they actively recognize or appreciate the FEGS, because the FEGS are available to everyone and used by everyone to live (e.g., air for breathing)."
   }
 ]

@@ -1,42 +1,42 @@
 [
   {
-    "text": "Air",
     "id": 1,
-    "helpText": "Atmospheric conditions (for example, wind, sunlight, cloud cover, air temperature, and humidity) and gaseous components of the atmosphere (for example, water vapor, oxygen, carbon dioxide, helium, nitrogen, and hydrogen).  This category excludes precipitation (which is included under \"water\")."
+    "text": "Atmosphere",
+    "helpText": "Atmospheric conditions (for example, wind, sunlight, cloud cover, air temperature, and humidity) and components of the atmosphere (for example, precipitation, water vapor, oxygen, carbon dioxide, helium, nitrogen, and hydrogen)."
   },
   {
-    "text": "Soil",
     "id": 2,
+    "text": "Soil",
     "helpText": "The unconsolidated mineral or organic matter on the surface of the Earth, including for example mud, clay, loam, stones, rocks.  This category excludes materials suspended or dissolved in water (those are included under \"water\")."
   },
   {
-    "text": "Water",
     "id": 3,
+    "text": "Water",
     "helpText": "Liquid and solid forms of water including precipitation, surface water and ground water including components suspended or dissolved in water, which are indicators of water quality. This category excludes water vapor and precipitation (which are included under \"air\")."
   },
   {
-    "text": "Fauna",
     "id": 4,
+    "text": "Fauna",
     "helpText": "All animal life (for example, mammals, fish, shellfish, birds, reptiles, amphibians, insects).  The Fauna class includes everything in the Kingdom Animalia. <br> Subclasses should use a Taxonomic Serial Number (TSN). A TSN is a unique, persistent, non-intelligent identifier for a scientific name in the context of the Integrated Taxonomic Information System (ITIS).  ITIS provides a unique TSN for every level in the taxonomic hierarchy. <a href=\"**https://www.itis.gov/ **\">**https://www.itis.gov/**<a>"
   },
   {
-    "text": "Flora",
     "id": 5,
+    "text": "Flora",
     "helpText": "All plant and unicellular life (for example trees, shrubs, herbs, grasses, ferns, mosses, viruses, bacteria.)  This class excludes fungal life (which is included under \"fungi.\") The Flora class includes everything in the Kingdoms Plantae, Chromista, Protozoa, Bacteria, and Archaea.   <br> Subclasses should use a Taxonomic Serial Number (TSN). A TSN is a unique, persistent, non-intelligent identifier for a scientific name in the context of the Integrated Taxonomic Information System (ITIS).  ITIS provides a unique TSN for every level in the taxonomic hierarchy. <a href=\"**https://www.itis.gov/ **\">**https://www.itis.gov/**<a>"
   },
   {
-    "text": "Fungi",
     "id": 6,
+    "text": "Fungi",
     "helpText": "All fungal life including for example lichens and mushrooms.  The Fungi class includes everything in the Kingdom Fungi.  <br> Subclasses should use a Taxonomic Serial Number (TSN). A TSN is a unique, persistent, non-intelligent identifier for a scientific name in the context of the Integrated Taxonomic Information System (ITIS).  ITIS provides a unique TSN for every level in the taxonomic hierarchy. <a href=\"**https://www.itis.gov/ **\">**https://www.itis.gov/**<a>"
   },
   {
-    "text": "Other Natural Components",
     "id": 7,
+    "text": "Other Natural Components",
     "helpText": "All other biota or biotic material that are not part of / attached to currently living floral / faunal source, including for example driftwood not attached to currently living tree, shells not attached to currently living clams."
   },
   {
-    "text": "Composite End-Products",
     "id": 8,
+    "text": "Composite End-Products",
     "helpText": "A composite set of specific elements and components of single or multiple environmental classes, including for example (1) \"scapes\" (e.g. viewscape, soundscape, scentscape), (2)  natural phenomenon (e.g. fire, hot springs, geysers), and (3) integrated ecosystems."
   }
 ]
