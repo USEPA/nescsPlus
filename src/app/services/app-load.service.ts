@@ -72,7 +72,7 @@ export class AppLoadService {
       navArray.columnArray.forEach(column => {
         row[column.columnName] = item[column.columnName];
       });
-      row[navArray.indexColumnName] = item[navArray.indexColumnName].split('.')[navArray.index];
+      row[navArray.indexColumnName] = (item[navArray.indexColumnName] + '').split('.')[navArray.index];
       results.set(row[navArray.indexColumnName], row);
     });
     return Array.from(results.values());

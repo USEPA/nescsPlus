@@ -17,17 +17,17 @@
   {
     "id": 4,
     "text": "Fauna",
-    "helpText": "All animal life (for example, mammals, fish, shellfish, birds, reptiles, amphibians, insects).  The Fauna class includes everything in the Kingdom Animalia. <br> Subclasses should use a Taxonomic Serial Number (TSN). A TSN is a unique, persistent, non-intelligent identifier for a scientific name in the context of the Integrated Taxonomic Information System (ITIS).  ITIS provides a unique TSN for every level in the taxonomic hierarchy. <a href=\"**https://www.itis.gov/ **\">**https://www.itis.gov/**<a>"
+    "helpText": "All animal life (for example, mammals, fish, shellfish, birds, reptiles, amphibians, insects).  The Fauna class includes everything in the Kingdom Animalia. <br> Subclasses should use a Taxonomic Serial Number (TSN). A TSN is a unique, persistent, non-intelligent identifier for a scientific name in the context of the Integrated Taxonomic Information System (ITIS).  ITIS provides a unique TSN for every level in the taxonomic hierarchy. <a href=\"https://www.itis.gov/ \">https://www.itis.gov/<a>"
   },
   {
     "id": 5,
     "text": "Flora",
-    "helpText": "All plant and unicellular life (for example trees, shrubs, herbs, grasses, ferns, mosses, viruses, bacteria.)  This class excludes fungal life (which is included under \"fungi.\") The Flora class includes everything in the Kingdoms Plantae, Chromista, Protozoa, Bacteria, and Archaea.   <br> Subclasses should use a Taxonomic Serial Number (TSN). A TSN is a unique, persistent, non-intelligent identifier for a scientific name in the context of the Integrated Taxonomic Information System (ITIS).  ITIS provides a unique TSN for every level in the taxonomic hierarchy. <a href=\"**https://www.itis.gov/ **\">**https://www.itis.gov/**<a>"
+    "helpText": "All plant and unicellular life (for example trees, shrubs, herbs, grasses, ferns, mosses, viruses, bacteria.)  This class excludes fungal life (which is included under \"fungi.\") The Flora class includes everything in the Kingdoms Plantae, Chromista, Protozoa, Bacteria, and Archaea.   <br> Subclasses should use a Taxonomic Serial Number (TSN). A TSN is a unique, persistent, non-intelligent identifier for a scientific name in the context of the Integrated Taxonomic Information System (ITIS).  ITIS provides a unique TSN for every level in the taxonomic hierarchy. <a href=\"https://www.itis.gov/ \">https://www.itis.gov/<a>"
   },
   {
     "id": 6,
     "text": "Fungi",
-    "helpText": "All fungal life including for example lichens and mushrooms.  The Fungi class includes everything in the Kingdom Fungi.  <br> Subclasses should use a Taxonomic Serial Number (TSN). A TSN is a unique, persistent, non-intelligent identifier for a scientific name in the context of the Integrated Taxonomic Information System (ITIS).  ITIS provides a unique TSN for every level in the taxonomic hierarchy. <a href=\"**https://www.itis.gov/ **\">**https://www.itis.gov/**<a>"
+    "helpText": "All fungal life including for example lichens and mushrooms.  The Fungi class includes everything in the Kingdom Fungi.  <br> Subclasses should use a Taxonomic Serial Number (TSN). A TSN is a unique, persistent, non-intelligent identifier for a scientific name in the context of the Integrated Taxonomic Information System (ITIS).  ITIS provides a unique TSN for every level in the taxonomic hierarchy. <a href=\"https://www.itis.gov/ \">https://www.itis.gov/<a>"
   },
   {
     "id": 7,

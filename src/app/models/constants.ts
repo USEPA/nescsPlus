@@ -86,7 +86,7 @@ export class Constants {
           className: 'darkBlueBackground',
           arrayIndex: 2,
           level: 2,
-          findExpression: /(\d{4})/
+          findExpression: /(.*)/
         })
       ]
     });
@@ -116,11 +116,11 @@ export class Constants {
         }),
         new Column({
           columnName: 'DirectUserSubclassII',
-          columnTitle: 'Direct User Subclass II (ZZZ)',
+          columnTitle: 'Direct User Subclass II (ZZZZ)',
           className: 'lightBlueBackground',
           arrayIndex: 3,
           level: 2,
-          findExpression: /(.{4})/
+          findExpression: /(.*)/
         })]
     });
   }
@@ -133,7 +133,7 @@ export class Constants {
       columnArray: [
         new Column({
           columnName: 'BeneficiaryCategory',
-          columnTitle: 'Beneficiary Category  (BB)',
+          columnTitle: 'Beneficiary Class  (BB)',
           className: 'blueBackground',
           arrayIndex: 4,
           level: 0,
@@ -141,11 +141,11 @@ export class Constants {
         }),
         new Column({
           columnName: 'BeneficiarySubcategory',
-          columnTitle: 'Beneficiary Subcategory  (BBBB)',
+          columnTitle: 'Beneficiary Subclass  (BBB)',
           className: 'blueBackground',
           arrayIndex: 4,
           level: 1,
-          findExpression: /(.{4})/
+          findExpression: /(.*)/
         })]
     });
   }
@@ -154,7 +154,7 @@ export class Constants {
     return new NavArray({
       baseName: 'beneficiaryId',
       columnArray: [
-        new Column({columnName: 'BeneficiaryId', columnTitle: 'Beneficiary Id (BBBB)', arrayIndex: 0, level: 0})
+        new Column({columnName: 'BeneficiaryId', columnTitle: 'Beneficiary ID (BBB)', arrayIndex: 0, level: 0})
       ]
     });
   }
@@ -272,7 +272,7 @@ export class Constants {
       style: '20',
       children: [
         new ListItem({
-          title: 'Beneficiary Subcategory (BBBB)',
+          title: 'Beneficiary Subcategory (BBB)',
           column: 'BeneficiarySubcategory',
           checked: true,
           style: '20',

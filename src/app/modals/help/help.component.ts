@@ -8,6 +8,7 @@ import {BsModalRef} from 'ngx-bootstrap';
 })
 export class HelpComponent implements OnInit {
   helpText: string;
+  title: string;
 
   constructor(public bsModalRef: BsModalRef) {
   }

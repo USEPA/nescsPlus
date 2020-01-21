@@ -66,9 +66,10 @@ export class ListComponent implements OnInit {
     });
   }
 
-  openModal(argumentText: string) {
+  openModal(item: ListItem) {
     const initialState = {
-      helpText: argumentText
+      helpText: item.helpText,
+      title: item.title
     };
     this.modalRef = this.modalService.show(HelpComponent, {initialState});
   }

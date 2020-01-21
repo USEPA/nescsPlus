@@ -131,19 +131,23 @@ export class AdvancedQueryService {
   private returnListItem(mapItem: Map<string, Data>, helpContent: Array<HelpItem>, column: Column): Array<ListItem> {
     const result = new Array<ListItem>();
     mapItem.forEach((item, key) => {
-      if (key) {
-        const helpItem = helpContent.find(content => {
-          return content.id.toString().trim() === key.toString().trim();
-        }) || new HelpItem();
-        result.push(new ListItem({
-          title: item[column.columnName],
-          column: item[column.columnName].replace(/\s/g, '_'),
-          children: [],
-          checked: false,
-          helpText: helpItem.helpText,
-          id: key,
-          findExpression: column.findExpression
-        }));
+      try {
+        if (key) {
+          const helpItem = helpContent.find(content => {
+            return content.id.toString().trim() === key.toString().trim();
+          }) || new HelpItem();
+          result.push(new ListItem({
+            title: item[column.columnName],
+            column: item[column.columnName].replace(/\s/g, '_'),
+            children: [],
+            checked: false,
+            helpText: helpItem.helpText,
+            id: key,
+            findExpression: column.findExpression
+          }));
+        }
+      } catch (e) {
+        console.error('error:', e, ' mapItem:', mapItem, ' helpContent:', helpContent, ' column:', column);
       }
     });
     return result;

@@ -72,9 +72,17 @@ export class DataService {
 
           const elementValues: string = elementList.sort().join('|');
 
-          dataTableData.data = dataTableData.data.filter(item => {
-            return item[navArray.indexColumnName].match(elementValues) && item[navArray.indexColumnName].match(elementValues).length;
-          });
+          if (elementValues) {
+            dataTableData.data = dataTableData.data.filter(item => {
+              try {
+                const found = (item[navArray.indexColumnName] + '').match(elementValues);
+                return found && found.length;
+              } catch (e) {
+                console.error('error in dataService.filterTable', e, 'item: ', item, 'navArray: ', navArray, 'elementValues: ',
+                  elementValues, 'item[navArray.indexColumnName]: ', item[navArray.indexColumnName]);
+              }
+            });
+          }
         });
       }
 

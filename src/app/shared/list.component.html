@@ -6,7 +6,7 @@
       <div [ngClass]="{checkedImage:true,checked:item.checked}"></div>
     {{display(item)}}
     </span>
-    <i *ngIf="item.helpText" class="i-ui-icon link"(click)="openModal(item.helpText)"></i>
+    <i *ngIf="item.helpText" class="i-ui-icon link"(click)="openModal(item)"></i>
     </div>
     <div *ngIf="item.children">
       <app-list [data]="item.children" [serviceName]="serviceName" [level]="(level+1)" [disableChildren]="disableChildren"></app-list>
