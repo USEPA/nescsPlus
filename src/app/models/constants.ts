@@ -34,7 +34,7 @@ export class Constants {
           columnTitle: 'Environment Subclass II (WWW)',
           className: 'greenBackground',
           arrayIndex: 0,
-          level: 1,
+          level: 2,
           findExpression: /(\d{2}.)/
         })
       ]
@@ -102,8 +102,8 @@ export class Constants {
           columnName: 'DirectUserClass',
           columnTitle: 'Direct User Class (Z)',
           className: 'lightBlueBackground',
-          level: 3,
-          arrayIndex: 0,
+          arrayIndex: 3,
+          level: 0,
           findExpression: /(\d)/
         }),
         new Column({

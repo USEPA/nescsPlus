@@ -75,7 +75,8 @@ export class DataService {
           if (elementValues) {
             dataTableData.data = dataTableData.data.filter(item => {
               try {
-                const found = (item[navArray.indexColumnName] + '').match(elementValues);
+                const expression = new RegExp(elementValues);
+                const found = (item[column.columnName] + '').match(expression);
                 return found && found.length;
               } catch (e) {
                 console.error('error in dataService.filterTable', e, 'item: ', item, 'navArray: ', navArray, 'elementValues: ',
@@ -107,7 +108,7 @@ export class DataService {
     items.forEach((item) => {
       if (index === level) {
         if (item.checked) {
-          resultArray.push(item.id);
+          resultArray.push(item.title);
         }
       } else if (item.children.length) {
         resultArray = this.getSearchList(item.children, resultArray, index, level + 1);
@@ -128,7 +129,6 @@ export class DataService {
         results = results.concat(tempChildren);
       }
     });
-    console.log('results', results);
     return results;
   }
 
@@ -154,13 +154,6 @@ export class DataService {
     });
   }
 
-  static returnColumnNames(baseName: string) {
-    return Constants.COLUMN_MAP.find(nav => {
-      return nav.baseName === baseName;
-    }).columnArray.map((column: Column) => {
-      return column.columnName;
-    });
-  }
 
   static deDuped(displayOptions, selectedColumns: Set<ListItem>): DataTableData {
     const columns = this.returnFlatListItemArray(Array.from(selectedColumns));
