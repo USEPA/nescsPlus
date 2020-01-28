@@ -43,18 +43,12 @@ export class SingleQueryService {
   }
 
   getText(scope, id) {
-    function isId(element, index, array) {
-      return element.NESCSPlusID === id;
-    }
 
-    const data = JSON.parse(localStorage.getItem(scope + 'Array'));
-    const navArray = Constants[scope.toUpperCase() + '_COLUMN_ARRAY'];
-    const item = data.find(isId);
-    const columns = DataService.returnColumnNames(scope);
-    const values = columns.map(propertyName => {
-      return item[propertyName];
+    const data = JSON.parse(localStorage.getItem(scope + 'Help'));
+    const item = data.find((element) => {
+      return element.id === id;
     });
-    return values.join(' - ');
+    return item.text;
   }
 
   retrieveFES2244ID(data) {

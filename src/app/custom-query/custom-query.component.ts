@@ -112,18 +112,12 @@ export class CustomQueryComponent implements OnInit {
   }
 
   private retrieveOptions(item: string): Array<Options> {
-    const data: any = JSON.parse(localStorage.getItem(item + 'Array'));
-    const navArray = Constants[item.toUpperCase() + '_COLUMN_ARRAY'];
-    const columns = DataService.returnColumnNames(item);
+    const data: any = JSON.parse(localStorage.getItem(item + 'Help'));
     const results = new Map<string, Options>();
-    data.forEach(items => {
-      const NescsId = items.NESCSPlusID;
-      const values = columns.map(columnName => {
-        return items[columnName];
-      });
-      results.set(NescsId, new Options({
-          text: values.join(' - '),
-          id: NescsId
+    data.forEach(lineItem => {
+      results.set(lineItem.id, new Options({
+          text: lineItem.text,
+          id: lineItem.id
         })
       );
     });

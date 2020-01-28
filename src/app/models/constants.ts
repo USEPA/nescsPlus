@@ -15,7 +15,7 @@ export class Constants {
       columnArray: [
         new Column({
           columnName: 'EnvironmentalClass',
-          columnTitle: 'Environmental Class (W)',
+          columnTitle: 'Environment Class (W)',
           className: 'greenBackground',
           arrayIndex: 0,
           level: 0,
@@ -23,7 +23,7 @@ export class Constants {
         }),
         new Column({
           columnName: 'EnvironmentalSubclassI',
-          columnTitle: 'Environmental Subclass I (WW)',
+          columnTitle: 'Environment Subclass I (WW)',
           className: 'greenBackground',
           arrayIndex: 0,
           level: 1,
@@ -31,7 +31,7 @@ export class Constants {
         }),
         new Column({
           columnName: 'EnvironmentalSubclassII',
-          columnTitle: 'Environmental Subclass II (WWW)',
+          columnTitle: 'Environment Subclass II (WWW)',
           className: 'greenBackground',
           arrayIndex: 0,
           level: 1,
@@ -191,20 +191,20 @@ export class Constants {
       style: '0'
     }),
     new ListItem({
-      title: 'Environmental Class (W)',
+      title: 'Environment Class (W)',
       column: 'EnvironmentalClass',
       checked: true,
       style: '25',
       children: [
         new ListItem({
-          title: 'Environmental Subclass I (WW)',
+          title: 'Environment Subclass I (WW)',
           column: 'EnvironmentalSubclassI',
           checked: true,
           style: '25',
           children: []
         }),
         new ListItem({
-          title: 'Environmental Subclass II (WWW)',
+          title: 'Environment Subclass II (WWW)',
           column: 'EnvironmentalSubclassII',
           checked: true,
           style: '25',
