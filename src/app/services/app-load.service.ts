@@ -52,6 +52,13 @@ export class AppLoadService {
       });
     });
 
+    // Load Header Help file
+    this.httpClient.get(this.baseHelpUrl + 'mainHeader.json?v=' + this.today).subscribe(response => {
+      if (response) {
+        localStorage.setItem('mainHeaderHelp', JSON.stringify(response));
+      }
+    });
+
     // Load data
     this.httpClient.get(this.dataUrl).subscribe((rows: Array<Data>) => {
       AppLoadService.setFullDisplay(rows);

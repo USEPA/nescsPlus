@@ -7,6 +7,8 @@ import {ActiveFilter} from '../models/enums';
 import {SearchInstructionsHowWhoModalComponent} from '../modals/search-instructions-how-who-modal/search-instructions-how-who-modal.component';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap';
 import {Router} from '@angular/router';
+import {HelpItem} from '../models/help-item';
+import {HelpComponent} from '../modals/help/help.component';
 
 
 @Component({
@@ -78,6 +80,18 @@ export class AdvancedQueryComponent implements OnInit, OnDestroy {
 
   openModal() {
     this.modalRef = this.modalService.show(SearchInstructionsHowWhoModalComponent, {});
+  }
+
+  helpModal(key, titleString) {
+    const helpContent: Array<HelpItem> = JSON.parse(localStorage.getItem('mainHeaderHelp'));
+    const helpItem = helpContent.find(content => {
+      return content.id.toString().trim() === key.toString().trim();
+    });
+    const initialState = {
+      helpText: helpItem.helpText,
+      title: titleString
+    };
+    this.modalRef = this.modalService.show(HelpComponent, {initialState});
   }
 
 }

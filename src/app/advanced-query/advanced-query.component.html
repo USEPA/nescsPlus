@@ -8,8 +8,9 @@
 <div class="panel-container greenBackground" (click)="toggleClass($event,'active')">
   Where? <i class="informationIcon"></i>
   <div class="inner-class">
-    <b><i>Environment classes</i></b> <i class="i-ui-icon"></i> and <b><i>subclasses</i></b> <i class="i-ui-icon"></i>
-    are the spatial environments where each ecological end-product is located when used.
+    <b><i>Environment classes</i></b> <i (click)="helpModal('environment', 'Environment classes')"
+                                         class="i-ui-icon"></i> and <b><i>subclasses</i></b> are the spatial
+    environments where each ecological end-product is located when used.
   </div>
 </div>
 <div class="adjoining-container">
@@ -21,7 +22,8 @@
 <div class="panel-container lightGreenBackground" (click)="toggleClass($event,'active')">
   What? <i class="informationIcon"></i>
   <div class="inner-class">
-    <b><i>Ecological End-Product Classes</i></b> <i class="i-ui-icon"></i> are the relevant biophysical components of
+    <b><i>Ecological End-Product Classes</i></b> <i (click)="helpModal('ecological','Ecological End-Product Classes')"
+                                                    class="i-ui-icon"></i> are the relevant biophysical components of
     nature that are directly used or appreciated by humans.
   </div>
 </div>
@@ -34,7 +36,7 @@
 
 <div class="form-radios">
   <br>
-  <div>Please choose one: <span class="bestSearchInfo" (click)="openModal(item)">Which search is best for me?</span>
+  <div>Please choose one: <span class="bestSearchInfo" (click)="openModal()">Which search is best for me?</span>
   </div>
   <div class="mockLabel" (click)="activeFilterChange(ActiveFilter.Direct)">
     <div>
@@ -60,8 +62,8 @@
   <div class="panel-container darkBlueBackground" (click)="toggleClass($event,'active')">
     How? <i class="informationIcon"></i>
     <div class="inner-class">
-      <b><i>Direct Use Classes</i></b> <i class="i-ui-icon"></i> and <b><i>Subclasses</i></b> <i class="i-ui-icon"></i>
-      are the ways each ecological end-product are directly used or appreciated by humans
+      <b><i>Direct Use Classes</i></b> <i (click)="helpModal('directUse','Direct Use Classes')" class="i-ui-icon"></i>
+      and <b><i>Subclasses</i></b> are the ways each ecological end-product are directly used or appreciated by humans
     </div>
   </div>
   <div class="adjoining-container">
@@ -76,8 +78,9 @@
       North American Industrial Classification System (<a href="https://www.census.gov/eos/www/naics/"
                                                           target="_blank">NAICS) <span
       class="btn btn-outline-dark btn-sm">EXIT</span></a><br>
-      <b><i>Direct User Classes</i></b> <i class="i-ui-icon"></i> and <b><i>Subclasses</i></b>
-      <i class="i-ui-icon"></i> are the sector(s) of the economy that make direct use of each ecological end-product.
+      <b><i>Direct User Classes</i></b> <i (click)="helpModal('directUser','Direct User Classes')"
+                                           class="i-ui-icon"></i> and <b><i>Subclasses</i></b> are the sector(s) of the
+      economy that make direct use of each ecological end-product.
     </div>
   </div>
   <div class="adjoining-container">
@@ -93,10 +96,10 @@
   <div class="blueBackground panel-container" (click)="toggleClass($event,'active')">
     How? <i class="informationIcon"></i>
     <div class="inner-class">
-      <b><i>Beneficiary classes</i></b> <i class="i-ui-icon"></i> and <b><i>subclasses</i></b>
+      <b><i>Beneficiary classes</i></b> <i (click)="helpModal('beneficiary','Beneficiary classes')"
+                                           class="i-ui-icon"></i> and <b><i>subclasses</i></b>
       <i class="i-ui-icon"></i> are the interests of individuals, groups of people, or organizations that drive their
-      use or
-      appreciation of ecological end-products.
+      use or appreciation of ecological end-products.
     </div>
   </div>
   <div class="adjoining-container">
