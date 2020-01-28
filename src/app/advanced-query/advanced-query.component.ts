@@ -4,6 +4,10 @@ import {AdvancedQueryService} from '../services/advanced-query.service';
 import {ListItem} from '../models/listItem';
 import {Subscription} from 'rxjs';
 import {ActiveFilter} from '../models/enums';
+import {SearchInstructionsHowWhoModalComponent} from '../modals/search-instructions-how-who-modal/search-instructions-how-who-modal.component';
+import {BsModalRef, BsModalService} from 'ngx-bootstrap';
+import {Router} from '@angular/router';
+
 
 @Component({
   selector: 'app-advanced-query',
@@ -25,8 +29,10 @@ export class AdvancedQueryComponent implements OnInit, OnDestroy {
   directUseNav: Array<ListItem>;
   directUserNav: Array<ListItem>;
   beneficiaryNav: Array<ListItem>;
+  modalRef: BsModalRef;
 
-  constructor(private renderer: Renderer2, private appService: AppService, private advancedQueryService: AdvancedQueryService) {
+  constructor(private renderer: Renderer2, private appService: AppService, private advancedQueryService: AdvancedQueryService,
+              private modalService: BsModalService) {
 
     this.listChanges = this.advancedQueryService.listChange$.subscribe(resultActive => {
       // Setting value through async call to avoid error "ExpressionChangedAfterItHasBeenCheckedError"
@@ -68,6 +74,10 @@ export class AdvancedQueryComponent implements OnInit, OnDestroy {
     } else {
       this.renderer.addClass(event.target, cssClass);
     }
+  }
+
+  openModal() {
+    this.modalRef = this.modalService.show(SearchInstructionsHowWhoModalComponent, {});
   }
 
 }

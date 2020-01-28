@@ -18,6 +18,7 @@ import {ExcelService} from '../services/excel.service';
 import {AdvancedQueryService} from '../services/advanced-query.service';
 import {SingleQueryTableComponent} from '../custom-query/single-query-table/single-query-table.component';
 import {HelpComponent} from '../modals/help/help.component';
+import {SearchInstructionsHowWhoModalComponent} from '../modals/search-instructions-how-who-modal/search-instructions-how-who-modal.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import {HelpComponent} from '../modals/help/help.component';
     NameModalComponent,
     DeleteModalComponent,
     SearchInstructionsModalComponent,
+    SearchInstructionsHowWhoModalComponent,
     ApplicationComponent,
     AdvancedQueryComponent,
     CustomQueryComponent,
@@ -38,6 +40,7 @@ import {HelpComponent} from '../modals/help/help.component';
     DeleteModalComponent,
     NameModalComponent,
     SearchInstructionsModalComponent,
+    SearchInstructionsHowWhoModalComponent,
     HelpComponent
   ],
   exports: [

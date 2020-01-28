@@ -213,5 +213,26 @@ div#homeContent {
 }
 
 
+.bestSearchInfo {
+  font-size: 14px;
+  margin-left: 10px;
+  color: #0071bc;
+  text-decoration: underline;
+  margin-top: 9px;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+@media (min-width: 576px) {
+  .modal-dialog  {
+    max-width: initial !important;
+    width: 50% !important;
+  }
+}
+
+
+
 
 
