@@ -8,6 +8,7 @@ export class ListItem {
   children = new Array<ListItem>();
   id: string;
   visible = true;
+  disable = false;
   findExpression: any;
 
   public constructor(init?: Partial<ListItem>) {

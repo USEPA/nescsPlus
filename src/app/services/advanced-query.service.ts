@@ -95,7 +95,7 @@ export class AdvancedQueryService {
         console.error('error occurred - arguments for filterFirst', e, item, data, column, helpContent, idField);
       }
     });
-    return this.returnListItem(mapItem, helpContent, column);
+    return this.returnListItem(mapItem, helpContent, column, false);
   }
 
   private filterSecond(data: Array<Data>, columns: Array<Column>, helpContent: Array<HelpItem>,
@@ -108,7 +108,7 @@ export class AdvancedQueryService {
       const id = item[idField].match(columns[1].findExpression)[1];
       mapItem.set(id, item);
     });
-    return this.returnListItem(mapItem, helpContent, columns[1]);
+    return this.returnListItem(mapItem, helpContent, columns[1], true);
   }
 
   private filterThird(data: Array<any>, columns: Array<Column>, helpContent: Array<HelpItem>,
@@ -125,10 +125,10 @@ export class AdvancedQueryService {
         }
       }
     });
-    return this.returnListItem(mapItem, helpContent, columns[2]);
+    return this.returnListItem(mapItem, helpContent, columns[2], true);
   }
 
-  private returnListItem(mapItem: Map<string, Data>, helpContent: Array<HelpItem>, column: Column): Array<ListItem> {
+  private returnListItem(mapItem: Map<string, Data>, helpContent: Array<HelpItem>, column: Column, disabled: boolean): Array<ListItem> {
     const result = new Array<ListItem>();
     mapItem.forEach((item, key) => {
       try {
@@ -141,6 +141,7 @@ export class AdvancedQueryService {
             column: item[column.columnName].replace(/\s/g, '_'),
             children: [],
             checked: false,
+            disable: disabled,
             helpText: helpItem.helpText,
             id: key,
             findExpression: column.findExpression

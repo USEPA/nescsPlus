@@ -4,6 +4,7 @@ import {SingleQueryItem} from '../../models/single-query-item';
 import {SingleQueryService} from '../../services/single-query.service';
 import {DeleteModalComponent} from '../../modals/delete-modal/delete-modal.component';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap';
+import {Constants} from '../../models/constants';
 
 declare var $;
 
@@ -23,6 +24,7 @@ export class SingleQueryTableComponent implements OnInit, AfterViewInit {
   nativeDataTable: any;
   dataTable: any;
   displayOptions: any;
+  CONTACT_US = Constants.CONTACT_US;
 
   constructor(private modalService: BsModalService, private singleQueryService: SingleQueryService) {
     this.displayOptions = this.singleQueryService.prepDisplay();
@@ -92,6 +94,11 @@ export class SingleQueryTableComponent implements OnInit, AfterViewInit {
       this.dataTable.destroy();
     }
     this.dataTable = this.nativeDataTable.DataTable(this.dtOptions);
+
+    // Reconfigure DataTable elements to wrap scroll around Table
+    this.dataTable.buttons().containers().appendTo($('#dataTablesButtons'));
+    $('#dataTableSearch').html('');
+    $('#dataTableSearch').html($('.dataTables_filter'));
   }
 
   editRow(e, dt, node, config): void {

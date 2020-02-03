@@ -25,7 +25,7 @@ export class AdvancedQueryComponent implements OnInit, OnDestroy {
   navItems: Array<ListItem>;
   level = 0;
   listChanges: Subscription;
-  disableChildren = false;
+  disableChildren = true;
   environmentalNav: Array<ListItem>;
   ecologicalNav: Array<ListItem>;
   directUseNav: Array<ListItem>;

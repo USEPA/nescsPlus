@@ -17,15 +17,20 @@ export class ToggleItemsComponent implements OnInit {
   }
 
   toggleEntry(check: boolean) {
-    this.toggleSelect(this.data, check);
+    this.toggleSelect(this.data, check, 0);
     this.advancedQueryService.listClick(true);
   }
 
-  toggleSelect(data: Array<ListItem>, check: boolean): void {
+  toggleSelect(data: Array<ListItem>, check: boolean, level: number): void {
+
     data.forEach((item) => {
       item.checked = check;
+      if (level && !item.checked) {
+        item.disable = true;
+      }
+
       if (item.children.length) {
-        this.toggleSelect(item.children, check);
+        this.toggleSelect(item.children, check, level + 1);
       }
     });
   }

@@ -35,18 +35,20 @@ export class ListComponent implements OnInit {
   }
 
   sendChange(item: ListItem): void {
-    item.checked = !item.checked;
-    // Toggle Children
-    if (item.children && item.children.length) {
-      if (!this.disableChildren) {
-        this.toggleChecks(item.children, item.checked);
-      } else {
-        if (item.children) {
-          this.enableDisableChildren(item.children, item.checked);
+    if (!item.disable) {
+      item.checked = !item.checked;
+      // Toggle Children
+      if (item.children && item.children.length) {
+        if (!this.disableChildren) {
+          this.toggleChecks(item.children, item.checked);
+        } else {
+          if (item.children) {
+            this.enableDisableChildren(item.children, item.checked);
+          }
         }
       }
+      this.service.listClick(true);
     }
-    this.service.listClick(true);
   }
 
   toggleChecks(items: Array<ListItem>, checked: boolean): void {
@@ -62,7 +64,11 @@ export class ListComponent implements OnInit {
 
   enableDisableChildren(items: Array<ListItem>, enable: boolean): void {
     items.forEach((item: ListItem) => {
-
+      item.disable = enable ? false : true;
+      item.checked = enable;
+      if (item.children) {
+        this.enableDisableChildren(item.children, enable);
+      }
     });
   }
 

@@ -3,7 +3,7 @@
   <li>
     <div class="li-block">
     <span (click)="sendChange(item)">
-      <div [ngClass]="{checkedImage:true,checked:item.checked}"></div>
+      <div [ngClass]="{checkedImage:true,checked:item.checked,disable:item.disable}"></div>
     {{display(item)}}
     </span>
     <i *ngIf="item.helpText" class="i-ui-icon link" (click)="openModal(item)"></i>
