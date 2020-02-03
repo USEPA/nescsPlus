@@ -23,11 +23,9 @@ export class NameModalComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('this', this);
   }
 
   actionItem(): void {
-    console.log(this.ecological, this.environmental, this.directUse, this.directUser, this.filterName);
 
     this.singleQueryMap = this.singleQueryService.singleQueryMap.getValue();
     if (this.action === 'edit') {

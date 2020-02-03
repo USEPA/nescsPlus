@@ -1,15 +1,11 @@
-import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {AppService} from '../services/app.service';
 import {Options} from '../models/options';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap';
 import {NameModalComponent} from '../modals/name-modal/name-modal.component';
-import {DeleteModalComponent} from '../modals/delete-modal/delete-modal.component';
 import {SingleQueryService} from '../services/single-query.service';
-import {BehaviorSubject, Subscription} from 'rxjs';
 import {SingleQueryItem} from '../models/single-query-item';
-import {Constants} from '../models/constants';
-import {Column} from '../models/column.model';
-import {DataService} from '../services/data.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-custom-query',
@@ -82,7 +78,6 @@ export class CustomQueryComponent implements OnInit {
   }
 
   editAction(): void {
-    console.log('editAction openNameModal', this);
     const initialState = {
       environmental: this.selectedEnvironmental,
       ecological: this.selectedEcological,
@@ -98,11 +93,9 @@ export class CustomQueryComponent implements OnInit {
   setAction(event): void {
     this.buttonAction = event;
     this.enableButton();
-    console.log('setAction', event);
   }
 
   initializeEdit(map): void {
-    console.log('initializeEdit: ', map, map.entries().next().value);
     const value = map.values().next().value;
     this.selectedEnvironmental = value.environmental;
     this.selectedEcological = value.ecological;
