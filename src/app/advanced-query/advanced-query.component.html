@@ -1,122 +1,127 @@
-<br>
-<p>Select checkboxes for the classes and subclasses to be included in your query. Click on "Environmental [Sub-]Classes"
-  and "Ecological End-product Classes" to see checkboxes for each of these two components. Farther down, you can choose
-  to select from either the "Direct Use/Non-use AND Direct User" classes or from "Beneficiary" classes. After finalizing
-  your selections through the checkboxes, click on the "Query Data" button to view the results of your query. If you
-  would like to download the results to a spreadsheet file, click on the "Export CSV" button. </p>
+<div style="padding: 20px;border: 1px solid darkslategray;border-radius: 9px;">
+  <p>Select checkboxes for the classes and subclasses to be included in your query. Click on "Environmental
+    [Sub-]Classes"
+    and "Ecological End-product Classes" to see checkboxes for each of these two components. Farther down, you can
+    choose
+    to select from either the "Direct Use/Non-use AND Direct User" classes or from "Beneficiary" classes. After
+    finalizing
+    your selections through the checkboxes, click on the "Query Data" button to view the results of your query. If you
+    would like to download the results to a spreadsheet file, click on the "Export CSV" button. </p>
 
-<div class="panel-container greenBackground" (click)="toggleClass($event,'active')">
-  Where? <i class="informationIcon"></i>
-  <div class="inner-class">
-    <b><i>Environment classes</i></b> <i (click)="helpModal('environment', 'Environment classes')"
-                                         class="i-ui-icon"></i> and <b><i>subclasses</i></b> are the spatial
-    environments where each ecological end-product is located when used.
-  </div>
-</div>
-<div class="adjoining-container">
-  <app-toggle-items [data]="navItems[0].children"></app-toggle-items>
-  <app-list [data]="navItems[0].children" [serviceName]="'advancedQuery'" [level]="level"
-            [disableChildren]="disableChildren" (checked)="onChildChecked($event)" class="filterContainer"></app-list>
-</div>
-
-<div class="panel-container lightGreenBackground" (click)="toggleClass($event,'active')">
-  What? <i class="informationIcon"></i>
-  <div class="inner-class">
-    <b><i>Ecological End-Product Classes</i></b> <i (click)="helpModal('ecological','Ecological End-Product Classes')"
-                                                    class="i-ui-icon"></i> are the relevant biophysical components of
-    nature that are directly used or appreciated by humans.
-  </div>
-</div>
-<div class="adjoining-container">
-  <app-toggle-items [data]="navItems[1].children"></app-toggle-items>
-  <app-list [data]="navItems[1].children" [serviceName]="'advancedQuery'" [level]=""
-            [disableChildren]="disableChildren" (checked)="onChildChecked($event)" class="filterContainer"></app-list>
-</div>
-
-
-<div class="form-radios">
-  <br>
-  <div>Please choose one: <span class="bestSearchInfo" (click)="openModal()">Which search is best for me?</span>
-  </div>
-  <div class="mockLabel" (click)="activeFilterChange(ActiveFilter.Direct)">
-    <div>
-      <div class="radialBox adjust" [ngClass]="{'selected':activeFilter == ActiveFilter.Direct}"></div>
-    </div>
-    <div>
-      <div class="darkBlueBackground p-2"> How? Direct Use</div>
-      <div class="lightBlueBackground p-2"> Who? Direct User</div>
-    </div>
-  </div>
-  <div class="mockLabel" (click)="activeFilterChange(ActiveFilter.Beneficiary)">
-    <div>
-      <div class="radialBox" [ngClass]="{'selected':activeFilter == ActiveFilter.Beneficiary}"></div>
-    </div>
-    <div>
-      <div class="darkBlueBackground p-2"> How? Beneficiary</div>
-    </div>
-  </div>
-  &nbsp;&nbsp;
-</div>
-
-<div *ngIf="activeFilter === ActiveFilter.Direct">
-  <div class="panel-container darkBlueBackground" (click)="toggleClass($event,'active')">
-    How? <i class="informationIcon"></i>
+  <div class="panel-container greenBackground" (click)="toggleClass($event,'active')">
+    Where? <i class="informationIcon"></i>
     <div class="inner-class">
-      <b><i>Direct Use Classes</i></b> <i (click)="helpModal('directUse','Direct Use Classes')" class="i-ui-icon"></i>
-      and <b><i>Subclasses</i></b> are the ways each ecological end-product are directly used or appreciated by humans
+      <b><i>Environment classes</i></b> <i (click)="helpModal('environment', 'Environment classes')"
+                                           class="i-ui-icon"></i> and <b><i>subclasses</i></b> are the spatial
+      environments where each ecological end-product is located when used.
     </div>
   </div>
   <div class="adjoining-container">
-    <app-toggle-items [data]="navItems[2].children"></app-toggle-items>
-    <app-list [data]="navItems[2].children" [serviceName]="'advancedQuery'" [level]="level"
-              [disableChildren]="disableChildren" (checked)="onChildChecked($event)" class="filterContainer"></app-list>
+    <app-toggle-items [data]="navItems[0].children"></app-toggle-items>
+    <app-list [data]="navItems[0].children" [serviceName]="'advancedQuery'" [level]="level"
+              [disableChildren]="disableChildren" (checked)="onChildChecked()" class="filterContainer"></app-list>
   </div>
 
-  <div class="panel-container lightBlueBackground" (click)="toggleClass($event,'active')">
-    Who? <i class="informationIcon"></i>
+  <div class="panel-container lightGreenBackground" (click)="toggleClass($event,'active')">
+    What? <i class="informationIcon"></i>
     <div class="inner-class">
-      North American Industrial Classification System (<a href="https://www.census.gov/eos/www/naics/"
-                                                          target="_blank">NAICS) <span
-      class="btn btn-outline-dark btn-sm">EXIT</span></a><br>
-      <b><i>Direct User Classes</i></b> <i (click)="helpModal('directUser','Direct User Classes')"
-                                           class="i-ui-icon"></i> and <b><i>Subclasses</i></b> are the sector(s) of the
-      economy that make direct use of each ecological end-product.
+      <b><i>Ecological End-Product Classes</i></b> <i (click)="helpModal('ecological','Ecological End-Product Classes')"
+                                                      class="i-ui-icon"></i> are the relevant biophysical components of
+      nature that are directly used or appreciated by humans.
     </div>
   </div>
   <div class="adjoining-container">
-    <app-toggle-items [data]="navItems[3].children"></app-toggle-items>
-    <app-list [data]="navItems[3].children" [serviceName]="'advancedQuery'" [level]="level"
-              [disableChildren]="disableChildren" (checked)="onChildChecked($event)" class="filterContainer"></app-list>
+    <app-toggle-items [data]="navItems[1].children"></app-toggle-items>
+    <app-list [data]="navItems[1].children" [serviceName]="'advancedQuery'" [level]=""
+              [disableChildren]="disableChildren" (checked)="onChildChecked()" class="filterContainer"></app-list>
   </div>
-</div>
 
 
-<div *ngIf="activeFilter === ActiveFilter.Beneficiary">
+  <div class="form-radios">
+    <br>
+    <div>Please choose one: <span class="bestSearchInfo" (click)="openModal()">Which search is best for me?</span>
+    </div>
+    <div class="mockLabel" (click)="activeFilterChange(ActiveFilter.Direct)">
+      <div>
+        <div class="radialBox adjust" [ngClass]="{'selected':activeFilter == ActiveFilter.Direct}"></div>
+      </div>
+      <div>
+        <div class="darkBlueBackground p-2"> How? Direct Use</div>
+        <div class="lightBlueBackground p-2"> Who? Direct User</div>
+      </div>
+    </div>
+    <div class="mockLabel" (click)="activeFilterChange(ActiveFilter.Beneficiary)">
+      <div>
+        <div class="radialBox" [ngClass]="{'selected':activeFilter == ActiveFilter.Beneficiary}"></div>
+      </div>
+      <div>
+        <div class="darkBlueBackground p-2"> How? Beneficiary</div>
+      </div>
+    </div>
+    &nbsp;&nbsp;
+  </div>
 
-  <div class="blueBackground panel-container" (click)="toggleClass($event,'active')">
-    How? <i class="informationIcon"></i>
-    <div class="inner-class">
-      <b><i>Beneficiary classes</i></b> <i (click)="helpModal('beneficiary','Beneficiary classes')"
-                                           class="i-ui-icon"></i> and <b><i>subclasses</i></b> are the interests of
-      individuals, groups of people, or organizations that drive their use or appreciation of ecological end-products.
+  <div *ngIf="activeFilter === ActiveFilter.Direct">
+    <div class="panel-container darkBlueBackground" (click)="toggleClass($event,'active')">
+      How? <i class="informationIcon"></i>
+      <div class="inner-class">
+        <b><i>Direct Use Classes</i></b> <i (click)="helpModal('directUse','Direct Use Classes')" class="i-ui-icon"></i>
+        and <b><i>Subclasses</i></b> are the ways each ecological end-product are directly used or appreciated by humans
+      </div>
+    </div>
+    <div class="adjoining-container">
+      <app-toggle-items [data]="navItems[2].children"></app-toggle-items>
+      <app-list [data]="navItems[2].children" [serviceName]="'advancedQuery'" [level]="level"
+                [disableChildren]="disableChildren" (checked)="onChildChecked()" class="filterContainer"></app-list>
+    </div>
+
+    <div class="panel-container lightBlueBackground" (click)="toggleClass($event,'active')">
+      Who? <i class="informationIcon"></i>
+      <div class="inner-class">
+        North American Industrial Classification System (<a href="https://www.census.gov/eos/www/naics/"
+                                                            target="_blank">NAICS) <span
+        class="btn btn-outline-dark btn-sm">EXIT</span></a><br>
+        <b><i>Direct User Classes</i></b> <i (click)="helpModal('directUser','Direct User Classes')"
+                                             class="i-ui-icon"></i> and <b><i>Subclasses</i></b> are the sector(s) of
+        the
+        economy that make direct use of each ecological end-product.
+      </div>
+    </div>
+    <div class="adjoining-container">
+      <app-toggle-items [data]="navItems[3].children"></app-toggle-items>
+      <app-list [data]="navItems[3].children" [serviceName]="'advancedQuery'" [level]="level"
+                [disableChildren]="disableChildren" (checked)="onChildChecked()" class="filterContainer"></app-list>
     </div>
   </div>
-  <div class="adjoining-container">
-    <app-toggle-items [data]="navItems[4].children"></app-toggle-items>
-    <app-list [data]="navItems[4].children" [serviceName]="'advancedQuery'" [level]="level"
-              [disableChildren]="disableChildren" class="filterContainer"></app-list>
-  </div>
-</div>
 
-<div class="row">
-  <div class="col-md-2 offset-md-10 mt-2">
-    <div *ngIf="!showReport">
-      <button class="btn btn-primary" [disabled]="activeFilter === null" (click)="generateReport(false)">Query Data
+
+  <div *ngIf="activeFilter === ActiveFilter.Beneficiary">
+
+    <div class="blueBackground panel-container" (click)="toggleClass($event,'active')">
+      How? <i class="informationIcon"></i>
+      <div class="inner-class">
+        <b><i>Beneficiary classes</i></b> <i (click)="helpModal('beneficiary','Beneficiary classes')"
+                                             class="i-ui-icon"></i> and <b><i>subclasses</i></b> are the interests of
+        individuals, groups of people, or organizations that drive their use or appreciation of ecological end-products.
+      </div>
+    </div>
+    <div class="adjoining-container">
+      <app-toggle-items [data]="navItems[4].children"></app-toggle-items>
+      <app-list [data]="navItems[4].children" [serviceName]="'advancedQuery'" [level]="level"
+                [disableChildren]="disableChildren" class="filterContainer"></app-list>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="!showReport">
+    <div class="mt-3 col-sm-12">
+      <button class="btn btn-primary float-sm-right" [disabled]="activeFilter === null"
+              (click)="generateReport(false)">Query Data
       </button>
     </div>
   </div>
 </div>
 
-<div *ngIf="showReport" class="tab-content" id="reportContent">
+
+<div *ngIf="showReport" class="tab-content mt-1" id="reportContent" style="padding: 20px;border: 1px solid darkslategray;border-radius: 9px;">
   <app-datatable [navigationItems]="navItems" [activeFilter]="activeFilter"></app-datatable>
 </div>

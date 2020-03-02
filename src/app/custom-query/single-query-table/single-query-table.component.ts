@@ -49,7 +49,17 @@ export class SingleQueryTableComponent implements OnInit, AfterViewInit {
     this.dtOptions = {
       dom: 'Bfrtip',
       buttons: [
-        {extend: 'csv', text: 'Export CSV', className: 'csvExport'},
+        {
+          extend: 'csv', text: 'Export CSV', className: 'csvExport', customize: csv => {
+            return '# National Ecosystem Services Classification System (NESCS Plus) \n' +
+              '# http://www.epa.gov/eco-research/NESCS \n \n' +
+              '# NESCS Plus offers two options for searching. \n' +
+              '# (1) These are the results from "Query All Options" which enables users to consider every possibility and build a custom table a single row at a time. \n' +
+              '# If you discover a row that is missing that should be included in the "core" set please let us know by clicking "Provide Feedback." \n' +
+              '# (2) In contrast "Browse Core Options" refines the > 75000 possible combinations to a shorter "core" set of ~1000 most plausible combinations. \n \n' +
+              csv;
+          }
+        },
         {
           text: 'Edit',
           name: 'edit',

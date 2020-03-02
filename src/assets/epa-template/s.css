@@ -3996,12 +3996,8 @@ div#singleDataTable_wrapper div.dt-buttons {
   margin-bottom: -50px;
 }
 
-table#singleDataTable tbody tr.selected {
+table#singleDataTable tbody tr.selected, table#singleDataTable tbody tr.selected td {
   background-color: #acbad4 !important;
-}
-
-table#singleDataTable tbody tr.selected td {
-  background: inherit;
 }
 
 div#singleDataTable_wrapper button.disabled {
