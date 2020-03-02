@@ -9,7 +9,7 @@
     <i *ngIf="item.helpText" class="i-ui-icon link" (click)="openModal(item)"></i>
     </div>
     <div *ngIf="item.children">
-      <app-list [data]="item.children" [serviceName]="serviceName" [level]="(level+1)" [disableChildren]="disableChildren"></app-list>
+      <app-list [data]="item.children" [serviceName]="serviceName" [level]="(level+1)" [parentItem]="item" [disableChildren]="disableChildren" (checked)="onChildChecked($event,item)"></app-list>
     </div>
   </li>
   </span>

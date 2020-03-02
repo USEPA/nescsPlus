@@ -108,7 +108,7 @@ export class AdvancedQueryService {
       const id = item[idField].match(columns[1].findExpression)[1];
       mapItem.set(id, item);
     });
-    return this.returnListItem(mapItem, helpContent, columns[1], true);
+    return this.returnListItem(mapItem, helpContent, columns[1], false);
   }
 
   private filterThird(data: Array<any>, columns: Array<Column>, helpContent: Array<HelpItem>,
@@ -125,7 +125,7 @@ export class AdvancedQueryService {
         }
       }
     });
-    return this.returnListItem(mapItem, helpContent, columns[2], true);
+    return this.returnListItem(mapItem, helpContent, columns[2], false);
   }
 
   private returnListItem(mapItem: Map<string, Data>, helpContent: Array<HelpItem>, column: Column, disabled: boolean): Array<ListItem> {

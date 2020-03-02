@@ -25,7 +25,7 @@ export class AdvancedQueryComponent implements OnInit, OnDestroy {
   navItems: Array<ListItem>;
   level = 0;
   listChanges: Subscription;
-  disableChildren = true;
+  disableChildren = false;
   environmentalNav: Array<ListItem>;
   ecologicalNav: Array<ListItem>;
   directUseNav: Array<ListItem>;
@@ -92,6 +92,10 @@ export class AdvancedQueryComponent implements OnInit, OnDestroy {
       title: titleString
     };
     this.modalRef = this.modalService.show(HelpComponent, {initialState});
+  }
+
+  onChildChecked() {
+    this.showReport = false;
   }
 
 }

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ListItem} from '../models/listItem';
 import {AdvancedQueryService} from '../services/advanced-query.service';
 import {ToggleColumnsService} from '../services/toggle-columns.service';
@@ -18,6 +18,8 @@ export class ListComponent implements OnInit {
   @Input() level;
   @Input() serviceName: string;
   @Input() disableChildren: boolean;
+  @Input() parentItem: ListItem;
+  @Output() checked = new EventEmitter<boolean>();
   modalRef: BsModalRef;
   service: any;
 
@@ -48,6 +50,21 @@ export class ListComponent implements OnInit {
         }
       }
       this.service.listClick(true);
+      this.checked.emit(item.checked);
+      if (item.checked) {
+        if (this.parentItem) {
+          this.parentItem.checked = item.checked;
+        }
+      }
+    }
+  }
+
+  onChildChecked(checked: boolean, item: ListItem) {
+    if (checked) {
+      this.checked.emit(checked);
+      if (this.parentItem) {
+        this.parentItem.checked = checked;
+      }
     }
   }
 

@@ -66,7 +66,6 @@ export class DataTableComponent implements AfterViewInit, OnDestroy, OnInit {
 
   renderDataTable(): void {
     const self = this;
-    console.log('this.navigationItems, this.activeFilter, this.selectedColumns', this.navigationItems, this.activeFilter, this.selectedColumns);
     const dataTableData = DataService.getTableData(this.navigationItems, this.activeFilter, this.selectedColumns);
     this.dtOptions = {
       destroy: true,
@@ -94,19 +93,22 @@ export class DataTableComponent implements AfterViewInit, OnDestroy, OnInit {
     this.dataTable = this.nativeDataTable.DataTable(this.dtOptions);
 
     // Reconfigure DataTable elements to wrap scroll around Table
-    this.dataTable.buttons().containers().appendTo($('#dataTablesButtons'));
-    $('#dataTableWrapper').insertBefore('#DataTables_Table_0');
-    $('#dataTableWrapper').html($('#DataTables_Table_0'));
-    $('#dataTableSearch').html('');
-    $('#dataTableSearch').html($('.dataTables_filter'));
-    $('#dataTableWrapperTop').css({width: $('#dataTableWrapper').css('width')});
-    $('#dataTableWrapperTop div').css({width: $('#dataTableWrapper table').css('width')});
-    $('#dataTableWrapperTop').scroll(() => {
-      $('#dataTableWrapper').scrollLeft($('#dataTableWrapperTop').scrollLeft());
-    });
-    $('#dataTableWrapper').scroll(() => {
-      $('#dataTableWrapperTop').scrollLeft($('#dataTableWrapper').scrollLeft());
-    });
+    const existingElements = $('#dataTablesButtons').find('button.buttons-excel').length;
+    if (!existingElements) {
+      this.dataTable.buttons().containers().appendTo($('#dataTablesButtons'));
+      $('#dataTableWrapper').insertBefore('#DataTables_Table_0');
+      $('#dataTableWrapper').html($('#DataTables_Table_0'));
+      $('#dataTableSearch').html('');
+      $('#dataTableSearch').html($('.dataTables_filter'));
+      $('#dataTableWrapperTop').css({width: $('#dataTableWrapper').css('width')});
+      $('#dataTableWrapperTop div').css({width: $('#dataTableWrapper table').css('width')});
+      $('#dataTableWrapperTop').scroll(() => {
+        $('#dataTableWrapper').scrollLeft($('#dataTableWrapperTop').scrollLeft());
+      });
+      $('#dataTableWrapper').scroll(() => {
+        $('#dataTableWrapperTop').scrollLeft($('#dataTableWrapper').scrollLeft());
+      });
+    }
   }
 
   openModal(template: TemplateRef<any>) {
