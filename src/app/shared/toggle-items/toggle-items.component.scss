@@ -1,10 +1,12 @@
 div {
   margin-bottom: 10px;
 
-  div {
-    display: inline-block;
-    margin-left: 10px;
+  button {
     font-size: 12px;
+    margin: 0 0 0 10px;
+    color: #0071bc;
     text-decoration: underline;
+    background-color: white;
+    padding: 0;
   }
 }

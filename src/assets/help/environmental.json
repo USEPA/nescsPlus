@@ -7,27 +7,27 @@
   {
     "id": 11,
     "text": "Aquatic  - Open Water",
-    "helpText": "Areas of open water, generally with less than 25% cover of vegetation or soil."
+    "helpText": "Areas of open water, including areas that are intertidal, and including habitats dominated by rooted or attached vegetation that extends into subtidal or permanently submerged aquatic habitats (such as seagrasses, submerged aquatic vegetation, kelp beds)."
   },
   {
     "id": 111,
     "text": "Aquatic  - Open Water - Rivers and Streams",
-    "helpText": "All streams and rivers that have flowing water during the summer excluding tidal rivers with salinity greater than 0.5ppt. Run-of-the-river ponds and pools are included while reservoirs are excluded. Source: Adapted from US EPA National Aquatic Resource Surveys."
+    "helpText": "All streams and rivers that have flowing water during the summer excluding tidal rivers with salinity greater than 0.5ppt. Run-of-the-river ponds and pools are included while reservoirs are excluded. Includes areas with submerged aquatic vegetation. Source: Adapted from US EPA National Aquatic Resource Surveys."
   },
   {
     "id": 112,
     "text": "Aquatic  - Open Water - Lakes and Ponds",
-    "helpText": "All lakes, reservoirs, and ponds that are permanent water bodies. Lakes that are saline are excluded as are those used for aquaculture, disposal-tailings, sewage treatment, evaporation, or other unspecified disposal use. Source: Adapted from US EPA National Aquatic Resource Surveys."
+    "helpText": "All lakes, reservoirs, and ponds that are permanent water bodies. Lakes that are saline are excluded as are those used for aquaculture, disposal-tailings, sewage treatment, evaporation, or other unspecified disposal use. Includes areas with submerged aquatic vegetation. Source: Adapted from US EPA National Aquatic Resource Surveys."
   },
   {
     "id": 113,
     "text": "Aquatic  - Open Water - Near Coastal Marine and Estuaries",
-    "helpText": "All coastal waters of the conterminous United States with salinity greater than 0.5ppt  to confluence with the ocean, including inland waterways tidal rivers and creeks, lagoons, fjords, bays, and major embayments. The seaward boundary extends out to where an imaginary straight-line intersecting two land features would fully enclose a body of coastal water. All waters within the enclosed area are defined as estuarine, regardless of depth or salinity. Source: Adapted from US EPA National Aquatic Resource Surveys."
+    "helpText": "All coastal waters of the conterminous United States with salinity greater than 0.5ppt  to confluence with the ocean, including inland waterways tidal rivers and creeks, lagoons, fjords, bays, and major embayments. The seaward boundary extends out to where an imaginary straight-line intersecting two land features would fully enclose a body of coastal water. All waters within the enclosed area are defined as estuarine, regardless of depth or salinity. Includes areas with submerged aquatic vegetation, such as seagrass beds, kelp beds, and algal mats. Source: Adapted from US EPA National Aquatic Resource Surveys."
   },
   {
     "id": 114,
     "text": "Aquatic  - Open Water - Open Oceans and Seas",
-    "helpText": "All saline waters seaward of near coastal marine systems Source: Adapted from US EPA National Aquatic Resource Surveys."
+    "helpText": "All saline waters seaward of near coastal marine systems. Generally deeper waters than the photic zone that supports submerged aquatic vegetation. Source: Adapted from US EPA National Aquatic Resource Surveys."
   },
   {
     "id": 12,

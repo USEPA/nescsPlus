@@ -1,14 +1,11 @@
 <div class="inputBorder">
   <div class="row form-group">
     <div class="col-md-11">
-      Pick one element from each of the four lists below to specify a 4-component FES.
-      Click on the "Add" button to add your selection to the table below. Repeat this
-      process to add each additional 4-component FES of interest to the table. Use the
-      "Edit Selected Row" and "Delete Selected Row" buttons to modify your table. If
-      you
-      would like to download your table to a spreadsheet file, click on the "Export
-      CSV"
-      button.
+      Pick one element from each of the four lists below to specify a 4-component Final Ecosystem Service (FES).
+      Click on the "Add" button to add your selection to the table below. Repeat this process to add each additional
+      4-component FES of interest to the table. To modify your table, click anywhere on the row of interest to select
+      it, and then click the Edit or Delete button. If you would like to download your table to a spreadsheet file,
+      click on the "Export CSV" button.
     </div>
   </div>
   <div class="row">
@@ -22,10 +19,10 @@
       <span validation="environmental" class="help-block"></span>
     </div>
     <div class="col-md-12">
-      <ng-select [items]="environmentalList" placeholder="Select" id="environmental"
+      <ng-select [items]="environmentalList" placeholder="Select" id="environmental" name="environmental"
                  bindLabel="text" labelForId="environmental"
                  bindValue="id"
-                 (change)="enableButton()"
+                 (change)="toggleButton()"
                  [(ngModel)]="selectedEnvironmental">
       </ng-select>
     </div>
@@ -36,10 +33,10 @@
       <span validation="ecological" class="help-block"></span>
     </div>
     <div class="col-md-12">
-      <ng-select [items]="ecologicalList" placeholder="Select" id="ecological"
+      <ng-select [items]="ecologicalList" placeholder="Select" id="ecological" name="ecological"
                  bindLabel="text" labelForId="ecological"
                  bindValue="id"
-                 (change)="enableButton()"
+                 (change)="toggleButton()"
                  [(ngModel)]="selectedEcological">
       </ng-select>
     </div>
@@ -50,10 +47,10 @@
       <span validation="directUse" class="help-block"></span>
     </div>
     <div class="col-md-12">
-      <ng-select [items]="directUseList" placeholder="Select" id="directUse"
+      <ng-select [items]="directUseList" placeholder="Select" id="directUse" name="directUse"
                  bindLabel="text" labelForId="directUse"
                  bindValue="id"
-                 (change)="enableButton()"
+                 (change)="toggleButton()"
                  [(ngModel)]="selectedDirectUse">
       </ng-select>
     </div>
@@ -64,21 +61,22 @@
       <span validation="directUser" class="help-block"></span>
     </div>
     <div class="col-md-12">
-      <ng-select [items]="directUserList" placeholder="Select" id="directUser"
+      <ng-select [items]="directUserList" placeholder="Select" id="directUser" name="directUser"
                  bindLabel="text" labelForId="directUser"
                  bindValue="id"
-                 (change)="enableButton()"
+                 (change)="toggleButton()"
                  [(ngModel)]="selectedDirectUser">
       </ng-select>
     </div>
   </div>
   <div class="row mt-3">
     <div class="col-md-12">
-      <div *ngIf="buttonAction.indexOf('edit')!==-1">
-        <button class="btn btn-primary float-right" [disabled]="buttonAction=='editDisable'" (click)="editAction()">Edit</button>
+      <div *ngIf="buttonAction.action == Action.Edit">
+        <button class="btn btn-primary float-right" [disabled]="!enableButton" (click)="editAction()">
+          Edit {{buttonAction.title}}</button>
       </div>
-      <div *ngIf="buttonAction.indexOf('add')!==-1">
-        <button class="btn btn-primary float-right" [disabled]="buttonAction=='addDisable'" (click)="openNameModal()">Add</button>
+      <div *ngIf="buttonAction.action == Action.Add">
+        <button class="btn btn-primary float-right" [disabled]="!enableButton" (click)="openNameModal()">Add</button>
       </div>
     </div>
   </div>

@@ -1,14 +1,16 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Subject} from 'rxjs';
 import {SingleQueryItem} from '../models/single-query-item';
+import {SingleQueryAction} from '../models/single-query-action';
+import {Action} from '../models/enums';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SingleQueryService {
   public singleQueryMap = new BehaviorSubject(new Map<string, SingleQueryItem>());
-  public singleQueryAction = new BehaviorSubject(String('add'));
-
+  public singleQueryAction = new BehaviorSubject(new SingleQueryAction());
+  public modalHidden = new BehaviorSubject(false);
   constructor() {
   }
 

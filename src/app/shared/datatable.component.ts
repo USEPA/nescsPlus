@@ -9,6 +9,7 @@ import {ExcelService} from '../services/excel.service';
 import {DataService} from '../services/data.service';
 import {ActiveFilter} from '../models/enums';
 import {Constants} from '../models/constants';
+import 'datatables.net-bs4';
 
 declare var $;
 
@@ -89,6 +90,7 @@ export class DataTableComponent implements AfterViewInit, OnDestroy, OnInit {
     if (this.dataTable) {
       this.dataTable.destroy();
     }
+    console.log('this', this.table);
     this.nativeDataTable = $(this.table.nativeElement);
     this.dataTable = this.nativeDataTable.DataTable(this.dtOptions);
 
@@ -96,18 +98,6 @@ export class DataTableComponent implements AfterViewInit, OnDestroy, OnInit {
     const existingElements = $('#dataTablesButtons').find('button.buttons-excel').length;
     if (!existingElements) {
       this.dataTable.buttons().containers().appendTo($('#dataTablesButtons'));
-      $('#dataTableWrapper').insertBefore('#DataTables_Table_0');
-      $('#dataTableWrapper').html($('#DataTables_Table_0'));
-      $('#dataTableSearch').html('');
-      $('#dataTableSearch').html($('.dataTables_filter'));
-      $('#dataTableWrapperTop').css({width: $('#dataTableWrapper').css('width')});
-      $('#dataTableWrapperTop div').css({width: $('#dataTableWrapper table').css('width')});
-      $('#dataTableWrapperTop').scroll(() => {
-        $('#dataTableWrapper').scrollLeft($('#dataTableWrapperTop').scrollLeft());
-      });
-      $('#dataTableWrapper').scroll(() => {
-        $('#dataTableWrapperTop').scrollLeft($('#dataTableWrapper').scrollLeft());
-      });
     }
   }
 

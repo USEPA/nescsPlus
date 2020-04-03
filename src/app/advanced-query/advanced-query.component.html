@@ -39,7 +39,7 @@
 
   <div class="form-radios">
     <br>
-    <div>Please choose one: <span class="bestSearchInfo" (click)="openModal()">Which search is best for me?</span>
+    <div>Please choose one: <button class="bestSearchInfo" (click)="openModal()">Which search is best for me?</button>
     </div>
     <div class="mockLabel" (click)="activeFilterChange(ActiveFilter.Direct)">
       <div>
@@ -108,7 +108,7 @@
     <div class="adjoining-container">
       <app-toggle-items [data]="navItems[4].children"></app-toggle-items>
       <app-list [data]="navItems[4].children" [serviceName]="'advancedQuery'" [level]="level"
-                [disableChildren]="disableChildren" class="filterContainer"></app-list>
+                [disableChildren]="disableChildren" (checked)="onChildChecked()" class="filterContainer"></app-list>
     </div>
   </div>
 

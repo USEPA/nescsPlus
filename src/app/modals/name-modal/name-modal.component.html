@@ -1,6 +1,6 @@
 <!-- Name Modal -->
 <div class="modal-header">
-  <div class="modal-title pull-left h4">Name of Filtered List</div>
+  <div class="modal-title pull-left h4">Name of 4-Component Final Ecosystem Service (FES)</div>
   <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
     <span aria-hidden="true">&times;</span>
   </button>
@@ -10,12 +10,12 @@
     <div class="form-group">
       <label for="filterName" class="control-label">Name:</label>
       <span class="help-block" validation="nameFilteredItem"></span>
-      <input type="text" class="form-control" id="filterName" name="filterName" [(ngModel)]="filterName">
+      <input type="text" class="form-control" id="filterName" name="filterName" [(ngModel)]="singleAction.title">
     </div>
   </form>
 </div>
 
 <div class="modal-footer">
   <button type="button" class="btn btn-secondary" (click)="bsModalRef.hide()">Cancel</button>
-  <button type="button" class="btn btn-primary" [disabled]="filterName.length===0" (click)="actionItem()">Confirm</button>
+  <button type="button" class="btn btn-primary" [disabled]="singleAction.title.length===0" (click)="actionItem()">Confirm</button>
 </div>

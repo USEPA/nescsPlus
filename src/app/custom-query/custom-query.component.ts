@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {AppService} from '../services/app.service';
 import {Options} from '../models/options';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap';
@@ -6,13 +6,15 @@ import {NameModalComponent} from '../modals/name-modal/name-modal.component';
 import {SingleQueryService} from '../services/single-query.service';
 import {SingleQueryItem} from '../models/single-query-item';
 import {Subscription} from 'rxjs';
+import {SingleQueryAction} from '../models/single-query-action';
+import {Action} from '../models/enums';
 
 @Component({
   selector: 'app-custom-query',
   templateUrl: './custom-query.component.html',
   styleUrls: ['./custom-query.component.scss']
 })
-export class CustomQueryComponent implements OnInit {
+export class CustomQueryComponent implements OnInit, OnDestroy {
   @ViewChild('nameTemplate', {static: false}) nameTemplate;
   ecologicalList: Array<Options>;
   environmentalList: Array<Options>;
@@ -22,13 +24,15 @@ export class CustomQueryComponent implements OnInit {
   selectedEnvironmental: any;
   selectedDirectUse: any;
   selectedDirectUser: any;
-  buttonAction = 'addDisable';
-  nameModalRef: BsModalRef;
+  buttonAction: SingleQueryAction;
+  enableButton: boolean;
   singleQuerySubscription: Subscription;
   singleQueryActionSubscription: Subscription;
+  modalHiddenSubscription: Subscription;
   singleQueryMap: Map<string, SingleQueryItem>;
   showDataTable: boolean;
   filterName: string;
+  Action = Action;
 
   constructor(private appService: AppService,
               private modalService: BsModalService,
@@ -42,13 +46,19 @@ export class CustomQueryComponent implements OnInit {
     this.singleQueryActionSubscription = this.singleQueryService.singleQueryAction.subscribe(
       buttonAction => {
         this.buttonAction = buttonAction;
-        this.enableButton();
+        this.toggleButton();
+      }
+    );
+    this.modalHiddenSubscription = this.singleQueryService.modalHidden.subscribe(
+      isHidden => {
+        this.buttonAction = new SingleQueryAction();
+        this.buttonAction.action = Action.Add;
+        this.buttonAction.title = '';
       }
     );
   }
 
   ngOnInit(): void {
-    console.log('CustomQueryComponent - ngOnInit');
     this.appService.setNavigation('customQuery');
     this.ecologicalList = this.retrieveOptions('ecological');
     this.environmentalList = this.retrieveOptions('environmental');
@@ -56,25 +66,31 @@ export class CustomQueryComponent implements OnInit {
     this.directUserList = this.retrieveOptions('directUser');
   }
 
-  enableButton(): void {
+  ngOnDestroy(): void {
+    this.singleQueryActionSubscription.unsubscribe();
+    this.singleQuerySubscription.unsubscribe();
+    this.modalHiddenSubscription.unsubscribe();
+  }
+
+  toggleButton(): void {
+    this.enableButton = false;
     if (this.selectedDirectUse && this.selectedDirectUser && this.selectedEcological && this.selectedEnvironmental) {
-      this.buttonAction = this.buttonAction.replace('Disable', '');
-    } else if (this.buttonAction.indexOf('Disable') === -1) {
-      this.buttonAction += 'Disable';
+      this.enableButton = true;
     }
   }
 
   openNameModal(): void {
+    this.buttonAction.title = '';
     const initialState = {
+      animated: true,
       environmental: this.selectedEnvironmental,
       ecological: this.selectedEcological,
       directUse: this.selectedDirectUse,
       directUser: this.selectedDirectUser,
-      action: this.buttonAction,
-      filterName: '',
+      singleAction: this.buttonAction,
       originalName: ''
     };
-    this.nameModalRef = this.modalService.show(NameModalComponent, {initialState});
+    const nameModalRef = this.modalService.show(NameModalComponent, {initialState});
   }
 
   editAction(): void {
@@ -83,16 +99,15 @@ export class CustomQueryComponent implements OnInit {
       ecological: this.selectedEcological,
       directUse: this.selectedDirectUse,
       directUser: this.selectedDirectUser,
-      action: this.buttonAction,
-      filterName: this.filterName,
+      singleAction: this.buttonAction,
       originalName: this.filterName
     };
-    this.nameModalRef = this.modalService.show(NameModalComponent, {initialState});
+    const nameModalRef: BsModalRef = this.modalService.show(NameModalComponent, {initialState});
   }
 
   setAction(event): void {
     this.buttonAction = event;
-    this.enableButton();
+    this.toggleButton();
   }
 
   initializeEdit(map): void {

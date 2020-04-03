@@ -1,10 +1,12 @@
-import {AfterViewInit, Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {SingleQueryItem} from '../../models/single-query-item';
 import {SingleQueryService} from '../../services/single-query.service';
 import {DeleteModalComponent} from '../../modals/delete-modal/delete-modal.component';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap';
 import {Constants} from '../../models/constants';
+import {SingleQueryAction} from '../../models/single-query-action';
+import {Action} from '../../models/enums';
 
 declare var $;
 
@@ -13,7 +15,7 @@ declare var $;
   templateUrl: './single-query-table.component.html',
   styleUrls: ['./single-query-table.component.scss']
 })
-export class SingleQueryTableComponent implements OnInit, AfterViewInit {
+export class SingleQueryTableComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('singleDataTable', {static: false}) table;
   @Output() editItem: EventEmitter<Map<string, SingleQueryItem>> = new EventEmitter<Map<string, SingleQueryItem>>();
   @Output() setAction: EventEmitter<string> = new EventEmitter<string>();
@@ -25,6 +27,7 @@ export class SingleQueryTableComponent implements OnInit, AfterViewInit {
   dataTable: any;
   displayOptions: any;
   CONTACT_US = Constants.CONTACT_US;
+  actionItem: SingleQueryAction = new SingleQueryAction();
 
   constructor(private modalService: BsModalService, private singleQueryService: SingleQueryService) {
     this.displayOptions = this.singleQueryService.prepDisplay();
@@ -32,6 +35,12 @@ export class SingleQueryTableComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     console.log('init single-query-table');
+  }
+
+  ngOnDestroy(): void {
+    if (this.dataTable) {
+      this.dataTable.destroy();
+    }
   }
 
   ngAfterViewInit(): void {
@@ -61,12 +70,6 @@ export class SingleQueryTableComponent implements OnInit, AfterViewInit {
           }
         },
         {
-          text: 'Edit',
-          name: 'edit',
-          action: this.editRow.bind(this),
-          enabled: false
-        },
-        {
           text: 'Delete',
           name: 'delete',
           action: this.deleteRow.bind(this),
@@ -88,15 +91,21 @@ export class SingleQueryTableComponent implements OnInit, AfterViewInit {
         const element = $(event.currentTarget);
         const tdExist = element.find('td').length !== 0;
         const dataTableAPI = this.nativeDataTable.DataTable();
-        if (element.hasClass('selected')) {
-          element.removeClass('selected');
-          dataTableAPI.buttons(0, '1, 2').disable();
-          this.singleQueryService.singleQueryAction.next('add');
-        } else if (tdExist) {
-          dataTableAPI.$('tr.selected').removeClass('selected');
-          element.addClass('selected');
-          dataTableAPI.buttons(0, '1, 2').enable();
-          this.singleQueryService.singleQueryAction.next('edit');
+        if (tdExist) {
+          if (element.hasClass('selected')) {
+            element.removeClass('selected');
+            dataTableAPI.buttons(0, '1').disable();
+            this.actionItem.action = Action.Add;
+            this.actionItem.title = '';
+            this.singleQueryService.singleQueryAction.next(this.actionItem);
+          } else {
+            dataTableAPI.$('tr.selected').removeClass('selected');
+            element.addClass('selected');
+            dataTableAPI.buttons(0, '1').enable();
+            this.actionItem.action = Action.Edit;
+            this.actionItem.title = $(element.find('td')[0]).html();
+            this.sendState(this.actionItem.title);
+          }
         }
       });
     }
@@ -104,18 +113,21 @@ export class SingleQueryTableComponent implements OnInit, AfterViewInit {
       this.dataTable.destroy();
     }
     this.dataTable = this.nativeDataTable.DataTable(this.dtOptions);
-
+    if ($('#dataTablesButtons').length) {
+      $('#dataTablesButtons').html('');
+    }
     // Reconfigure DataTable elements to wrap scroll around Table
     this.dataTable.buttons().containers().appendTo($('#dataTablesButtons'));
     $('#dataTableSearch').html('');
     $('#dataTableSearch').html($('.dataTables_filter'));
   }
 
-  editRow(e, dt, node, config): void {
-    const key = dt.rows('.selected', {selected: true}).data()[0][0];
+  sendState(key: string) {
+    console.log('sendState');
     const editItem = new Map<string, SingleQueryItem>();
     editItem.set(key, this.singleQueryMap.get(key));
     this.editItem.emit(editItem);
+    this.singleQueryService.singleQueryAction.next(this.actionItem);
   }
 
   deleteRow(e, dt, node, config): void {

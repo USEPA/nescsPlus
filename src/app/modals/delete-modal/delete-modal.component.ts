@@ -1,6 +1,8 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {SingleQueryService} from '../../services/single-query.service';
 import {BsModalRef} from 'ngx-bootstrap';
+import {SingleQueryAction} from '../../models/single-query-action';
+import {Action} from '../../models/enums';
 
 @Component({
   selector: 'app-delete-modal',
@@ -20,7 +22,9 @@ export class DeleteModalComponent implements OnInit {
     const existingMap = this.singleQueryService.singleQueryMap.getValue();
     existingMap.delete(this.key);
     this.singleQueryService.singleQueryMap.next(existingMap);
-    this.singleQueryService.singleQueryAction.next('add');
+    const singleAction = new SingleQueryAction();
+    singleAction.action = Action.Add;
+    this.singleQueryService.singleQueryAction.next(singleAction);
     this.bsModalRef.hide();
   }
 

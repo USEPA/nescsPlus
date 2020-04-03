@@ -7,6 +7,7 @@ p {
   overflow: auto;
 }
 
+
 .panel-container {
   // border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
   border-radius: .25rem;
@@ -39,6 +40,14 @@ p {
   }
 }
 
+.bestSearchInfo {
+  font-size: 14px;
+  margin: -18px 0 0 10px;
+  color: #0071bc;
+  text-decoration: underline;
+  background-color: white;
+  padding: 0px;
+}
 
 .adjoining-container {
   padding: 12px 0;
@@ -53,5 +62,9 @@ p {
 
 .form-radios {
   margin-bottom: 8px;
+}
+
+.btn-primary {
+  background: #0071bc;
 }
 

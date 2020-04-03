@@ -6,7 +6,6 @@ import {Subscription} from 'rxjs';
 import {ActiveFilter} from '../models/enums';
 import {SearchInstructionsHowWhoModalComponent} from '../modals/search-instructions-how-who-modal/search-instructions-how-who-modal.component';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap';
-import {Router} from '@angular/router';
 import {HelpItem} from '../models/help-item';
 import {HelpComponent} from '../modals/help/help.component';
 

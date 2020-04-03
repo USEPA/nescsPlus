@@ -21,29 +21,6 @@
   margin-top: 4px;
 }
 
-div#homeContent {
-  margin-bottom: 10px;
-
-
-  h1 {
-    margin-bottom: -5px;
-  }
-
-  div {
-    line-height: 1.5;
-    font-size: 14px;
-  }
-
-  div:first-child {
-    line-height: 1.5;
-    font-size: 14px;
-    margin-bottom: 10px
-  }
-
-  a {
-    color: blue
-  }
-}
 
 
 .accordion-toggle {
@@ -212,23 +189,18 @@ div#homeContent {
   }
 }
 
-
-.bestSearchInfo {
-  font-size: 14px;
-  margin-left: 10px;
-  color: #0071bc;
-  text-decoration: underline;
-  margin-top: 9px;
-
-  &:hover {
-    cursor: pointer;
-  }
-}
-
 @media (min-width: 576px) {
   .modal-dialog  {
     max-width: initial !important;
     width: 50% !important;
+  }
+}
+
+#singleTableDisplay {
+  .dt-button {
+    &.disabled {
+      opacity: .5;
+    }
   }
 }
 

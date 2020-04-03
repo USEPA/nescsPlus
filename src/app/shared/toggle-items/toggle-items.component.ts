@@ -25,9 +25,6 @@ export class ToggleItemsComponent implements OnInit {
 
     data.forEach((item) => {
       item.checked = check;
-      if (level && !item.checked) {
-        item.disable = true;
-      }
 
       if (item.children.length) {
         this.toggleSelect(item.children, check, level + 1);

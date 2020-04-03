@@ -10,7 +10,6 @@ export class AppService {
   currentNavigation$ = this.currentNavigation.asObservable();
 
   setNavigation(value: string) {
-    console.log('AppService - setNavigation');
     this.currentNavigation.next(value);
   }
 }
