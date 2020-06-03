@@ -1,14 +1,19 @@
 <div id="singleTableDisplay" style="padding: 20px;border: 1px solid darkslategray;border-radius: 9px;margin-top:10px">
 
   <div class="row">
-    <div id="dataTablesButtons"></div>
+    <div id="singleDataTablesButtons"></div>
   </div>
-  <div id="disclaimer">NESCS Plus offers two options for searching. (1) These are the results from “Query All Options”
+  <div id="disclaimer">
+    <p><b>Instructions:</b> To modify your table, click anywhere on the row of interest to select
+    it, and then click the Edit or Delete button. If you would like to download your table to a spreadsheet file,
+      click on the "Export CSV" button.</p>
+    <p><b>Disclaimer:</b> NESCS Plus offers two options for searching. (1) These are the results from “Query All Options”
     which enables users to consider every possibility and build a custom table a single row at a time. If you discover a
     row that is missing that should be included in the "core" set, please let us know by clicking <a
       href="{{CONTACT_US}}">"Contact Us."</a> (2) In contrast, "Browse Core Options" refines the >75,000 possible
-    combinations to a shorter "core" set of ~1,000 most plausible combinations.
+      combinations to a shorter "core" set of ~1,000 most plausible combinations.</p>
   </div>
 
+  <div id="singleDataTableSearch"></div>
   <table #singleDataTable id="singleDataTable" class="row-border hover"></table>
 </div>

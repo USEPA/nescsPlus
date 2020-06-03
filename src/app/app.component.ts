@@ -1,4 +1,5 @@
 import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import {environment} from '../environments/environment';
 
 @Component({
   selector: 'app-root',

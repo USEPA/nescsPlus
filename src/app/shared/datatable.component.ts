@@ -9,7 +9,6 @@ import {ExcelService} from '../services/excel.service';
 import {DataService} from '../services/data.service';
 import {ActiveFilter} from '../models/enums';
 import {Constants} from '../models/constants';
-import 'datatables.net-bs4';
 
 declare var $;
 

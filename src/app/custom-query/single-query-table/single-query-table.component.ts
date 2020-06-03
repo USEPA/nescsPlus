@@ -55,6 +55,10 @@ export class SingleQueryTableComponent implements OnInit, AfterViewInit, OnDestr
   }
 
   renderDataTable(): void {
+    const today = new Date();
+    const cMonth = today.getMonth() + 1;
+    const cDay = today.getDate();
+    const dateNow = ((cMonth < 10) ? '0' + cMonth : cMonth) + '-' + ((cDay < 10) ? '0' + cDay : cDay) + '-' + today.getFullYear();
     this.dtOptions = {
       dom: 'Bfrtip',
       buttons: [
@@ -62,9 +66,10 @@ export class SingleQueryTableComponent implements OnInit, AfterViewInit, OnDestr
           extend: 'csv', text: 'Export CSV', className: 'csvExport', customize: csv => {
             return '# National Ecosystem Services Classification System (NESCS Plus) \n' +
               '# http://www.epa.gov/eco-research/NESCS \n \n' +
+              '# Search Date: ' + dateNow + '\n' +
               '# NESCS Plus offers two options for searching. \n' +
               '# (1) These are the results from "Query All Options" which enables users to consider every possibility and build a custom table a single row at a time. \n' +
-              '# If you discover a row that is missing that should be included in the "core" set please let us know by clicking "Provide Feedback." \n' +
+              '#      If you discover a row that is missing that should be included in the "core" set please let us know by clicking "Provide Feedback." \n' +
               '# (2) In contrast "Browse Core Options" refines the > 75000 possible combinations to a shorter "core" set of ~1000 most plausible combinations. \n \n' +
               csv;
           }
@@ -113,13 +118,13 @@ export class SingleQueryTableComponent implements OnInit, AfterViewInit, OnDestr
       this.dataTable.destroy();
     }
     this.dataTable = this.nativeDataTable.DataTable(this.dtOptions);
-    if ($('#dataTablesButtons').length) {
-      $('#dataTablesButtons').html('');
+    if ($('#singleDataTablesButtons').length) {
+      $('#singleDataTablesButtons').html('');
     }
     // Reconfigure DataTable elements to wrap scroll around Table
-    this.dataTable.buttons().containers().appendTo($('#dataTablesButtons'));
-    $('#dataTableSearch').html('');
-    $('#dataTableSearch').html($('.dataTables_filter'));
+    this.dataTable.buttons().containers().appendTo($('#singleDataTablesButtons'));
+    $('#singleDataTableSearch').html('');
+    $('#singleDataTableSearch').html($('.dataTables_filter'));
   }
 
   sendState(key: string) {

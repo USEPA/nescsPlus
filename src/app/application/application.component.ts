@@ -17,6 +17,7 @@ export class ApplicationComponent implements OnInit {
   appServiceCurrent: Subscription;
   modalRef: BsModalRef;
   CONTACT_US = Constants.CONTACT_US;
+  deployPath = environment.deployPath;
 
   // Create a "Last Updated" date for the One EPA Template footer
   lastModifiedDate = new Date(document.lastModified);
