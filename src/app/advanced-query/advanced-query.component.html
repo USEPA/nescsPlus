@@ -7,7 +7,7 @@
     button. </p>
 
   <div class="panel-container greenBackground" (click)="toggleClass($event,'active')">
-    Where? (Code: WWWW)<i class="informationIcon"></i>
+    Where? <span>(Code: </span>WWWW<span>)</span><i class="informationIcon"></i>
     <div class="inner-class">
       <b><i>Environment classes</i></b> <i (click)="helpModal('environment', 'Environment classes')"
                                            class="i-ui-icon"></i> and <b><i>subclasses</i></b> are the spatial
@@ -21,7 +21,7 @@
   </div>
 
   <div class="panel-container lightGreenBackground" (click)="toggleClass($event,'active')">
-    What? (Code: X)<i class="informationIcon"></i>
+    What? <span>(Code: </span>X<span>)</span><i class="informationIcon"></i>
     <div class="inner-class">
       <b><i>Ecological End-Product Classes</i></b> <i (click)="helpModal('ecological','Ecological End-Product Classes')"
                                                       class="i-ui-icon"></i> are the relevant biophysical components of
@@ -62,7 +62,7 @@
 
   <div *ngIf="activeFilter === ActiveFilter.Direct">
     <div class="panel-container darkBlueBackground" (click)="toggleClass($event,'active')">
-      How? (Code: YYYY)<i class="informationIcon"></i>
+      How? <span>(Code: </span>YYYY<span>)</span><i class="informationIcon"></i>
       <div class="inner-class">
         <b><i>Direct Use Classes</i></b> <i (click)="helpModal('directUse','Direct Use Classes')" class="i-ui-icon"></i>
         and <b><i>Subclasses</i></b> are the ways each ecological end-product are directly used or appreciated by humans
@@ -75,7 +75,7 @@
     </div>
 
     <div class="panel-container lightBlueBackground" (click)="toggleClass($event,'active')">
-      Who? (Code: ZZZZ)<i class="informationIcon"></i>
+      Who? <span>(Code: </span>ZZZZ<span>)</span><i class="informationIcon"></i>
       <div class="inner-class">
         North American Industrial Classification System (<a href="https://www.census.gov/eos/www/naics/"
                                                             target="_blank">NAICS)</a>
@@ -98,7 +98,7 @@
   <div *ngIf="activeFilter === ActiveFilter.Beneficiary">
 
     <div class="blueBackground panel-container" (click)="toggleClass($event,'active')">
-      How? (Code: BBB)<i class="informationIcon"></i>
+      How? <span>(Code: </span>BBB<span>)</span><i class="informationIcon"></i>
       <div class="inner-class">
         <b><i>Beneficiary classes</i></b> <i (click)="helpModal('beneficiary','Beneficiary classes')"
                                              class="i-ui-icon"></i> and <b><i>subclasses</i></b> are the interests of
