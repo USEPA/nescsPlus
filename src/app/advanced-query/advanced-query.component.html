@@ -1,15 +1,13 @@
 <div style="padding: 20px;border: 1px solid darkslategray;border-radius: 9px;">
   <p>Select checkboxes for the classes and subclasses to be included in your query. Click on "Environmental
-    [Sub-]Classes"
-    and "Ecological End-product Classes" to see checkboxes for each of these two components. Farther down, you can
-    choose
-    to select from either the "Direct Use/Non-use AND Direct User" classes or from "Beneficiary" classes. After
-    finalizing
-    your selections through the checkboxes, click on the "Query Data" button to view the results of your query. If you
-    would like to download the results to a spreadsheet file, click on the "Export CSV" button. </p>
+    [Sub-]Classes" and "Ecological End-product Classes" to see checkboxes for each of these two components. Farther
+    down, you can choose to select from either the "Direct Use/Non-use AND Direct User" classes or from "Beneficiary"
+    classes. After finalizing your selections through the checkboxes, click on the "Query Data" button to view the
+    results of your query. If you would like to download the results to a spreadsheet file, click on the "Export CSV"
+    button. </p>
 
   <div class="panel-container greenBackground" (click)="toggleClass($event,'active')">
-    Where? <i class="informationIcon"></i>
+    Where? (Code: WWWW)<i class="informationIcon"></i>
     <div class="inner-class">
       <b><i>Environment classes</i></b> <i (click)="helpModal('environment', 'Environment classes')"
                                            class="i-ui-icon"></i> and <b><i>subclasses</i></b> are the spatial
@@ -23,7 +21,7 @@
   </div>
 
   <div class="panel-container lightGreenBackground" (click)="toggleClass($event,'active')">
-    What? <i class="informationIcon"></i>
+    What? (Code: X)<i class="informationIcon"></i>
     <div class="inner-class">
       <b><i>Ecological End-Product Classes</i></b> <i (click)="helpModal('ecological','Ecological End-Product Classes')"
                                                       class="i-ui-icon"></i> are the relevant biophysical components of
@@ -39,7 +37,8 @@
 
   <div class="form-radios">
     <br>
-    <div>Please choose one: <button class="bestSearchInfo" (click)="openModal()">Which search is best for me?</button>
+    <div>Please choose one:
+      <button class="bestSearchInfo" (click)="openModal()">Which search is best for me?</button>
     </div>
     <div class="mockLabel" (click)="activeFilterChange(ActiveFilter.Direct)">
       <div>
@@ -63,7 +62,7 @@
 
   <div *ngIf="activeFilter === ActiveFilter.Direct">
     <div class="panel-container darkBlueBackground" (click)="toggleClass($event,'active')">
-      How? <i class="informationIcon"></i>
+      How? (Code: YYYY)<i class="informationIcon"></i>
       <div class="inner-class">
         <b><i>Direct Use Classes</i></b> <i (click)="helpModal('directUse','Direct Use Classes')" class="i-ui-icon"></i>
         and <b><i>Subclasses</i></b> are the ways each ecological end-product are directly used or appreciated by humans
@@ -76,11 +75,12 @@
     </div>
 
     <div class="panel-container lightBlueBackground" (click)="toggleClass($event,'active')">
-      Who? <i class="informationIcon"></i>
+      Who? (Code: ZZZZ)<i class="informationIcon"></i>
       <div class="inner-class">
         North American Industrial Classification System (<a href="https://www.census.gov/eos/www/naics/"
                                                             target="_blank">NAICS)</a>
-        <a class="exit-disclaimer" href="http://www2.epa.gov/home/exit-epa" title="EPA's External Link Disclaimer">Exit</a><br>
+        <a class="exit-disclaimer" href="http://www2.epa.gov/home/exit-epa"
+           title="EPA's External Link Disclaimer">Exit</a><br>
         <b><i>Direct User Classes</i></b> <i (click)="helpModal('directUser','Direct User Classes')"
                                              class="i-ui-icon"></i> and <b><i>Subclasses</i></b> are the sector(s) of
         the
@@ -98,7 +98,7 @@
   <div *ngIf="activeFilter === ActiveFilter.Beneficiary">
 
     <div class="blueBackground panel-container" (click)="toggleClass($event,'active')">
-      How? <i class="informationIcon"></i>
+      How? (Code: BBB)<i class="informationIcon"></i>
       <div class="inner-class">
         <b><i>Beneficiary classes</i></b> <i (click)="helpModal('beneficiary','Beneficiary classes')"
                                              class="i-ui-icon"></i> and <b><i>subclasses</i></b> are the interests of
@@ -122,6 +122,7 @@
 </div>
 
 
-<div *ngIf="showReport" class="tab-content mt-1" id="reportContent" style="padding: 20px;border: 1px solid darkslategray;border-radius: 9px;">
+<div *ngIf="showReport" class="tab-content mt-1" id="reportContent"
+     style="padding: 20px;border: 1px solid darkslategray;border-radius: 9px;">
   <app-datatable [navigationItems]="navItems" [activeFilter]="activeFilter"></app-datatable>
 </div>
