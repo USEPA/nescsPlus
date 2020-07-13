@@ -39,11 +39,10 @@
     </div>
     <div class="mockLabel" (click)="activeFilterChange(ActiveFilter.Direct)">
       <div>
-        <div class="radialBox adjust" [ngClass]="{'selected':activeFilter == ActiveFilter.Direct}"></div>
+        <div class="radialBox" [ngClass]="{'selected':activeFilter == ActiveFilter.Direct}"></div>
       </div>
       <div>
-        <div class="darkBlueBackground p-2"> How? Direct Use</div>
-        <div class="lightBlueBackground p-2"> Who? Direct User</div>
+        <div class="darkBlueBackground p-2"> Direct Use/User</div>
       </div>
     </div>
     <div class="mockLabel" (click)="activeFilterChange(ActiveFilter.Beneficiary)">
@@ -51,7 +50,7 @@
         <div class="radialBox" [ngClass]="{'selected':activeFilter == ActiveFilter.Beneficiary}"></div>
       </div>
       <div>
-        <div class="darkBlueBackground p-2"> How? Beneficiary</div>
+        <div class="darkBlueBackground p-2"> Beneficiary</div>
       </div>
     </div>
     &nbsp;&nbsp;

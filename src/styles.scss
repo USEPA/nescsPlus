@@ -165,6 +165,7 @@
 .mockLabel {
   display: inline-block;
   border: 1px solid;
+  border-radius: 3px;
   padding-left: 8px;
   vertical-align: top;
   margin-right: 10px;
@@ -175,6 +176,7 @@
 
     div {
       display: block;
+      border-radius: 0 3px 3px 0;
     }
   }
 
