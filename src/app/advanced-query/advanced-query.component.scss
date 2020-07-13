@@ -20,9 +20,10 @@ p {
   background-position: right 1.7647em center;
   background-repeat: no-repeat;
   background-size: 0.7647em;
- span {
-   font-weight: normal;
- }
+
+  span {
+    font-weight: normal;
+  }
 
   .inner-class {
     font-size: .85em;
@@ -36,10 +37,24 @@ p {
     .inner-class {
       display: block;
     }
+
+    &:after {
+      content: "\2212";
+      margin-top: -45px;
+    }
   }
 
   &:hover {
     background-color: #d6d7d9;
+  }
+
+  &:after {
+    content: '\002B';
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+    margin-top: -10px;
+    font-size: 24px;
   }
 }
 
