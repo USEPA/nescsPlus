@@ -65,7 +65,7 @@ export class SingleQueryTableComponent implements OnInit, AfterViewInit, OnDestr
         {
           extend: 'csv', text: 'Export CSV', className: 'csvExport', customize: csv => {
             return '# National Ecosystem Services Classification System (NESCS Plus) \n' +
-              '# http://www.epa.gov/eco-research/NESCS \n \n' +
+              '# https://www.epa.gov/eco-research/national-ecosystem-services-classification-system-nescs-plus \n \n' +
               '# Search Date: ' + dateNow + '\n' +
               '# NESCS Plus offers two options for searching. \n' +
               '# (1) These are the results from "Query All Options" which enables users to consider every possibility and build a custom table a single row at a time. \n' +

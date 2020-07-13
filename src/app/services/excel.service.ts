@@ -76,7 +76,7 @@ export class ExcelService {
       '<row  r="' + (++this.row) + '">' +
       '<c t="inlineStr" r="A' + this.row + '" s="2">' +
       '<is>' +
-      '<t>http://www.epa.gov/NESCS</t>' +
+      '<t>https://www.epa.gov/eco-research/national-ecosystem-services-classification-system-nescs-plus</t>' +
       '</is>' +
       '</c>' +
       '</row>' +
@@ -147,7 +147,7 @@ export class ExcelService {
       '<row  r="' + (++this.row) + '">' +
       '<c t="inlineStr" r="B' + this.row + '" s="3">' +
       '<is>' +
-      '<t>Definitions can be found in the Glossary at: www.epa.gov/NESCS/Glossary</t>' +
+      '<t>Definitions can be found in the Glossary on the website</t>' +
       '</is>' +
       '</c>' +
       '</row>' +
