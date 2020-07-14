@@ -38,7 +38,7 @@ p {
       display: block;
     }
 
-    &:after {
+    &:before {
       content: "\2212";
       margin-top: -45px;
     }
@@ -48,13 +48,10 @@ p {
     background-color: #d6d7d9;
   }
 
-  &:after {
+  &:before {
     content: '\002B';
     font-weight: bold;
-    float: right;
-    margin-left: 5px;
-    margin-top: -10px;
-    font-size: 24px;
+    margin-right: 5px;
   }
 }
 
