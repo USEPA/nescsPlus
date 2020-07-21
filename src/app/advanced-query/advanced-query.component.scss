@@ -52,6 +52,10 @@ p {
     content: '\002B';
     font-weight: bold;
     margin-right: 5px;
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 6px;
+    padding: 0 4px;
   }
 }
 
