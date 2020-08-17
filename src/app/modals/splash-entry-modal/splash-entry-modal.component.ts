@@ -11,7 +11,7 @@ import {Router} from '@angular/router';
 export class SplashEntryModalComponent implements AfterViewInit, OnInit {
   innerWidth: number;
   innerHeight: number;
-  firstStepToggle = true;
+  firstStepToggle = false;
   secondStepToggle = false;
   secondComplete = false;
   thirdStepToggle = false;
@@ -43,6 +43,7 @@ export class SplashEntryModalComponent implements AfterViewInit, OnInit {
     if (this.tutorialService.tutorialAction.getValue() === 'showAdvanceTutorialSection') {
       this.timerFunction = setTimeout(this.showTwelfthStep.bind(this), 200);
     } else {
+      this.firstStepToggle = true;
       this.timerFunction = setTimeout(this.showSecondStep.bind(this), 4000);
     }
     this.tutorialService.tutorialAction.next(null);
