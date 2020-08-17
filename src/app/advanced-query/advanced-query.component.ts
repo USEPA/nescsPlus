@@ -1,13 +1,15 @@
-import {Component, OnDestroy, OnInit, Renderer2} from '@angular/core';
+import {AfterViewInit, Component, OnDestroy, OnInit, Renderer2} from '@angular/core';
 import {AppService} from '../services/app.service';
 import {AdvancedQueryService} from '../services/advanced-query.service';
 import {ListItem} from '../models/listItem';
 import {Subscription} from 'rxjs';
 import {ActiveFilter} from '../models/enums';
 import {SearchInstructionsHowWhoModalComponent} from '../modals/search-instructions-how-who-modal/search-instructions-how-who-modal.component';
-import {BsModalRef, BsModalService} from 'ngx-bootstrap';
+import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
 import {HelpItem} from '../models/help-item';
 import {HelpComponent} from '../modals/help/help.component';
+import {SplashEntryModalComponent} from '../modals/splash-entry-modal/splash-entry-modal.component';
+import {TutorialService} from '../services/tutorial.service';
 
 
 @Component({
@@ -17,7 +19,7 @@ import {HelpComponent} from '../modals/help/help.component';
   providers: [AdvancedQueryService]
 })
 
-export class AdvancedQueryComponent implements OnInit, OnDestroy {
+export class AdvancedQueryComponent implements AfterViewInit, OnInit, OnDestroy {
   ActiveFilter = ActiveFilter;
   activeFilter: ActiveFilter = null;
   showReport = false;
@@ -31,9 +33,10 @@ export class AdvancedQueryComponent implements OnInit, OnDestroy {
   directUserNav: Array<ListItem>;
   beneficiaryNav: Array<ListItem>;
   modalRef: BsModalRef;
+  tutorialClassSubscription: Subscription;
 
   constructor(private renderer: Renderer2, private appService: AppService, private advancedQueryService: AdvancedQueryService,
-              private modalService: BsModalService) {
+              private modalService: BsModalService, private tutorialService: TutorialService) {
 
     this.listChanges = this.advancedQueryService.listChange$.subscribe(resultActive => {
       // Setting value through async call to avoid error "ExpressionChangedAfterItHasBeenCheckedError"
@@ -41,6 +44,14 @@ export class AdvancedQueryComponent implements OnInit, OnDestroy {
         this.advancedQueryService.processClick(this.navItems);
       });
     });
+
+    this.tutorialClassSubscription = this.tutorialService.tutorialClass.subscribe(
+      classNames => {
+        if (this.modalRef) {
+          this.modalRef.setClass(classNames);
+        }
+      }
+    );
   }
 
 
@@ -54,8 +65,18 @@ export class AdvancedQueryComponent implements OnInit, OnDestroy {
     this.beneficiaryNav = [this.navItems[4]];
   }
 
+  ngAfterViewInit(): void {
+    if (this.tutorialService.tutorialAction.getValue()) {
+      this.modalRef = this.modalService.show(SplashEntryModalComponent, {class: 'splashContainer'});
+    }
+  }
+
   ngOnDestroy(): void {
     this.listChanges.unsubscribe();
+    this.tutorialClassSubscription.unsubscribe();
+    if (this.modalRef) {
+      this.modalRef.hide();
+    }
   }
 
   generateReport(reRender: boolean) {
@@ -78,7 +99,10 @@ export class AdvancedQueryComponent implements OnInit, OnDestroy {
   }
 
   openModal() {
-    this.modalRef = this.modalService.show(SearchInstructionsHowWhoModalComponent, {});
+    if (this.tutorialService.tutorialAction.getValue()) {
+      this.tutorialService.tutorialAction.next(null);
+      this.modalRef = this.modalService.show(SearchInstructionsHowWhoModalComponent, {});
+    }
   }
 
   helpModal(key, titleString) {

@@ -10,12 +10,12 @@ export class SplashService implements CanActivate {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    const initialEntry = localStorage.getItem('initialEntry') || 'true';
-    console.log('initialEntry', initialEntry);
-    if (JSON.parse(initialEntry)) {
-      this.router.navigate(['splash']);
-    } else {
+    // const initialEntry = localStorage.getItem('initialEntry') || 'true';
+    // console.log('initialEntry', initialEntry);
+    // if (JSON.parse(initialEntry)) {
+    //   this.router.navigate(['splash']);
+    // } else {
       return true;
-    }
+    // }
   }
 }

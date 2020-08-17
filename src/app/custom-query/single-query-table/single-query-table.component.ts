@@ -3,7 +3,7 @@ import {Subscription} from 'rxjs';
 import {SingleQueryItem} from '../../models/single-query-item';
 import {SingleQueryService} from '../../services/single-query.service';
 import {DeleteModalComponent} from '../../modals/delete-modal/delete-modal.component';
-import {BsModalRef, BsModalService} from 'ngx-bootstrap';
+import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
 import {Constants} from '../../models/constants';
 import {SingleQueryAction} from '../../models/single-query-action';
 import {Action} from '../../models/enums';

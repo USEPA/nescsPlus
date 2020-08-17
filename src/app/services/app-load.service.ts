@@ -117,7 +117,6 @@ export class AppLoadService {
   private setDirectUserArray(data: Array<Data>): void {
     const navArray = Constants.DIRECTUSER_COLUMN_ARRAY;
     const directUserArray = this.getDefinedColumns(data, navArray);
-    console.log('directUserArray', directUserArray);
     directUserArray.sort((a, b) => {
       return AppLoadService.compareFn(a, b, [navArray.indexColumnName]);
     });

@@ -1,6 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {SingleQueryService} from '../../services/single-query.service';
-import {BsModalRef} from 'ngx-bootstrap';
+import {BsModalRef} from 'ngx-bootstrap/modal';
 import {SingleQueryAction} from '../../models/single-query-action';
 import {Action} from '../../models/enums';
 

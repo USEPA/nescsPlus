@@ -12,10 +12,12 @@ import {HttpClientModule} from '@angular/common/http';
 import {AppService} from './services/app.service';
 import {AppLoadService} from './services/app-load.service';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { SplashScreenComponent } from './splash-screen/splash-screen.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { ApplicationModule } from './application/application.module';
-import { HelpComponent } from './modals/help/help.component';
+import {SplashScreenComponent} from './splash-screen/splash-screen.component';
+import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
+import {ApplicationModule} from './application/application.module';
+import {HelpComponent} from './modals/help/help.component';
+import {SplashEntryModalComponent} from './modals/splash-entry-modal/splash-entry-modal.component';
+import { SplashEntryCustomModalComponent } from './modals/splash-entry-custom-modal/splash-entry-custom-modal.component';
 
 export function get_settings(appLoadService: AppLoadService) {
   return () => appLoadService.getSettings();
@@ -26,7 +28,9 @@ export function get_settings(appLoadService: AppLoadService) {
     AppComponent,
     SplashScreenComponent,
     PageNotFoundComponent,
-    HelpComponent
+    HelpComponent,
+    SplashEntryModalComponent,
+    SplashEntryCustomModalComponent
   ],
   exports: [],
   imports: [
@@ -44,7 +48,7 @@ export function get_settings(appLoadService: AppLoadService) {
     {provide: APP_INITIALIZER, useFactory: get_settings, deps: [AppLoadService], multi: true},
     AppService],
   bootstrap: [AppComponent],
-  schemas:[NO_ERRORS_SCHEMA]
+  schemas: [NO_ERRORS_SCHEMA]
 })
 export class AppModule {
 }

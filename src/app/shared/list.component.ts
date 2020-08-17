@@ -2,8 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ListItem} from '../models/listItem';
 import {AdvancedQueryService} from '../services/advanced-query.service';
 import {ToggleColumnsService} from '../services/toggle-columns.service';
-import {BsModalRef, BsModalService} from 'ngx-bootstrap';
-import {NameModalComponent} from '../modals/name-modal/name-modal.component';
+import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
 import {HelpComponent} from '../modals/help/help.component';
 
 @Component({

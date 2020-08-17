@@ -1,6 +1,6 @@
 import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {Subscription} from 'rxjs';
-import {BsModalRef, BsModalService} from 'ngx-bootstrap';
+import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
 import {environment} from '../../environments/environment';
 import {AppService} from '../services/app.service';
 import {Router} from '@angular/router';

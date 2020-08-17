@@ -1,0 +1,90 @@
+.modal-body {
+  padding: 0 1em 1em 1em;
+  background: #5b616b;
+
+  .link {
+    cursor: pointer;
+    text-decoration: underline;
+
+    &:hover {
+      font-weight: bold;
+    }
+  }
+
+  .content {
+    color: white;
+    font-size: 14px;
+
+    .chooseOption {
+      font-size: 18px;
+      padding: 10px;
+    }
+  }
+
+  .custom-content {
+    .tourBtn {
+      font-size: small;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      cursor: pointer;
+      min-width: 70px;
+      display: inline-block;
+      padding: 0 15px;
+      text-align: center;
+      vertical-align: middle;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      -o-border-radius: 5px;
+      -ms-border-radius: 5px;
+      border-radius: 5px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      margin: 0px 20px 0px 20px;
+      width: 180px;
+      height: 170px;
+      background-color: rgba(25, 126, 192, 0.6);
+
+
+      img {
+        margin-top: -15px;
+      }
+
+
+      p:first-child {
+        font-size: 24px;
+        font-weight: 600;
+        margin: 3px 0 -15px
+      }
+
+      p:last-child {
+        margin-top: 10px;
+      }
+    }
+  }
+
+  .modalHeader {
+    div {
+      cursor: pointer;
+      text-align: center;
+      margin: -2px 0 3px 0;
+      background: #d9dde0;
+      color: #86909c;
+
+      &.active {
+        background: white;
+      }
+    }
+  }
+
+  .yellow {
+    color: yellow;
+  }
+
+  .hide {
+    display: none;
+  }
+
+  .padding {
+    padding: 15px
+  }
+}

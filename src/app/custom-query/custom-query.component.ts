@@ -1,20 +1,22 @@
-import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {AppService} from '../services/app.service';
 import {Options} from '../models/options';
-import {BsModalRef, BsModalService} from 'ngx-bootstrap';
+import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
 import {NameModalComponent} from '../modals/name-modal/name-modal.component';
 import {SingleQueryService} from '../services/single-query.service';
 import {SingleQueryItem} from '../models/single-query-item';
 import {Subscription} from 'rxjs';
 import {SingleQueryAction} from '../models/single-query-action';
 import {Action} from '../models/enums';
+import {SplashEntryCustomModalComponent} from '../modals/splash-entry-custom-modal/splash-entry-custom-modal.component';
+import {TutorialService} from '../services/tutorial.service';
 
 @Component({
   selector: 'app-custom-query',
   templateUrl: './custom-query.component.html',
   styleUrls: ['./custom-query.component.scss']
 })
-export class CustomQueryComponent implements OnInit, OnDestroy {
+export class CustomQueryComponent implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild('nameTemplate', {static: false}) nameTemplate;
   ecologicalList: Array<Options>;
   environmentalList: Array<Options>;
@@ -33,10 +35,14 @@ export class CustomQueryComponent implements OnInit, OnDestroy {
   showDataTable: boolean;
   filterName: string;
   Action = Action;
+  modalRef: BsModalRef;
+  tutorialClassSubscription: Subscription;
+  tutorialToggleSubscription: Subscription;
 
   constructor(private appService: AppService,
               private modalService: BsModalService,
-              private singleQueryService: SingleQueryService) {
+              private singleQueryService: SingleQueryService,
+              private tutorialService: TutorialService) {
     this.singleQuerySubscription = this.singleQueryService.singleQueryMap.subscribe(
       singleQueryMap => {
         this.singleQueryMap = singleQueryMap;
@@ -56,6 +62,20 @@ export class CustomQueryComponent implements OnInit, OnDestroy {
         this.buttonAction.title = '';
       }
     );
+    this.tutorialClassSubscription = this.tutorialService.tutorialCustomClass.subscribe(
+      classNames => {
+        if (this.modalRef) {
+          this.modalRef.setClass(classNames);
+        }
+      }
+    );
+    this.tutorialToggleSubscription = this.tutorialService.tutorialToggle.subscribe(
+      value => {
+        if (value && this.modalRef) {
+          this.modalRef.hide();
+        }
+      }
+    );
   }
 
   ngOnInit(): void {
@@ -66,10 +86,22 @@ export class CustomQueryComponent implements OnInit, OnDestroy {
     this.directUserList = this.retrieveOptions('directUser');
   }
 
+  ngAfterViewInit(): void {
+    if (this.tutorialService.tutorialAction.getValue()) {
+      this.tutorialService.tutorialAction.next(null);
+      this.modalRef = this.modalService.show(SplashEntryCustomModalComponent, {class: 'tourStepsContainer thirteenthStep'});
+    }
+  }
+
   ngOnDestroy(): void {
     this.singleQueryActionSubscription.unsubscribe();
     this.singleQuerySubscription.unsubscribe();
     this.modalHiddenSubscription.unsubscribe();
+    this.tutorialClassSubscription.unsubscribe();
+    this.tutorialToggleSubscription.unsubscribe();
+    if (this.modalRef) {
+      this.modalRef.hide();
+    }
   }
 
   toggleButton(): void {

@@ -1,0 +1,40 @@
+<div class="modal-body">
+  <div *ngIf="twelfthStepToggle">
+    <div>
+      <div>
+        <img src="../../../assets/images/tourFigure2-1.PNG">
+      </div>
+      <div>
+        <h2>Query All Options</h2>
+        You can consider and select from all possible FES options (>75,000 options).<br><br>
+        <span class="btn btn-light btn-sm" (click)="showBrowseStep()">&lt; Previous</span> &nbsp;&nbsp;&nbsp;
+        <span class="btn btn-light btn-sm" (click)="showThirteenthStep()">Next &gt;</span>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="thirteenthStepToggle">
+    <div>
+      <div>
+        <img src="../../../assets/images/tourFigure2-2.PNG">
+      </div>
+      <div>
+        <h2>Query All Options</h2>
+        Create a custom list of distinct FES and assign a name to each one.<br><br>
+        <span class="btn btn-light btn-sm" (click)="showTwelvethStep()">&lt; Previous</span> &nbsp;&nbsp;&nbsp;
+        <span class="btn btn-light btn-sm" (click)="showFourteenthStep()">Next &gt;</span>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="fourteenthStepToggle">
+    <div>
+      <div>
+        <img src="../../../assets/images/tourFigure2-3.PNG">
+      </div>
+      <div>
+        <h2>Provide Feedback</h2>
+        Please share your feedback with the NESCS Plus Team.<br><br>
+        <span class="btn btn-light btn-sm" (click)="showThirteenthStep()">&lt; Previous</span> &nbsp;&nbsp;&nbsp;
+      </div>
+    </div>
+  </div>
+</div>

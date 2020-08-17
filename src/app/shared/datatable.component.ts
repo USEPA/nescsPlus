@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, Input, OnDestroy, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {AdvancedQueryService} from '../services/advanced-query.service';
 import {Subscription} from 'rxjs';
-import {BsModalRef, BsModalService} from 'ngx-bootstrap';
+import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
 import {ListItem} from '../models/listItem';
 import {ToggleColumnsService} from '../services/toggle-columns.service';
 import {HelperService} from '../services/helper.service';
@@ -103,7 +103,6 @@ export class DataTableComponent implements AfterViewInit, OnDestroy, OnInit {
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
   }
-
 
   ngAfterViewInit(): void {
     this.renderDataTable();

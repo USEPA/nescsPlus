@@ -1,0 +1,443 @@
+.modal-dialog {
+  &.tourStepsContainer {
+
+    &.sixthStep {
+      margin-left: 24px;
+      margin-top: 135px;
+      min-width: 820px;
+
+
+      .modal-content {
+        background: initial;
+        border: initial;
+
+        .modal-body {
+          padding: 0;
+          background: initial;
+
+          div {
+            width: 825px;
+
+            div {
+              display: inline;
+              vertical-align: top;
+
+              div {
+                display: inline-block;
+
+                &:first-child {
+                  width: 523px;
+                }
+
+                &:last-child {
+                  background: #5b616b;
+                  padding: 10px;
+                  width: 300px;
+                  height: 236px;
+                  border: 2px solid white;
+                  border-radius: 0 3px 3px 3px;
+
+                }
+              }
+
+            }
+          }
+        }
+      }
+    }
+
+    &.seventhStep {
+      margin-left: 24px;
+      margin-top: 388px;
+
+      .modal-content {
+        background: initial;
+        border: initial;
+
+        .modal-body {
+          padding: 0;
+          background: initial;
+
+          div {
+            width: 700px;
+
+            div {
+              display: inline;
+              vertical-align: top;
+
+              div {
+                display: inline-block;
+
+                &:first-child {
+                  width: 319px;
+                }
+
+                &:last-child {
+                  background: #5b616b;
+                  padding: 10px;
+                  width: 300px;
+                  border: 2px solid white;
+                  border-radius: 0 3px 3px 3px;
+
+                }
+              }
+
+            }
+          }
+        }
+      }
+    }
+
+    &.eighthStep {
+      margin-left: 25px;
+      margin-top: 390px;
+
+      .modal-content {
+        background: initial;
+        border: initial;
+
+        .modal-body {
+          padding: 0;
+          background: initial;
+
+          div {
+            width: 700px;
+
+            div {
+              display: inline;
+              vertical-align: top;
+
+              div {
+                display: inline-block;
+
+                &:first-child {
+                  width: 167px;
+                }
+
+                &:last-child {
+                  background: #5b616b;
+                  padding: 10px;
+                  width: 300px;
+                  border: 2px solid white;
+                  border-radius: 0 3px 3px 3px;
+
+                }
+              }
+
+            }
+          }
+        }
+      }
+    }
+
+    &.ninthStep {
+      margin-left: 47px;
+      margin-top: 517px;
+
+      .modal-content {
+        background: initial;
+        border: initial;
+
+        .modal-body {
+          padding: 0;
+          background: initial;
+
+          div {
+            width: 700px;
+
+            div {
+              display: inline;
+              vertical-align: middle;
+
+              div {
+                display: inline-block;
+
+                &:first-child {
+                  width: 304px;
+                }
+
+                &:last-child {
+                  background: #5b616b;
+                  padding: 10px;
+                  width: 300px;
+                  border: 2px solid white;
+                  border-radius: 0 3px 3px 3px;
+
+                }
+              }
+
+            }
+          }
+        }
+      }
+    }
+
+    &.tenthStep {
+      margin-left: 47px;
+      margin-top: 500px;
+
+      .modal-content {
+        background: initial;
+        border: initial;
+
+        .modal-body {
+          padding: 0;
+          background: initial;
+
+          div {
+            width: 700px;
+
+            div {
+              display: inline;
+              vertical-align: top;
+
+              div {
+                display: inline-block;
+
+                &:first-child {
+                  width: 353px;
+                }
+
+                &:last-child {
+                  background: #5b616b;
+                  padding: 10px;
+                  width: 300px;
+                  border: 2px solid white;
+                  border-radius: 0 3px 3px 3px;
+
+                }
+              }
+
+            }
+          }
+        }
+      }
+    }
+
+    &.eleventhStep {
+      overflow-y: hidden;
+      margin-left: auto;
+      margin-right: 10px;
+      margin-top: 450px;
+
+      .modal-content {
+        background: initial;
+        border: initial;
+
+        .modal-body {
+          padding: 0;
+          background: initial;
+
+          div {
+            width: 300px;
+
+            div {
+
+              div {
+                position: absolute;
+
+                &:first-child {
+                  background: #5b616b;
+                  padding: 10px;
+                  width: 300px;
+                  border: 2px solid white;
+                  border-radius: 0 3px 3px 3px;
+                  top: 0;
+                  right: 20px;
+                }
+
+                &:last-child {
+                  top: 261px;
+                  right: -156px;
+                  width: 304px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    &.twelfthStep {
+      margin-left: 47px;
+      margin-top: 500px;
+
+      .modal-content {
+        background: initial;
+        border: initial;
+
+        .modal-body {
+          padding: 0;
+          background: initial;
+
+          div {
+            width: 1000px;
+
+            div {
+              display: inline;
+              vertical-align: top;
+
+              div {
+                display: inline-block;
+
+                &:first-child {
+                  width: 685px;
+                }
+
+                &:last-child {
+                  background: #5b616b;
+                  padding: 10px;
+                  width: 300px;
+                  border: 2px solid white;
+                  border-radius: 0 3px 3px 3px;
+
+                }
+              }
+
+            }
+          }
+        }
+      }
+    }
+
+    &.thirteenthStep {
+      margin-left: 21px;
+      margin-top: 388px;
+
+      .modal-content {
+        background: initial;
+        border: initial;
+
+        .modal-body {
+          padding: 0;
+          background: initial;
+
+          div {
+            width: 700px;
+
+            div {
+              display: inline;
+              vertical-align: top;
+
+              div {
+                display: inline-block;
+
+                &:first-child {
+                  width: 319px;
+                }
+
+                &:last-child {
+                  background: #5b616b;
+                  padding: 10px;
+                  width: 300px;
+                  border: 2px solid white;
+                  border-radius: 0 3px 3px 3px;
+
+                }
+              }
+
+            }
+          }
+        }
+      }
+    }
+
+    &.fourteenthStep {
+      margin-left: 21px;
+      margin-top: 388px;
+
+      .modal-content {
+        background: initial;
+        border: initial;
+
+        .modal-body {
+          padding: 0;
+          background: initial;
+
+          div {
+            width: 700px;
+
+            div {
+              display: inline;
+              vertical-align: top;
+
+              div {
+                display: inline-block;
+
+                &:first-child {
+                  width: 319px;
+                }
+
+                &:last-child {
+                  background: #5b616b;
+                  padding: 10px;
+                  width: 300px;
+                  border: 2px solid white;
+                  border-radius: 0 3px 3px 3px;
+
+                }
+              }
+
+            }
+          }
+        }
+      }
+    }
+
+    &.fifteenthStep {
+      overflow-y: hidden;
+      margin-left: auto;
+      margin-right: 10px;
+      margin-top: 110px;
+
+      .modal-content {
+        background: initial;
+        border: initial;
+
+        .modal-body {
+          padding: 0;
+          background: initial;
+
+          div {
+            width: 700px;
+
+            div {
+              display: inline;
+              vertical-align: top;
+
+
+              div {
+                position: absolute;
+
+                &:first-child {
+                  top: 19px;
+                  right: -563px;
+                }
+
+                &:last-child {
+                  background: #5b616b;
+                  padding: 10px;
+                  width: 300px;
+                  border: 2px solid white;
+                  border-radius: 0 3px 3px 3px;
+                  top: 61px;
+                  right: -1px;
+                  width: 304px;
+                }
+              }
+
+            }
+          }
+        }
+      }
+    }
+
+    .modal-body {
+      color: white;
+    }
+  }
+
+  &.welcomePanel {
+    min-width: 700px;
+  }
+}
