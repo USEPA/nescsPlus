@@ -1,6 +1,7 @@
 .modal-dialog {
   &.tourStepsContainer {
     font-family: 'Avenir Light', Verdana, Geneva, sans-serif;
+    width:inherit;
 
     &.sixthStep {
       overflow: hidden;
