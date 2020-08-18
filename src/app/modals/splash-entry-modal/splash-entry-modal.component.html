@@ -17,7 +17,7 @@
          style="margin:0 auto;display:block;">
   </div>
   <div *ngIf="thirdStepToggle" (click)="showFourthStep()">
-    <img src="assets/images/tutorial/Figure2.png" alt="Figure2.png" [style.maxHeight]="innerHeight + 'px'"
+    <img src="assets/images/tutorial/Figure2.svg" alt="Figure2.svg" [style.maxHeight]="innerHeight + 'px'"
          style="margin:0 auto;display:block;">
   </div>
   <div *ngIf="fourthStepToggle">
@@ -36,16 +36,17 @@
           <img src="assets/images/tutorial/epa_logo_white.png" alt="EPA Translucent Logo"
                style="cursor: default; height: 20px; margin-top: 7px;">
         </div>
+        <br><br>
       </div>
       <div class="row justify-content-center">
-        <div class="col-md-10">
-          Welcome! The National Ecosystem Services Classification System can aid in the analysis of different types of
-          environmental management actions, policies, and regulations.
+        <div class="col-md-10" style="text-align: center;">
+          Welcome! The National Ecosystem Services Classification System Plus can aid in the analysis of different types
+          of environmental management actions, policies, and regulations.
         </div>
       </div>
       <div class="row justify-content-center">
         <div class="col-md-5 chooseOption">
-          Choose an option to Continue
+          &nbsp;&nbsp;Choose an option to continue
         </div>
       </div>
       <div class="row justify-content-center">
@@ -58,7 +59,7 @@
           <div class="tourBtn" (click)="openLearnPage()">
             <p>Learn</p>
             <img class="btn-icon" src="assets/images/tutorial/learnIcon.png">
-            <p>Final ecosystem<br/>goods and services</p>
+            <p>Final Ecosystem<br/>Goods and Services</p>
           </div>
           <div class="tourBtn" (click)="modalRef.hide()">
             <p>Explore</p>
@@ -69,8 +70,9 @@
       </div>
       <div class="row mt-4">
         <div class="col-xs-12 yellow">
-          By using the NESCS Plus, you acknowledge the limitations outlined in our <span (click)="panel='disclaimer'"
-                                                                                         class="link">disclaimer</span>
+          &nbsp;&nbsp;&nbsp;&nbsp;By using the NESCS Plus, you acknowledge the limitations outlined in our <span
+          (click)="panel='disclaimer'"
+          class="link">disclaimer</span>
           <link to disclaimer tab>
           .
         </div>
@@ -126,7 +128,8 @@
       </div>
       <div>
         <h2>Flexible Search Options</h2>
-        The NESCS Plus Webtool offers two ways for users to identify and develop lists of Final Ecosystem.<br><br>
+        The NESCS Plus Webtool offers two ways for users to identify and develop lists of Final Ecosystem
+        Services.<br><br>
         <span class="btn btn-light btn-sm" (click)="showSixthStep()">&lt; Previous</span> &nbsp;&nbsp;&nbsp;
         <span class="btn btn-light btn-sm" (click)="showEighthStep()">Next &gt;</span>
       </div>
@@ -155,7 +158,7 @@
       </div>
       <div>
         <h2>Human Systems</h2>
-        The NESCS Plus WebTool offers 2 ways to classify "How?" and/or "Who?" is receiving Final Ecosystem Services.
+        The NESCS Plus Webtool offers two ways to classify "How?" and/or "Who?" is receiving FES.
         Regardless of the search selected, you will receive results for both Direct Use/User and Beneficiary
         classes.<br><br>
         <span class="btn btn-light btn-sm" (click)="showEighthStep()">&lt; Previous</span> &nbsp;&nbsp;&nbsp;
@@ -172,8 +175,9 @@
       <div>
         <h2>Make your selection</h2>
         For each NESCS Plus component you can:<br>
-        <i class="i-ui-icon link"></i> Use the i-button to read a description<br>
-        <img src="assets/images/tutorial/tourCheckbox.png" alt="check"> Use the checkbox to make a selection<br><br>
+        <i class="i-ui-icon link" style="background-size: 17px;width: 17px;height: 17px;"></i> Use the
+        i-button to read a description.<br>
+        <img src="assets/images/tutorial/tourCheckbox.png" alt="check">&nbsp;&nbsp;Use the checkbox to make a selection.<br><br>
         <span class="btn btn-light btn-sm" (click)="showNinthStep()">&lt; Previous</span> &nbsp;&nbsp;&nbsp;
         <span class="btn btn-light btn-sm" (click)="showEleventhStep()">Next &gt;</span>
       </div>
@@ -184,7 +188,7 @@
     <div>
       <div>
         <h2>View your results</h2>
-        After finalizing your selections, click on "Query Data" button to view the results of your query. Any time you
+        After finalizing your selections, click the "Query Data" button to view the results of your query. Any time you
         change your selection you will need to click this button for new results.<br><br>
         <span class="btn btn-light btn-sm" (click)="showTenthStep()">&lt; Previous</span> &nbsp;&nbsp;&nbsp;
         <span class="btn btn-light btn-sm" (click)="showTwelfthStep()">Next &gt;</span>
@@ -201,9 +205,9 @@
         <img src="assets/images/tutorial/exportHighlight.png">
       </div>
       <div>
-        <h2>View your results</h2>
-        After finalizing your selections, click on "Query Data" button to view the results of your query. Any time you
-        change your selection you will need to click this button for new results.<br><br>
+        <h2>Save your results</h2>
+        <p>Hide/Show your desired columns.</p>
+        <p>If you would like to download the results to a spreadsheet file, click the "Export" button.</p>
         <span class="btn btn-light btn-sm" (click)="showEleventhStep()">&lt; Previous</span> &nbsp;&nbsp;&nbsp;
         <span class="btn btn-light btn-sm" (click)="nextModalStep()">Next &gt;</span>
       </div>
