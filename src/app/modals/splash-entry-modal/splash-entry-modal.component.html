@@ -5,9 +5,14 @@
          style="margin:0 auto;display:block;">
   </div>
   <div *ngIf="secondStepToggle" (click)="showThirdStep()">
-    <p>The National Ecosystem Services Classification System (NESCS) Plus is a system for classifying Final Ecosystem
-      Services (FES). FES are specifically defined as the services from nature that are “directly [emphasis added]
-      enjoyed, consumed, or used to yield human well-being” (Boyd and Banzhaf, 2007).</p>
+    <div class="row">
+      <div class="col-md-8 offset-2 mt-2">
+        <p>The National Ecosystem Services Classification System (NESCS) Plus is a system for classifying Final
+          Ecosystem
+          Services (FES). FES are specifically defined as the services from nature that are “directly [emphasis added]
+          enjoyed, consumed, or used to yield human well-being” (Boyd and Banzhaf, 2007).</p>
+      </div>
+    </div>
     <img src="assets/images/tutorial/Figure1.png" alt="Figure1.png" [style.maxHeight]="(innerHeight*.75) + 'px'"
          style="margin:0 auto;display:block;">
   </div>
