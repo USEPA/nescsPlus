@@ -1,4 +1,4 @@
-import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnDestroy, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
 import {environment} from '../../environments/environment';
@@ -12,12 +12,15 @@ import {Constants} from '../models/constants';
   templateUrl: './application.component.html',
   styleUrls: ['./application.component.scss']
 })
-export class ApplicationComponent implements OnInit {
+export class ApplicationComponent implements OnInit, OnDestroy {
+  @ViewChild('applicationButtons') applicationButtonsRef: ElementRef;
+  @ViewChild('bannerText') bannerTextRef: ElementRef;
   currentNavigation: string;
   appServiceCurrent: Subscription;
   modalRef: BsModalRef;
   CONTACT_US = Constants.CONTACT_US;
   deployPath = environment.deployPath;
+  targetRefSubscription: Subscription;
 
   // Create a "Last Updated" date for the One EPA Template footer
   lastModifiedDate = new Date(document.lastModified);
@@ -34,6 +37,11 @@ export class ApplicationComponent implements OnInit {
         this.currentNavigation = currentNavigation$;
       });
     });
+    this.targetRefSubscription = this.appService.targetRef.subscribe(targetRef => {
+      if (targetRef.length) {
+        this[targetRef].nativeElement.scrollIntoView();
+      }
+    });
   }
 
   ngOnInit(): void {
@@ -42,6 +50,11 @@ export class ApplicationComponent implements OnInit {
 
   openModal() {
     this.modalRef = this.modalService.show(SearchInstructionsModalComponent, {});
+  }
+
+  ngOnDestroy() {
+    this.targetRefSubscription.unsubscribe();
+    this.appServiceCurrent.unsubscribe();
   }
 
 }

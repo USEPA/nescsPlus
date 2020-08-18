@@ -1,6 +1,7 @@
 <div style="padding: 20px;border: 1px solid darkslategray;border-radius: 9px;">
   <p>Click the colored banners to select checkboxes for the classes and subclasses to be included in your query. After
-    finalizing your selections, click on the "Query Data" button to view the results of your query. If you would like to
+    finalizing your selections, click on the "Query Data" button to view the results of your query. <br>If you would
+    like to
     download the results to a spreadsheet file, click on the "Export" button.</p>
 
   <div class="panel-container greenBackground" (click)="toggleClass($event,'active')">
@@ -111,14 +112,15 @@
   <div class="row" *ngIf="!showReport">
     <div class="mt-3 col-sm-12">
       <button class="btn btn-primary float-sm-right" [disabled]="activeFilter === null"
-              (click)="generateReport(false)">Query Data
+              (click)="generateReport()">Query Data
       </button>
     </div>
   </div>
 </div>
 
-
-<div *ngIf="showReport" class="tab-content mt-1" id="reportContent"
-     style="padding: 20px;border: 1px solid darkslategray;border-radius: 9px;">
-  <app-datatable [navigationItems]="navItems" [activeFilter]="activeFilter"></app-datatable>
+<div #reportContentRef>
+  <div *ngIf="showReport" class="tab-content mt-1" id="reportContent"
+       style="padding: 20px;border: 1px solid darkslategray;border-radius: 9px;">
+    <app-datatable [navigationItems]="navItems" [activeFilter]="activeFilter"></app-datatable>
+  </div>
 </div>

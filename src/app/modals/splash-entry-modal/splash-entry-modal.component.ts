@@ -2,6 +2,8 @@ import {AfterViewInit, Component, HostListener, OnInit} from '@angular/core';
 import {BsModalRef} from 'ngx-bootstrap/modal';
 import {TutorialService} from '../../services/tutorial.service';
 import {Router} from '@angular/router';
+import {AppService} from '../../services/app.service';
+import {AdvancedQueryService} from '../../services/advanced-query.service';
 
 @Component({
   selector: 'app-splash-entry-modal',
@@ -31,7 +33,9 @@ export class SplashEntryModalComponent implements AfterViewInit, OnInit {
 
   constructor(public modalRef: BsModalRef,
               private router: Router,
-              private tutorialService: TutorialService) {
+              private tutorialService: TutorialService,
+              public advancedQueryService: AdvancedQueryService,
+              private appService: AppService) {
   }
 
   ngOnInit() {
@@ -102,18 +106,21 @@ export class SplashEntryModalComponent implements AfterViewInit, OnInit {
     this.initSteps();
     this.sixthStepToggle = true;
     this.tutorialService.tutorialClass.next('tourStepsContainer sixthStep');
+    this.appService.targetRef.next('bannerTextRef');
   }
 
   showSeventhStep() {
     this.initSteps();
     this.seventhStepToggle = true;
     this.tutorialService.tutorialClass.next('tourStepsContainer seventhStep');
+    this.appService.targetRef.next('applicationButtonsRef');
   }
 
   showEighthStep() {
     this.initSteps();
     this.eighthStepToggle = true;
     this.tutorialService.tutorialClass.next('tourStepsContainer eighthStep');
+    this.appService.targetRef.next('applicationButtonsRef');
   }
 
   showNinthStep() {
@@ -132,11 +139,13 @@ export class SplashEntryModalComponent implements AfterViewInit, OnInit {
     this.initSteps();
     this.eleventhStepToggle = true;
     this.tutorialService.tutorialClass.next('tourStepsContainer eleventhStep');
+    this.appService.targetRef.next('applicationButtonsRef');
   }
 
   showTwelfthStep() {
     this.initSteps();
     this.twelfthStepToggle = true;
+    this.appService.targetRef.next('applicationButtonsRef');
     this.tutorialService.tutorialClass.next('tourStepsContainer twelfthStep');
   }
 

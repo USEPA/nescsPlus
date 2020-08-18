@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnDestroy, OnInit, Renderer2} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild} from '@angular/core';
 import {AppService} from '../services/app.service';
 import {AdvancedQueryService} from '../services/advanced-query.service';
 import {ListItem} from '../models/listItem';
@@ -20,6 +20,7 @@ import {TutorialService} from '../services/tutorial.service';
 })
 
 export class AdvancedQueryComponent implements AfterViewInit, OnInit, OnDestroy {
+  @ViewChild('reportContentRef') reportContentRef: ElementRef;
   ActiveFilter = ActiveFilter;
   activeFilter: ActiveFilter = null;
   showReport = false;
@@ -38,6 +39,7 @@ export class AdvancedQueryComponent implements AfterViewInit, OnInit, OnDestroy 
   constructor(private renderer: Renderer2, private appService: AppService, private advancedQueryService: AdvancedQueryService,
               private modalService: BsModalService, private tutorialService: TutorialService) {
 
+
     this.listChanges = this.advancedQueryService.listChange$.subscribe(resultActive => {
       // Setting value through async call to avoid error "ExpressionChangedAfterItHasBeenCheckedError"
       setTimeout(() => {
@@ -52,6 +54,8 @@ export class AdvancedQueryComponent implements AfterViewInit, OnInit, OnDestroy 
         }
       }
     );
+
+
   }
 
 
@@ -69,6 +73,7 @@ export class AdvancedQueryComponent implements AfterViewInit, OnInit, OnDestroy 
     if (this.tutorialService.tutorialAction.getValue()) {
       this.modalRef = this.modalService.show(SplashEntryModalComponent, {class: 'splashContainer'});
     }
+
   }
 
   ngOnDestroy(): void {
@@ -79,7 +84,8 @@ export class AdvancedQueryComponent implements AfterViewInit, OnInit, OnDestroy 
     }
   }
 
-  generateReport(reRender: boolean) {
+  generateReport() {
+    // Hide Query Button
     this.showReport = true;
   }
 
@@ -119,6 +125,10 @@ export class AdvancedQueryComponent implements AfterViewInit, OnInit, OnDestroy 
 
   onChildChecked() {
     this.showReport = false;
+  }
+
+  scroll(element) {
+    element.nativeElement.scrollIntoView();
   }
 
 }

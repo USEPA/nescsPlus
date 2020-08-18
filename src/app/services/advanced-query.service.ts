@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {ListItem} from '../models/listItem';
 import {Constants} from '../models/constants';
-import {Subject} from 'rxjs';
+import {BehaviorSubject, Subject} from 'rxjs';
 import {HelperService} from './helper.service';
 import {Data} from '../models/data.model';
 import {NavArray} from '../models/nav-array.model';

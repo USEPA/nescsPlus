@@ -2,6 +2,7 @@ import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {BsModalRef} from 'ngx-bootstrap/modal';
 import {TutorialService} from '../../services/tutorial.service';
+import {AppService} from '../../services/app.service';
 
 @Component({
   selector: 'app-splash-entry-custom-modal',
@@ -14,6 +15,7 @@ export class SplashEntryCustomModalComponent implements AfterViewInit, OnInit {
   fourteenthStepToggle = false;
 
   constructor(private router: Router,
+              private appService: AppService,
               private tutorialService: TutorialService) {
   }
 
@@ -39,18 +41,21 @@ export class SplashEntryCustomModalComponent implements AfterViewInit, OnInit {
   showTwelvethStep() {
     this.initSteps();
     this.twelfthStepToggle = true;
+    this.appService.targetRef.next('applicationButtonsRef');
     this.tutorialService.tutorialCustomClass.next('tourStepsContainer thirteenthStep');
   }
 
   showThirteenthStep() {
     this.initSteps();
     this.thirteenthStepToggle = true;
+    this.appService.targetRef.next('applicationButtonsRef');
     this.tutorialService.tutorialCustomClass.next('tourStepsContainer fourteenthStep');
   }
 
   showFourteenthStep() {
     this.initSteps();
     this.fourteenthStepToggle = true;
+    this.appService.targetRef.next('bannerTextRef');
     this.tutorialService.tutorialCustomClass.next('tourStepsContainer fifteenthStep');
   }
 }
