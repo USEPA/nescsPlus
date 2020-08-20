@@ -207,7 +207,7 @@
 
 @media (min-width: 576px) {
   .modal-dialog {
-    max-width: initial !important;
+    max-width: inherit !important;
     width: 50%;
     height: 90%;
 

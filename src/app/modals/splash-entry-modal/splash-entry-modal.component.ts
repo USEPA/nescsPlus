@@ -41,6 +41,8 @@ export class SplashEntryModalComponent implements AfterViewInit, OnInit {
   ngOnInit() {
     this.innerWidth = window.innerWidth;
     this.innerHeight = window.innerHeight * .90;
+    console.log('this.innerWidth',this.innerWidth);
+    console.log('this.innerHeight',this.innerHeight);
   }
 
   ngAfterViewInit() {
@@ -99,7 +101,7 @@ export class SplashEntryModalComponent implements AfterViewInit, OnInit {
   showFifthStep() {
     this.initSteps();
     this.fifthStepToggle = true;
-    this.tutorialService.tutorialClass.next('tourStepsContainer');
+    this.tutorialService.tutorialClass.next('tourStepsContainer fifthStep');
   }
 
   showSixthStep() {

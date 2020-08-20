@@ -58,4 +58,8 @@ export class SplashEntryCustomModalComponent implements AfterViewInit, OnInit {
     this.appService.targetRef.next('bannerTextRef');
     this.tutorialService.tutorialCustomClass.next('tourStepsContainer fifteenthStep');
   }
+
+  closeTour() {
+    this.router.navigate(['application/multipleQuery']);
+  }
 }

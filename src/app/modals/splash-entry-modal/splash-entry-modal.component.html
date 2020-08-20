@@ -101,10 +101,14 @@
   </div>
 
   <div *ngIf="fifthStepToggle" (click)="showSixthStep()">
-    <h2>Welcome to NESCS Plus!</h2>
-    <p>This brief tour will walk you through some of the key functions and options for classifying final ecosystem
-      services (FES).</p>
-    <div class="btn btn-light btn-sm" (click)="showSixthStep()">Next &gt;</div>
+    <div>
+      <div>
+        <h2>Welcome to NESCS Plus!</h2>
+        <p>This brief tour will walk you through some of the key functions and options for classifying final ecosystem
+          services (FES).</p>
+        <span class="btn btn-light btn-sm" (click)="showSixthStep()">Next &gt;</span>
+      </div>
+    </div>
   </div>
 
   <div *ngIf="sixthStepToggle">
