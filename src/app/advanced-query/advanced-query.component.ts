@@ -107,8 +107,8 @@ export class AdvancedQueryComponent implements AfterViewInit, OnInit, OnDestroy 
   openModal() {
     if (this.tutorialService.tutorialAction.getValue()) {
       this.tutorialService.tutorialAction.next(null);
-      this.modalRef = this.modalService.show(SearchInstructionsHowWhoModalComponent, {});
     }
+    this.modalRef = this.modalService.show(SearchInstructionsHowWhoModalComponent, {});
   }
 
   helpModal(key, titleString) {
