@@ -1,7 +1,9 @@
+
 .modal-dialog {
   &.splashContainer {
-    width:90%;
+    width: 90%;
   }
+
   &.tourStepsContainer {
     font-family: 'Avenir Light', Verdana, Geneva, sans-serif;
     width: inherit;
@@ -24,6 +26,27 @@
             div {
               display: inline-block;
               vertical-align: top;
+
+              div {
+                border: initial !important;
+                background: initial !important;
+                width: initial !important;
+                height: initial !important;
+                padding: initial !important;
+                border-radius: initial !important;
+                top: initial !important;
+                right: initial!important;
+                position: relative!important;
+
+                div {
+                  border: initial;
+
+                  &.flex-fill:last-child {
+                    text-align: right;
+                    cursor: pointer;
+                  }
+                }
+              }
             }
           }
         }
@@ -36,7 +59,8 @@
       min-width: 820px;
 
       .modal-content {
-        width:439px;
+        width: 439px;
+
         .modal-body {
           div {
             width: 825px;
@@ -47,8 +71,8 @@
                 &:first-child {
                   background: #5b616b;
                   padding: 10px;
-                  width: 431px;
-                  height: 236px;
+                  width: 450px;
+                  height: 222px;
                   border: 2px solid white;
                   border-radius: 0 3px 3px 3px;
                 }

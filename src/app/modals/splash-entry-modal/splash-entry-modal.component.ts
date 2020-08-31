@@ -74,7 +74,7 @@ export class SplashEntryModalComponent implements AfterViewInit, OnInit {
     if (!this.secondStepToggle && !this.secondComplete) {
       this.initSteps();
       this.secondStepToggle = true;
-      this.timerFunction = setTimeout(this.showThirdStep.bind(this), 5000);
+      // this.timerFunction = setTimeout(this.showThirdStep.bind(this), 5000);
       this.secondComplete = true;
     }
   }
@@ -89,12 +89,9 @@ export class SplashEntryModalComponent implements AfterViewInit, OnInit {
   }
 
   showFourthStep() {
-    if (!this.fourthStepToggle && !this.fourthComplete) {
       this.initSteps();
       this.fourthStepToggle = true;
-      this.fourthComplete = true;
       this.tutorialService.tutorialClass.next('welcomePanel');
-    }
   }
 
 // Tour Steps

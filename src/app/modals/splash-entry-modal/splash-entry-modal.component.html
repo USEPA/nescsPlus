@@ -8,9 +8,8 @@
     <div class="row">
       <div class="col-md-8 offset-2 mt-2">
         <p>The National Ecosystem Services Classification System (NESCS) Plus is a system for classifying Final
-          Ecosystem
-          Services (FES). FES are specifically defined as the services from nature that are “directly [emphasis added]
-          enjoyed, consumed, or used to yield human well-being” (Boyd and Banzhaf, 2007).</p>
+          Ecosystem Services (FES). FES are specifically defined as the services from nature that are “<b>directly</b>
+           enjoyed, consumed, or used to yield human well-being” (Boyd and Banzhaf, 2007).</p>
       </div>
     </div>
     <img src="assets/images/tutorial/Figure1.png" alt="Figure1.png" [style.maxHeight]="(innerHeight*.75) + 'px'"
@@ -31,13 +30,14 @@
     </div>
 
     <div class="content" *ngIf="panel=='welcome'">
-      <div class="row">
-        <div class="col-md-6">
+      <div class="d-flex">
+        <div class="flex-fill mr-auto">
           <img src="assets/images/tutorial/epa_logo_white.png" alt="EPA Translucent Logo"
                style="cursor: default; height: 20px; margin-top: 7px;">
         </div>
-        <br><br>
+        <div class="flex-fill align-items-end text-right pointer" (click)="modalRef.hide()">x</div>
       </div>
+      <br>
       <div class="row justify-content-center">
         <div class="col-md-10" style="text-align: center;">
           Welcome! The National Ecosystem Services Classification System Plus can aid in the analysis of different types
@@ -70,11 +70,8 @@
       </div>
       <div class="row mt-4">
         <div class="col-xs-12 yellow">
-          &nbsp;&nbsp;&nbsp;&nbsp;By using the NESCS Plus, you acknowledge the limitations outlined in our <span
-          (click)="panel='disclaimer'"
-          class="link">disclaimer</span>
-          <link to disclaimer tab>
-          .
+          &nbsp;&nbsp;&nbsp;&nbsp;By using NESCS Plus, you acknowledge the limitations outlined in our
+          <span (click)="panel='disclaimer'" class="link">disclaimer</span>.
         </div>
       </div>
     </div>
@@ -103,9 +100,13 @@
   <div *ngIf="fifthStepToggle" (click)="showSixthStep()">
     <div>
       <div>
-        <h2>Welcome to NESCS Plus!</h2>
+        <div class="d-flex">
+          <div class="flex-fill"><h2>Welcome to NESCS Plus!</h2></div>
+          <div class="flex-fill" (click)="modalRef.hide()">x</div>
+        </div>
         <p>This brief tour will walk you through some of the key functions and options for classifying final ecosystem
           services (FES).</p>
+        <span class="btn btn-light btn-sm" (click)="showFourthStep()">&lt; Previous</span> &nbsp;&nbsp;&nbsp;
         <span class="btn btn-light btn-sm" (click)="showSixthStep()">Next &gt;</span>
       </div>
     </div>
@@ -117,7 +118,11 @@
         <img src="assets/images/tutorial/tourFigure1.png">
       </div>
       <div>
-        <h2>Learn More</h2>
+
+        <div class="d-flex">
+          <div class="flex-fill"><h2>Learn More</h2></div>
+          <div class="flex-fill" (click)="modalRef.hide()">x</div>
+        </div>
         Visit these links to learn more about NESCS Plus, example applications and frequently asked questions.<br><br>
         <span class="btn btn-light btn-sm" (click)="showFifthStep()">&lt; Previous</span> &nbsp;&nbsp;&nbsp;
         <span class="btn btn-light btn-sm" (click)="showSeventhStep()">Next &gt;</span>
@@ -131,7 +136,11 @@
         <img src="assets/images/tutorial/tourFigure2.png">
       </div>
       <div>
-        <h2>Flexible Search Options</h2>
+
+        <div class="d-flex">
+          <div class="flex-fill"><h2>Flexible Search Options</h2></div>
+          <div class="flex-fill" (click)="modalRef.hide()">x</div>
+        </div>
         The NESCS Plus Webtool offers two ways for users to identify and develop lists of Final Ecosystem
         Services.<br><br>
         <span class="btn btn-light btn-sm" (click)="showSixthStep()">&lt; Previous</span> &nbsp;&nbsp;&nbsp;
@@ -146,7 +155,11 @@
         <img src="assets/images/tutorial/tourFigure3.png">
       </div>
       <div>
-        <h2>Browse Core Options</h2>
+
+        <div class="d-flex">
+          <div class="flex-fill"><h2>Browse Core Options</h2></div>
+          <div class="flex-fill" (click)="modalRef.hide()">x</div>
+        </div>
         The ~1,000 Core Options have been pre-selected by the NESCS Plus developers to represent the FES options that
         are likely to be most common or plausible (based on subjective judgement).<br><br>
         <span class="btn btn-light btn-sm" (click)="showSeventhStep()">&lt; Previous</span> &nbsp;&nbsp;&nbsp;
@@ -161,7 +174,11 @@
         <img src="assets/images/tutorial/tourFigure4.png">
       </div>
       <div>
-        <h2>Human Systems</h2>
+
+        <div class="d-flex">
+          <div class="flex-fill"><h2>Human Systems</h2></div>
+          <div class="flex-fill" (click)="modalRef.hide()">x</div>
+        </div>
         The NESCS Plus Webtool offers two ways to classify "How?" and/or "Who?" is receiving FES.
         Regardless of the search selected, you will receive results for both Direct Use/User and Beneficiary
         classes.<br><br>
@@ -177,7 +194,11 @@
         <img src="assets/images/tutorial/tourFigure5.png">
       </div>
       <div>
-        <h2>Make your selection</h2>
+
+        <div class="d-flex">
+          <div class="flex-fill"><h2>Make your selection</h2></div>
+          <div class="flex-fill" (click)="modalRef.hide()">x</div>
+        </div>
         For each NESCS Plus component you can:<br>
         <i class="i-ui-icon link" style="background-size: 17px;width: 17px;height: 17px;"></i> Use the
         i-button to read a description.<br>
@@ -191,8 +212,13 @@
   <div *ngIf="eleventhStepToggle">
     <div>
       <div>
-        <h2>View your results</h2>
-        After finalizing your selections, click the "Query Data" button to view the results of your query. Any time you
+
+        <div class="d-flex">
+          <div class="flex-fill"><h2>View your results</h2></div>
+          <div class="flex-fill" (click)="modalRef.hide()">x</div>
+        </div>
+        After finalizing your selections, click the "Query Data" button to view the results of your query. Any time
+        you
         change your selection you will need to click this button for new results.<br><br>
         <span class="btn btn-light btn-sm" (click)="showTenthStep()">&lt; Previous</span> &nbsp;&nbsp;&nbsp;
         <span class="btn btn-light btn-sm" (click)="showTwelfthStep()">Next &gt;</span>
@@ -209,7 +235,11 @@
         <img src="assets/images/tutorial/exportHighlight.png">
       </div>
       <div>
-        <h2>Save your results</h2>
+
+        <div class="d-flex">
+          <div class="flex-fill"><h2>Save your results</h2></div>
+          <div class="flex-fill" (click)="modalRef.hide()">x</div>
+        </div>
         <p>Hide/Show your desired columns.</p>
         <p>If you would like to download the results to a spreadsheet file, click the "Export" button.</p>
         <span class="btn btn-light btn-sm" (click)="showEleventhStep()">&lt; Previous</span> &nbsp;&nbsp;&nbsp;
