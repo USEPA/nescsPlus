@@ -12,7 +12,6 @@ import {HttpClientModule} from '@angular/common/http';
 import {AppService} from './services/app.service';
 import {AppLoadService} from './services/app-load.service';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {SplashScreenComponent} from './splash-screen/splash-screen.component';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {ApplicationModule} from './application/application.module';
 import {HelpComponent} from './modals/help/help.component';
@@ -26,7 +25,6 @@ export function get_settings(appLoadService: AppLoadService) {
 @NgModule({
   declarations: [
     AppComponent,
-    SplashScreenComponent,
     PageNotFoundComponent,
     HelpComponent,
     SplashEntryModalComponent,
