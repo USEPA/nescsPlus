@@ -28,15 +28,15 @@
               vertical-align: top;
 
               div {
-                border: initial !important;
-                background: initial !important;
-                width: initial !important;
+                border: 0 !important;
+                background: transparent;
+                width: auto;
                 height: initial !important;
-                padding: initial !important;
-                border-radius: initial !important;
+                padding: 0 !important;
+                border-radius: 0 !important;
                 top: initial !important;
-                right: initial!important;
-                position: relative!important;
+                right: initial !important;
+                position: relative !important;
 
                 div {
                   border: initial;
@@ -67,14 +67,19 @@
 
             div {
               div {
+                width: auto;
 
                 &:first-child {
                   background: #5b616b;
                   padding: 10px;
                   width: 450px;
-                  height: 222px;
+                  //height: 222px;
                   border: 2px solid white;
                   border-radius: 0 3px 3px 3px;
+                }
+
+                div {
+                  width: auto;
                 }
               }
             }
