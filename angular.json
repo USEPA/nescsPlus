@@ -144,7 +144,6 @@
       }
     }
   },
-  "defaultProject": "nescs",
   "cli": {
     "analytics": false
   }

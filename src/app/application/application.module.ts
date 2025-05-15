@@ -22,42 +22,35 @@ import {SearchInstructionsHowWhoModalComponent} from '../modals/search-instructi
 
 
 @NgModule({
-  declarations: [
-    NameModalComponent,
-    DeleteModalComponent,
-    SearchInstructionsModalComponent,
-    SearchInstructionsHowWhoModalComponent,
-    ApplicationComponent,
-    AdvancedQueryComponent,
-    CustomQueryComponent,
-    DataTableComponent,
-    ListComponent,
-    ToggleItemsComponent,
-    ToggleColumnsComponent,
-    SingleQueryTableComponent
-  ],
-  entryComponents: [
-    DeleteModalComponent,
-    NameModalComponent,
-    SearchInstructionsModalComponent,
-    SearchInstructionsHowWhoModalComponent,
-    HelpComponent
-  ],
-  exports: [
-    DataTableComponent,
-    SingleQueryTableComponent,
-    ListComponent
-  ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ApplicationRoutingModule,
-    NgSelectModule
-  ],
-  providers: [
-    ExcelService,
-    AdvancedQueryService
-  ]
+    declarations: [
+        NameModalComponent,
+        DeleteModalComponent,
+        SearchInstructionsModalComponent,
+        SearchInstructionsHowWhoModalComponent,
+        ApplicationComponent,
+        AdvancedQueryComponent,
+        CustomQueryComponent,
+        DataTableComponent,
+        ListComponent,
+        ToggleItemsComponent,
+        ToggleColumnsComponent,
+        SingleQueryTableComponent
+    ],
+    exports: [
+        DataTableComponent,
+        SingleQueryTableComponent,
+        ListComponent
+    ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        ApplicationRoutingModule,
+        NgSelectModule
+    ],
+    providers: [
+        ExcelService,
+        AdvancedQueryService
+    ]
 })
 export class ApplicationModule {
 }
