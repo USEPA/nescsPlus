@@ -20,7 +20,7 @@
             "outputPath": "dist/nescs",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "aot": true,
             "assets": [
@@ -39,7 +39,6 @@
               "node_modules/jquery/dist/jquery.js",
               "node_modules/select2/dist/js/select2.min.js",
               "node_modules/datatables.net/js/jquery.dataTables.js",
-              "node_modules/jszip/dist/jszip.js",
               "node_modules/datatables.net-buttons/js/dataTables.buttons.js",
               "node_modules/datatables.net-buttons/js/buttons.colVis.js",
               "node_modules/datatables.net-buttons/js/buttons.flash.js",
@@ -100,7 +99,7 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "assets": [
