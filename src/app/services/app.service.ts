@@ -1,7 +1,6 @@
 
 import {Injectable} from '@angular/core';
-import {Subject} from 'rxjs/index';
-import {BehaviorSubject} from 'rxjs';
+import {BehaviorSubject, Subject} from 'rxjs';
 
 @Injectable()
 export class AppService {

@@ -6,7 +6,7 @@
 /** Resets and Normalization **************************************************/
 * {
   box-sizing: border-box;
-  *behavior: url('https://www.epa.gov/sites/all/themes/epa/inc/boxsizing.htc');
+  behavior: url('https://www.epa.gov/sites/all/themes/epa/inc/boxsizing.htc');
 }
 
 article,
