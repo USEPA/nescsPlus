@@ -8,7 +8,7 @@ import {AppComponent} from './app.component';
 
 /* Routing Module */
 import {AppRoutingModule} from './app-routing.module';
-import {HttpClientModule} from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import {AppService} from './services/app.service';
 import {AppLoadService} from './services/app-load.service';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -22,31 +22,26 @@ export function get_settings(appLoadService: AppLoadService) {
   return () => appLoadService.getSettings();
 }
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    PageNotFoundComponent,
-    HelpComponent,
-    SplashEntryModalComponent,
-    SplashEntryCustomModalComponent
-  ],
-  exports: [],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    AppRoutingModule,
-    ApplicationModule,
-    FormsModule,
-    ModalModule.forRoot(),
-    BrowserAnimationsModule,
-    ApplicationModule
-  ],
-  providers: [
-    AppLoadService,
-    {provide: APP_INITIALIZER, useFactory: get_settings, deps: [AppLoadService], multi: true},
-    AppService],
-  bootstrap: [AppComponent],
-  schemas: [NO_ERRORS_SCHEMA]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        PageNotFoundComponent,
+        HelpComponent,
+        SplashEntryModalComponent,
+        SplashEntryCustomModalComponent
+    ],
+    exports: [],
+    bootstrap: [AppComponent],
+    schemas: [NO_ERRORS_SCHEMA], imports: [BrowserModule,
+        AppRoutingModule,
+        ApplicationModule,
+        FormsModule,
+        ModalModule.forRoot(),
+        BrowserAnimationsModule,
+        ApplicationModule], providers: [
+        AppLoadService,
+        { provide: APP_INITIALIZER, useFactory: get_settings, deps: [AppLoadService], multi: true },
+        AppService,
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class AppModule {
 }

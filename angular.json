@@ -15,11 +15,12 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/nescs",
+            "outputPath": {
+              "base": "dist/nescs"
+            },
             "index": "src/index.html",
-            "main": "src/main.ts",
             "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "aot": true,
@@ -46,7 +47,8 @@
               "node_modules/datatables.net-buttons/js/buttons.print.js",
               "node_modules/pdfmake/build/pdfmake.js",
               "node_modules/pdfmake/build/vfs_fonts.js"
-            ]
+            ],
+            "browser": "src/main.ts"
           },
           "configurations": {
             "production": {
@@ -62,8 +64,6 @@
               "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
