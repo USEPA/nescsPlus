@@ -5,9 +5,10 @@ import {SingleQueryAction} from '../../models/single-query-action';
 import {Action} from '../../models/enums';
 
 @Component({
-  selector: 'app-delete-modal',
-  templateUrl: './delete-modal.component.html',
-  styleUrls: ['./delete-modal.component.scss']
+    selector: 'app-delete-modal',
+    templateUrl: './delete-modal.component.html',
+    styleUrls: ['./delete-modal.component.scss'],
+    standalone: false
 })
 export class DeleteModalComponent implements OnInit {
   @Output() deleteComplete = new EventEmitter();

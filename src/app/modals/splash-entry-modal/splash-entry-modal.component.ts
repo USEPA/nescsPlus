@@ -6,9 +6,10 @@ import {AppService} from '../../services/app.service';
 import {AdvancedQueryService} from '../../services/advanced-query.service';
 
 @Component({
-  selector: 'app-splash-entry-modal',
-  templateUrl: './splash-entry-modal.component.html',
-  styleUrls: ['./splash-entry-modal.component.scss']
+    selector: 'app-splash-entry-modal',
+    templateUrl: './splash-entry-modal.component.html',
+    styleUrls: ['./splash-entry-modal.component.scss'],
+    standalone: false
 })
 export class SplashEntryModalComponent implements AfterViewInit, OnInit {
   innerWidth: number;

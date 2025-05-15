@@ -2,9 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {BsModalRef} from 'ngx-bootstrap/modal';
 
 @Component({
-  selector: 'app-help',
-  templateUrl: './help.component.html',
-  styleUrls: ['./help.component.scss']
+    selector: 'app-help',
+    templateUrl: './help.component.html',
+    styleUrls: ['./help.component.scss'],
+    standalone: false
 })
 export class HelpComponent implements OnInit {
   helpText: string;

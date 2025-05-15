@@ -12,9 +12,10 @@ import {SplashEntryCustomModalComponent} from '../modals/splash-entry-custom-mod
 import {TutorialService} from '../services/tutorial.service';
 
 @Component({
-  selector: 'app-custom-query',
-  templateUrl: './custom-query.component.html',
-  styleUrls: ['./custom-query.component.scss']
+    selector: 'app-custom-query',
+    templateUrl: './custom-query.component.html',
+    styleUrls: ['./custom-query.component.scss'],
+    standalone: false
 })
 export class CustomQueryComponent implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild('nameTemplate', {static: false}) nameTemplate;

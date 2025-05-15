@@ -11,9 +11,10 @@ import {Action} from '../../models/enums';
 declare var $;
 
 @Component({
-  selector: 'app-single-query-table',
-  templateUrl: './single-query-table.component.html',
-  styleUrls: ['./single-query-table.component.scss']
+    selector: 'app-single-query-table',
+    templateUrl: './single-query-table.component.html',
+    styleUrls: ['./single-query-table.component.scss'],
+    standalone: false
 })
 export class SingleQueryTableComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('singleDataTable', {static: false}) table;

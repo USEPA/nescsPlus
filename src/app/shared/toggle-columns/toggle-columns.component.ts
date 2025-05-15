@@ -4,9 +4,10 @@ import {ListItem} from '../../models/listItem';
 import {Subscription} from 'rxjs';
 
 @Component({
-  selector: 'app-toggle-columns',
-  templateUrl: './toggle-columns.component.html',
-  styleUrls: ['./toggle-columns.component.scss']
+    selector: 'app-toggle-columns',
+    templateUrl: './toggle-columns.component.html',
+    styleUrls: ['./toggle-columns.component.scss'],
+    standalone: false
 })
 export class ToggleColumnsComponent implements OnInit, OnDestroy {
   data: Set<ListItem>;

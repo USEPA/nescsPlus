@@ -13,10 +13,11 @@ import {TutorialService} from '../services/tutorial.service';
 
 
 @Component({
-  selector: 'app-advanced-query',
-  templateUrl: './advanced-query.component.html',
-  styleUrls: ['./advanced-query.component.scss'],
-  providers: [AdvancedQueryService]
+    selector: 'app-advanced-query',
+    templateUrl: './advanced-query.component.html',
+    styleUrls: ['./advanced-query.component.scss'],
+    providers: [AdvancedQueryService],
+    standalone: false
 })
 
 export class AdvancedQueryComponent implements AfterViewInit, OnInit, OnDestroy {

@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {APP_INITIALIZER, NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA, inject, provideAppInitializer } from '@angular/core';
 import {ModalModule} from 'ngx-bootstrap/modal';
 import {FormsModule} from '@angular/forms';
 
@@ -39,7 +39,10 @@ export function get_settings(appLoadService: AppLoadService) {
         BrowserAnimationsModule,
         ApplicationModule], providers: [
         AppLoadService,
-        { provide: APP_INITIALIZER, useFactory: get_settings, deps: [AppLoadService], multi: true },
+        provideAppInitializer(() => {
+        const initializerFn = (get_settings)(inject(AppLoadService));
+        return initializerFn();
+      }),
         AppService,
         provideHttpClient(withInterceptorsFromDi())
     ] })

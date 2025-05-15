@@ -5,9 +5,10 @@ import {TutorialService} from '../../services/tutorial.service';
 import {AppService} from '../../services/app.service';
 
 @Component({
-  selector: 'app-splash-entry-custom-modal',
-  templateUrl: './splash-entry-custom-modal.component.html',
-  styleUrls: ['./splash-entry-custom-modal.component.scss']
+    selector: 'app-splash-entry-custom-modal',
+    templateUrl: './splash-entry-custom-modal.component.html',
+    styleUrls: ['./splash-entry-custom-modal.component.scss'],
+    standalone: false
 })
 export class SplashEntryCustomModalComponent implements AfterViewInit, OnInit {
   twelfthStepToggle = false;

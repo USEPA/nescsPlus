@@ -6,10 +6,10 @@ import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
 import {HelpComponent} from '../modals/help/help.component';
 
 @Component({
-  selector: 'app-list',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
-
+    selector: 'app-list',
+    templateUrl: './list.component.html',
+    styleUrls: ['./list.component.scss'],
+    standalone: false
 })
 
 export class ListComponent implements OnInit {

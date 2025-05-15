@@ -6,9 +6,10 @@ import {SingleQueryAction} from '../../models/single-query-action';
 import {Action} from '../../models/enums';
 
 @Component({
-  selector: 'app-name-modal',
-  templateUrl: './name-modal.component.html',
-  styleUrls: ['./name-modal.component.scss']
+    selector: 'app-name-modal',
+    templateUrl: './name-modal.component.html',
+    styleUrls: ['./name-modal.component.scss'],
+    standalone: false
 })
 export class NameModalComponent implements OnInit {
   singleAction: SingleQueryAction;

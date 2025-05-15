@@ -3,9 +3,10 @@ import {ListItem} from '../../models/listItem';
 import {AdvancedQueryService} from '../../services/advanced-query.service';
 
 @Component({
-  selector: 'app-toggle-items',
-  templateUrl: './toggle-items.component.html',
-  styleUrls: ['./toggle-items.component.scss']
+    selector: 'app-toggle-items',
+    templateUrl: './toggle-items.component.html',
+    styleUrls: ['./toggle-items.component.scss'],
+    standalone: false
 })
 export class ToggleItemsComponent implements OnInit {
   @Input() data;

@@ -13,9 +13,10 @@ import {Constants} from '../models/constants';
 declare var $;
 
 @Component({
-  selector: 'app-datatable',
-  templateUrl: './datatable.component.html',
-  styleUrls: ['./datatable.component.scss']
+    selector: 'app-datatable',
+    templateUrl: './datatable.component.html',
+    styleUrls: ['./datatable.component.scss'],
+    standalone: false
 })
 
 export class DataTableComponent implements AfterViewInit, OnDestroy, OnInit {

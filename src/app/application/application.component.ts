@@ -8,9 +8,10 @@ import {SearchInstructionsModalComponent} from '../modals/search-instructions-mo
 import {Constants} from '../models/constants';
 
 @Component({
-  selector: 'app-application',
-  templateUrl: './application.component.html',
-  styleUrls: ['./application.component.scss']
+    selector: 'app-application',
+    templateUrl: './application.component.html',
+    styleUrls: ['./application.component.scss'],
+    standalone: false
 })
 export class ApplicationComponent implements OnInit, OnDestroy {
   @ViewChild('applicationButtons') applicationButtonsRef: ElementRef;
